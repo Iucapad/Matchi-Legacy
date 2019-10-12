@@ -42,13 +42,19 @@ namespace AppArt
             titleBar.ButtonPressedBackgroundColor = Windows.UI.Colors.Gray;
             titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.White;
             //Paramétrage des boutons de fenêtre
-
-            
-
+            Date_display();
         }
-
+        private void Date_display()
+        {
+            var culture = new System.Globalization.CultureInfo("fr-FR");
+            string date = DateTime.Now.Day.ToString();
+            string month = culture.DateTimeFormat.GetMonthName(DateTime.Today.Month);
+            string day = culture.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
+            date_of_day.Text = day + " " + date + " " + month;
+        }
         private void SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            home_interface.Visibility = Visibility.Collapsed;
             NavigationViewItem item = args.SelectedItem as NavigationViewItem;
             
             switch (item.Tag.ToString()) //Navigation vers la page souhaitée
