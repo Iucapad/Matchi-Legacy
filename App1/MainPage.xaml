@@ -9,7 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="app_background" Background="#151515">
-        <Grid x:Name="home_interface" HorizontalAlignment="Center" VerticalAlignment="Stretch" MaxHeight="750">
+        <Grid x:Name="home_interface" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,60,0,0">
+            
             <TextBlock x:Name="date_of_day" Foreground="White" HorizontalAlignment="Center" Margin="0,60,0,0" Text="vendredi 3 janvier" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="Bold"/>
 
             <Grid x:Name="links_box" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="2" BorderBrush="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" CornerRadius="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60">
