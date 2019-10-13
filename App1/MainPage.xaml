@@ -6,9 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}">
 
-    <Grid x:Name="app_background" Background="#151515">
+    <Grid x:Name="app_background" Background="{ThemeResource SystemControlAcrylicElementBrush}">        
         <Grid x:Name="home_interface" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,60,0,0">
             
             <TextBlock x:Name="date_of_day" Foreground="White" HorizontalAlignment="Center" Margin="0,60,0,0" Text="vendredi 3 janvier" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="Bold"/>
@@ -28,6 +28,7 @@
                 </Button>
             </Grid>
         </Grid>
+        <Rectangle x:Name="web_header" Visibility="Collapsed" Height="auto"  Width="auto" Margin="40,0,0,0" Fill="#151515"></Rectangle>
         <NavigationView x:Name="navigationView" Header="Accueil" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="0" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="OutlineStar"  Content="Match" Tag="matchNav" />
@@ -36,7 +37,7 @@
                 <NavigationViewItem Icon="Globe" Content="Site" Tag="webNav" />
             </NavigationView.MenuItems>
             <NavigationView.PaneFooter>
-                <Image Width="40" Source="/Assets/app_saison_logo.png"/>
+                <Image x:Name="saison_logo" Width="40" Source="/Assets/app_saison_logo.png"/>
 
             </NavigationView.PaneFooter>
             <Frame x:Name="contentFrame">
@@ -46,6 +47,6 @@
                     </TransitionCollection>                    
                 </Frame.ContentTransitions>                
             </Frame>            
-        </NavigationView>        
-    </Grid>    
+        </NavigationView>
+        </Grid>    
 </Page>

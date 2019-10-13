@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.ApplicationModel.Core;
 using System.Net.NetworkInformation;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml.Media.Imaging;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -32,16 +33,17 @@ namespace AppArt
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar; 
             coreTitleBar.ExtendViewIntoTitleBar = true;
             ApplicationViewTitleBar titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
-            //Etend le contenu pour masquer la barre de titre
             titleBar.ButtonBackgroundColor = Windows.UI.Colors.Transparent;
-            titleBar.ButtonForegroundColor = Windows.UI.Colors.White;
+            titleBar.ButtonForegroundColor = Windows.UI.Colors.DimGray;
             titleBar.ButtonHoverBackgroundColor = Windows.UI.Colors.DimGray;
             titleBar.ButtonHoverForegroundColor = Windows.UI.Colors.White;
             titleBar.ButtonInactiveBackgroundColor = Windows.UI.Colors.Transparent;
             titleBar.ButtonInactiveForegroundColor = Windows.UI.Colors.Gray;
             titleBar.ButtonPressedBackgroundColor = Windows.UI.Colors.Gray;
             titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.White;
-            //Paramétrage des boutons de fenêtre
+            if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+            { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo_light.png"));}
+            //Paramétrage de l'interface
             Date_display();
         }
         private void Date_display()
@@ -62,18 +64,22 @@ namespace AppArt
                 case "matchNav":
                     contentFrame.Navigate(typeof(MatchPage));
                     navigationView.Header = "Match";
+                    web_header.Visibility = Visibility.Collapsed;
                     break;
                 case "peopleNav":
                     contentFrame.Navigate(typeof(PeoplePage));
                     navigationView.Header = "Jouteurs";
+                    web_header.Visibility = Visibility.Collapsed;
                     break;
                 case "editNav":
                     contentFrame.Navigate(typeof(EditPage));
                     navigationView.Header = "Éditer";
+                    web_header.Visibility = Visibility.Collapsed;
                     break;
                 case "webNav":
                     contentFrame.Navigate(typeof(WebPage));
                     navigationView.Header = "";
+                    web_header.Visibility = Visibility.Visible;
                     break;
             }
         }

@@ -29,14 +29,12 @@ namespace AppArt
             this.InitializeComponent();
             Load();
         }
-
         private static bool IsInternet()
         {
             ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
             bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
             return internet;
         }
-
         private void Load()
         {            
             if (IsInternet())
