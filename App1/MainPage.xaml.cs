@@ -83,5 +83,11 @@ namespace AppArt
                     break;
             }
         }
+
+        private void Create_Match(object sender, RoutedEventArgs e)
+        {
+            contentFrame.Navigate(typeof(CreateMatchPage));
+            navigationView.Header = "Créer un match";
+        }
     }
 }

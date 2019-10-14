@@ -14,7 +14,7 @@
             <TextBlock x:Name="date_of_day" Foreground="White" HorizontalAlignment="Center" Margin="0,60,0,0" Text="vendredi 3 janvier" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="Bold"/>
 
             <Grid x:Name="links_box" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="2" BorderBrush="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" CornerRadius="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60">
-                <Button CornerRadius="3" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="125"  VerticalAlignment="Center" Margin="0,0,128,0" FontFamily="Segoe UI">
+                <Button CornerRadius="3" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="125"  VerticalAlignment="Center" Margin="0,0,128,0" FontFamily="Segoe UI" Click="Create_Match">
                     <StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="24" HorizontalAlignment="Center"/>
                         <TextBlock>Nouveau match</TextBlock>
