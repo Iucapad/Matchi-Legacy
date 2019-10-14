@@ -26,5 +26,11 @@ namespace AppArt
         {
             this.InitializeComponent();
         }
+
+        private void Create_Match(object sender, RoutedEventArgs e)
+        {
+            MainPage.MainPageFrame?.Navigate(typeof(CreateMatchPage));
+            
+        }
     }
 }

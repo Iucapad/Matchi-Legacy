@@ -26,9 +26,11 @@ namespace AppArt
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static Frame MainPageFrame;
         public MainPage()
         {
             this.InitializeComponent();
+            MainPageFrame = contentFrame;
 
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar; 
             coreTitleBar.ExtendViewIntoTitleBar = true;
@@ -63,22 +65,18 @@ namespace AppArt
             {
                 case "matchNav":
                     contentFrame.Navigate(typeof(MatchPage));
-                    navigationView.Header = "Match";
                     web_header.Visibility = Visibility.Collapsed;
                     break;
-                case "peopleNav":
-                    contentFrame.Navigate(typeof(PeoplePage));
-                    navigationView.Header = "Jouteurs";
+                case "categoryNav":
+                    contentFrame.Navigate(typeof(CategoryPage));
                     web_header.Visibility = Visibility.Collapsed;
                     break;
                 case "editNav":
                     contentFrame.Navigate(typeof(EditPage));
-                    navigationView.Header = "Éditer";
                     web_header.Visibility = Visibility.Collapsed;
                     break;
                 case "webNav":
                     contentFrame.Navigate(typeof(WebPage));
-                    navigationView.Header = "";
                     web_header.Visibility = Visibility.Visible;
                     break;
             }
@@ -87,7 +85,6 @@ namespace AppArt
         private void Create_Match(object sender, RoutedEventArgs e)
         {
             contentFrame.Navigate(typeof(CreateMatchPage));
-            navigationView.Header = "Créer un match";
         }
     }
 }

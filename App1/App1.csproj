@@ -119,7 +119,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateMatchPage.xaml.cs">
+    <Compile Include="Pages\CategoryPage.xaml.cs">
+      <DependentUpon>CategoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CreateMatchPage.xaml.cs">
       <DependentUpon>CreateMatchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EditPage.xaml.cs">
@@ -130,9 +133,6 @@
     </Compile>
     <Compile Include="Pages\MatchPage.xaml.cs">
       <DependentUpon>MatchPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\PeoplePage.xaml.cs">
-      <DependentUpon>PeoplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\WebPage.xaml.cs">
@@ -161,7 +161,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CreateMatchPage.xaml">
+    <Page Include="Pages\CategoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CreateMatchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,10 +178,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\MatchPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\PeoplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

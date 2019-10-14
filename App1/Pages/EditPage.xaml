@@ -7,8 +7,37 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <AcrylicBrush x:Key="CustomAcrylicBrush"
+                          BackgroundSource="HostBackdrop"
+                          TintColor="Black"
+                          TintOpacity="0.8"
+                          FallbackColor="#303030"/>
+                </ResourceDictionary>
 
-    <Grid>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="CustomAcrylicBrush"
+                             Color="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Light">
+                    <AcrylicBrush x:Key="CustomAcrylicBrush"
+                          BackgroundSource="HostBackdrop"
+                          TintColor="White"
+                          TintOpacity="0.6"
+                          FallbackColor="White"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource CustomAcrylicBrush}">
+        <TextBlock Text="Éditer"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
         
     </Grid>
 </Page>

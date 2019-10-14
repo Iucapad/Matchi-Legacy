@@ -20,9 +20,9 @@ namespace AppArt
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class PeoplePage : Page
+    public sealed partial class CategoryPage : Page
     {
-        public PeoplePage()
+        public CategoryPage()
         {
             this.InitializeComponent();
         }
