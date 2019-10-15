@@ -61,7 +61,7 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="OutlineStar"  Content="Match" Tag="matchNav" />
                 <NavigationViewItem Icon="Library" Content="Catégories" Tag="categoryNav" />
-                <NavigationViewItem Icon="Edit" Content="Éditer" Tag="editNav" />
+                <NavigationViewItem Icon="Audio" Content="Musique" Tag="editNav" />
                 <NavigationViewItem Icon="Globe" Content="Site" Tag="webNav" />
             </NavigationView.MenuItems>
             <NavigationView.PaneFooter>

@@ -16,6 +16,7 @@ using Windows.ApplicationModel.Core;
 using System.Net.NetworkInformation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -73,18 +74,19 @@ namespace App1
                     break;
                 case "editNav":
                     contentFrame.Navigate(typeof(EditPage));
-                    web_header.Visibility = Visibility.Collapsed;
+                    web_header.Fill = new SolidColorBrush(Color.FromArgb(255,30, 215, 96));
+                    web_header.Visibility = Visibility.Visible;
                     break;
                 case "webNav":
                     contentFrame.Navigate(typeof(WebPage));
+                    web_header.Fill = new SolidColorBrush(Color.FromArgb(255, 21, 21, 21));
                     web_header.Visibility = Visibility.Visible;
                     break;
             }
         }
-
         private void Create_Match(object sender, RoutedEventArgs e)
         {
-            contentFrame.Navigate(typeof(CreateMatchPage));
+            contentFrame.Navigate(typeof(CreateMatchPage));            
         }
     }
 }

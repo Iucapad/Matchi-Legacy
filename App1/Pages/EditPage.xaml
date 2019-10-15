@@ -15,29 +15,45 @@
                 <ResourceDictionary x:Key="Default">
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
-                          TintColor="Black"
+                          TintColor="#1ED761"
                           TintOpacity="0.8"
-                          FallbackColor="#303030"/>
+                          FallbackColor="#1ED761"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="HighContrast">
                     <SolidColorBrush x:Key="CustomAcrylicBrush"
-                             Color="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                             Color="#1ED761"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="Light">
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
-                          TintColor="White"
+                          TintColor="#1ED761"
                           TintOpacity="0.6"
-                          FallbackColor="White"/>
+                          FallbackColor="#1ED761"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock Text="Éditer"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
-        
+        <Rectangle >
+        <Rectangle.Fill>
+            <LinearGradientBrush StartPoint="0.25,0" EndPoint="0.25,1">
+                    <GradientStop Color="#1ED761" Offset="0.1" />
+                    <GradientStop Color="Transparent" Offset="0.9" />
+            </LinearGradientBrush>
+        </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock Text="Musique" Foreground="Black" FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
+        <Grid x:Name="error_message">
+            <TextBox Foreground="Black" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Veuillez lancer une musique pour commencer."></TextBox>
+            <Button CornerRadius="3" Style="{ThemeResource ButtonRevealStyle}" Foreground="Black" HorizontalAlignment="Center" Height="80" Width="125"  VerticalAlignment="Bottom" Margin="60" FontFamily="Segoe UI" Click="Launch_Spotify">
+                <StackPanel>
+                    <Image Width="40" Source="/Assets/app_spotify_logo.png"/>                    
+                    <TextBlock>Ouvrir Spotify</TextBlock>
+                </StackPanel>
+            </Button>
+        </Grid>
     </Grid>
 </Page>
