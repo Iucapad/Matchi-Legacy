@@ -15,9 +15,9 @@
                 <ResourceDictionary x:Key="Default">
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
-                          TintColor="#1ED761"
+                          TintColor="#0F6C30"
                           TintOpacity="0.8"
-                          FallbackColor="#1ED761"/>
+                          FallbackColor="#0F6C30"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="HighContrast">
@@ -28,9 +28,9 @@
                 <ResourceDictionary x:Key="Light">
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
-                          TintColor="#1ED761"
+                          TintColor="#8FEBB0"
                           TintOpacity="0.6"
-                          FallbackColor="#1ED761"/>
+                          FallbackColor="#8FEBB0"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
@@ -38,22 +38,40 @@
 
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
         <Rectangle >
-        <Rectangle.Fill>
-            <LinearGradientBrush StartPoint="0.25,0" EndPoint="0.25,1">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0.25,0" EndPoint="0.25,1">
                     <GradientStop Color="#1ED761" Offset="0.1" />
                     <GradientStop Color="Transparent" Offset="0.9" />
-            </LinearGradientBrush>
-        </Rectangle.Fill>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
         </Rectangle>
         <TextBlock Text="Musique" Foreground="Black" FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
-        <Grid x:Name="error_message">
-            <TextBox Foreground="Black" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Veuillez lancer une musique pour commencer."></TextBox>
+        <Grid>
+            <TextBox Foreground="Black" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Contrôlez votre application de musique"></TextBox>
             <Button CornerRadius="3" Style="{ThemeResource ButtonRevealStyle}" Foreground="Black" HorizontalAlignment="Center" Height="80" Width="125"  VerticalAlignment="Bottom" Margin="60" FontFamily="Segoe UI" Click="Launch_Spotify">
                 <StackPanel>
-                    <Image Width="40" Source="/Assets/app_spotify_logo.png"/>                    
+                    <Image Width="40" Source="/Assets/app_spotify_logo.png"/>
                     <TextBlock>Ouvrir Spotify</TextBlock>
                 </StackPanel>
             </Button>
+            <Grid x:Name="controls_box" VerticalAlignment="Bottom" Margin="0,0,0,200" HorizontalAlignment="Center" Width="250">
+
+                <Button CornerRadius="100" Style="{ThemeResource ButtonRevealStyle}" Width="75" Height="75" Foreground="Black" HorizontalAlignment="Center" Click="c1">
+                    <StackPanel>
+                        <Image Width="55" Source="/Assets/playbtn.png"/>
+                    </StackPanel>
+                </Button>
+                <Button CornerRadius="100" Style="{ThemeResource ButtonRevealStyle}" Width="60" Height="60" Foreground="Black" HorizontalAlignment="Left"  Click="c2">
+                <StackPanel>
+                    <Image Width="40" Source="/Assets/previousbtn.png"/>
+                </StackPanel>
+                </Button>
+                <Button CornerRadius="100" Style="{ThemeResource ButtonRevealStyle}" Width="60" Height="60" Foreground="Black" HorizontalAlignment="Right"  Click="c3">
+                    <StackPanel>
+                        <Image Width="40" Source="/Assets/nextbtn.png"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

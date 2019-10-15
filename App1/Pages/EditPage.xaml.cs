@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Runtime.InteropServices;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,19 +24,39 @@ namespace App1
     /// </summary>
     public sealed partial class EditPage : Page
     {
+        public const int KEYEVENTF_EXTENTEDKEY = 1;
+        public const int KEYEVENTF_KEYUP = 0;
+        public const int VK_MEDIA_NEXT_TRACK = 0xB0;
+        public const int VK_MEDIA_PLAY_PAUSE = 0xB3;
+        public const int VK_MEDIA_PREV_TRACK = 0xB1;
+
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte virtualKey, byte scanCode, uint flags, IntPtr extraInfo);
+
         public EditPage()
         {
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private async void Launch_Spotify(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("spotify:"));
+        }
+
+        private void c1(object sender, RoutedEventArgs e)
+        {
+            keybd_event(VK_MEDIA_PLAY_PAUSE, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+        }
+
+        private void c2(object sender, RoutedEventArgs e)
+        {
+            keybd_event(VK_MEDIA_PREV_TRACK, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+        }
+
+        private void c3(object sender, RoutedEventArgs e)
+        {
+            keybd_event(VK_MEDIA_NEXT_TRACK, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
         }
     }
 }
