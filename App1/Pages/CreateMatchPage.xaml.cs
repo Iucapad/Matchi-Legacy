@@ -22,9 +22,22 @@ namespace App1
     /// </summary>
     public sealed partial class CreateMatchPage : Page
     {
+        private List<int> nombre;
         public CreateMatchPage()
         {
             this.InitializeComponent();
+            nombre = new List<int>();
+            for(int i=1; i<=10; i++)
+            {
+                nombre.Add(i);
+            }
+            nombrejouteur.ItemsSource = nombre;
+            nombrejouteur.SelectedIndex = 0;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

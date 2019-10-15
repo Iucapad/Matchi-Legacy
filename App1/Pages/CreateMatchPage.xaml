@@ -39,7 +39,12 @@
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock Text="Nouveau match"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
         <Grid x:Name="page" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            
+
         </Grid>
+        <TextBox HorizontalAlignment="Left" Margin="321,150,0,0" Text="team1" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Height="71" Name="nomeq1"/>
+        <TextBox HorizontalAlignment="Left" Margin="320,256,0,0" Text="team2" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Height="71" Name="nomeq2"/>
+        <Button Content="Créer le match" Margin="708,348,0,0" Height="52" Width="275" Click="Button_Click" VerticalAlignment="Top"/>
+        <ComboBox Margin="320,369,0,0" Width="120" Name="nombrejouteur"/>
+
     </Grid>
 </Page>
