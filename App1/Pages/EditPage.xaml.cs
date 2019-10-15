@@ -37,8 +37,6 @@ namespace App1
         {
             this.InitializeComponent();
         }
-
-
         private async void Launch_Spotify(object sender, RoutedEventArgs e)
         {
             await Launcher.LaunchUriAsync(new Uri("spotify:"));
@@ -57,6 +55,11 @@ namespace App1
         private void c3(object sender, RoutedEventArgs e)
         {
             keybd_event(VK_MEDIA_NEXT_TRACK, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+        }
+
+        private void show(object sender, RoutedEventArgs e)
+        {
+            keybd_event(0xAD, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
         }
     }
 }

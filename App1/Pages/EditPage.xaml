@@ -47,15 +47,19 @@
         </Rectangle>
         <TextBlock Text="Musique" Foreground="Black" FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
         <Grid>
-            <TextBox Foreground="Black" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Contrôlez votre application de musique"></TextBox>
+            <TextBox Foreground="Black" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,300" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Contrôlez votre application de musique"></TextBox>
             <Button CornerRadius="3" Style="{ThemeResource ButtonRevealStyle}" Foreground="Black" HorizontalAlignment="Center" Height="80" Width="125"  VerticalAlignment="Bottom" Margin="60" FontFamily="Segoe UI" Click="Launch_Spotify">
                 <StackPanel>
                     <Image Width="40" Source="/Assets/app_spotify_logo.png"/>
                     <TextBlock>Ouvrir Spotify</TextBlock>
                 </StackPanel>
             </Button>
-            <Grid x:Name="controls_box" VerticalAlignment="Bottom" Margin="0,0,0,200" HorizontalAlignment="Center" Width="250">
-
+            <Grid x:Name="controls_box" VerticalAlignment="Bottom" Margin="0,0,0,225" HorizontalAlignment="Center" Width="250">
+                <Button CornerRadius="25" Style="{ThemeResource ButtonRevealStyle}" Margin="0,150,0,0" Width="75" Height="50" Foreground="Black" HorizontalAlignment="Center" Click="show">
+                    <StackPanel>
+                        <Image Width="30" Source="/Assets/mutebtn.png"/>
+                    </StackPanel>
+                </Button>
                 <Button CornerRadius="100" Style="{ThemeResource ButtonRevealStyle}" Width="75" Height="75" Foreground="Black" HorizontalAlignment="Center" Click="c1">
                     <StackPanel>
                         <Image Width="55" Source="/Assets/playbtn.png"/>

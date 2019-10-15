@@ -150,6 +150,7 @@
     <Content Include="Assets\app_saison_logo.png" />
     <Content Include="Assets\app_saison_logo_light.png" />
     <Content Include="Assets\app_spotify_logo.png" />
+    <Content Include="Assets\mutebtn.png" />
     <Content Include="Assets\nextbtn.png" />
     <Content Include="Assets\playbtn.png" />
     <Content Include="Assets\previousbtn.png" />
