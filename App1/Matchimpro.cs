@@ -10,13 +10,14 @@ namespace App1
     {
         private string equipe1;
         private string equipe2;
+        private int manches;
         private List<Categorie> categories;
 
-        public Matchimpro(string team1, string team2, List<Categorie> c)
+        public Matchimpro(string team1, string team2, int m)
         {
             equipe1 = team1;
             equipe2 = team2;
-            categories = c;
+            manches = m;
         }
 
         public string Equipe1 { get => equipe1; set => equipe1 = value; }
