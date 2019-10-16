@@ -38,12 +38,17 @@
 
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock Text="Nouveau match"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
-        <ScrollViewer VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,100,0,0">
-        <StackPanel x:Name="page" Height="auto" HorizontalAlignment="Center">
-            <TextBox HorizontalAlignment="Stretch" Margin="20" Text="team1" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq1"/>
-                <TextBox HorizontalAlignment="Stretch" Margin="20" Text="team2" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq2"/>
-                <ComboBox HorizontalAlignment="Left" Margin="20" Width="120" Name="nombremanche"/>
-            <Button Content="Créer le match" Margin="40" Height="52" Width="275" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <ScrollViewer VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,60,0,0">
+        <StackPanel x:Name="page" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBox HorizontalAlignment="Stretch" CornerRadius="3" Margin="20" Header="Équipe 1" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq1"/>
+                <TextBox HorizontalAlignment="Stretch" CornerRadius="3" Margin="20" Header="Équipe 2" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq2"/>
+                <ComboBox HorizontalAlignment="Left" CornerRadius="3" Margin="20" Header="Nombre de manches" Width="150" Name="nombremanche"/>
+                <Button Style="{ThemeResource ButtonRevealStyle}" CornerRadius="3" Margin="40" Height="80" Width="250" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <StackPanel>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" FontSize="24" HorizontalAlignment="Center"/>
+                        <TextBlock>Créer le match</TextBlock>
+                    </StackPanel>
+                </Button>
             
         </StackPanel>
         </ScrollViewer>
