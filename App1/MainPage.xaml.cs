@@ -91,7 +91,15 @@ namespace App1
 
         private void Resize(object sender, SizeChangedEventArgs e)
         {
-            if (((Frame)Window.Current.Content).ActualHeight < 300)
+            if (((Frame)Window.Current.Content).ActualHeight < 500)
+            {
+                date_of_day.Margin = new Thickness(0, 50, 0, 0);
+            }
+            else
+            {
+                date_of_day.Margin = new Thickness(0, 150, 0, 0);
+            }
+                if (((Frame)Window.Current.Content).ActualWidth < 500)
             {
                 web_header.Margin = new Thickness(0, 0, 0, 0);
                 navigationView.IsPaneToggleButtonVisible = false;

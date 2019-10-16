@@ -38,13 +38,15 @@
 
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock Text="Nouveau match"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
-        <Grid x:Name="page" VerticalAlignment="Stretch" HorizontalAlignment="Center">
-            <TextBox HorizontalAlignment="Stretch" Margin="40,160,0,0" Text="team1" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq1"/>
-            <TextBox HorizontalAlignment="Stretch" Margin="40,210,0,0" Text="team2" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq2"/>
-            <ComboBox HorizontalAlignment="Left" Margin="40,260,0,0" Width="120" Name="nombrejouteur"/>
+        <ScrollViewer VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,100,0,0">
+        <StackPanel x:Name="page" Height="auto" HorizontalAlignment="Center">
+            <TextBox HorizontalAlignment="Stretch" Margin="20" Text="team1" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq1"/>
+                <TextBox HorizontalAlignment="Stretch" Margin="20" Text="team2" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq2"/>
+                <ComboBox HorizontalAlignment="Left" Margin="20" Width="120" Name="nombrejouteur"/>
             <Button Content="Créer le match" Margin="40" Height="52" Width="275" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
             
-        </Grid>        
+        </StackPanel>
+        </ScrollViewer>
 
     </Grid>
 </Page>

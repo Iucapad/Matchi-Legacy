@@ -57,7 +57,7 @@
             </Grid>
         </Grid>
         <Rectangle x:Name="web_header" Visibility="Collapsed" Height="auto"  Width="auto" Margin="40,0,0,0" Fill="#151515"></Rectangle>
-        <NavigationView x:Name="navigationView" Header="" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="350" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
+        <NavigationView x:Name="navigationView" Header="" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="500" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="OutlineStar"  Content="Match" Tag="matchNav" />
                 <NavigationViewItem Icon="Library" Content="Catégories" Tag="categoryNav" />
