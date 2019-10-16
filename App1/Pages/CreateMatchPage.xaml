@@ -42,7 +42,7 @@
         <StackPanel x:Name="page" Height="auto" HorizontalAlignment="Center">
             <TextBox HorizontalAlignment="Stretch" Margin="20" Text="team1" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq1"/>
                 <TextBox HorizontalAlignment="Stretch" Margin="20" Text="team2" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq2"/>
-                <ComboBox HorizontalAlignment="Left" Margin="20" Width="120" Name="nombrejouteur"/>
+                <ComboBox HorizontalAlignment="Left" Margin="20" Width="120" Name="nombremanche"/>
             <Button Content="Créer le match" Margin="40" Height="52" Width="275" Click="Button_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
             
         </StackPanel>
