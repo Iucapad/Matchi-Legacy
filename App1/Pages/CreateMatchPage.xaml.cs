@@ -81,9 +81,15 @@ namespace App1
             }
             else//dossier sélectionné
             {
+                string filename = nomeq1.Text + "_vs_" + nomeq2.Text + ".dat";
+
                 //le ficher est créé dans le dossier sélectionné et si un autre fichier a 
                 //un nom identique, le nouveau fichier aura un chiffre en plus dans son nom.
-                StorageFile sampleFile = await folder.CreateFileAsync(nomeq1.Text + "_vs_" + nomeq2.Text + ".dat", CreationCollisionOption.GenerateUniqueName);
+                StorageFile newFile = await folder.CreateFileAsync(filename, CreationCollisionOption.GenerateUniqueName);
+
+                //on écrit le contenu des champs à l'intérieur du fichier contenu dans l'objet newFile
+                await FileIO.WriteLinesAsync(newFile, new List<string>{nomeq1.Text, nomeq2.Text, nombremanche.SelectedValue.ToString()});
+                
             }
 
         }
