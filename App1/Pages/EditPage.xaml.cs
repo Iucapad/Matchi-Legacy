@@ -4,8 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.System;
+using Windows.UI.Core;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -36,10 +39,23 @@ namespace App1
         public EditPage()
         {
             this.InitializeComponent();
+
+            if (ApplicationView.GetForCurrentView().IsViewModeSupported(ApplicationViewMode.CompactOverlay))
+            {
+                compactOverlayButton.Visibility = Visibility.Visible;
+            }
         }
         private async void Launch_Spotify(object sender, RoutedEventArgs e)
         {
-            await Launcher.LaunchUriAsync(new Uri("spotify:"));
+            var ret = await Windows.System.Launcher.QueryUriSupportAsync(new Uri("spotify:"), Windows.System.LaunchQuerySupportType.Uri);
+            if (ret == LaunchQuerySupportStatus.Available)
+            {
+                await Windows.System.Launcher.LaunchUriAsync(new Uri("spotify:"));
+            }
+            else
+            {
+                await Windows.System.Launcher.LaunchUriAsync(new Uri(@"ms-windows-store://pdp/?ProductId=9ncbcszsjrsb"));
+            }
         }
 
         private void c1(object sender, RoutedEventArgs e)
@@ -61,5 +77,40 @@ namespace App1
         {
             keybd_event(0xAD, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
         }
+        private async void compact(object sender, RoutedEventArgs e)
+        {           
+            ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
+            compactOptions.CustomSize = new Windows.Foundation.Size(320, 220);
+            bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
+            page_title.Visibility = Visibility.Collapsed;
+            compactOverlayButton.Visibility = Visibility.Collapsed;
+            normalbtn.Visibility = Visibility.Visible;
+            mutebtn.Margin = new Thickness(90, 140, 0, 0);
+        }
+        private async void normal(object sender, RoutedEventArgs e)
+        {            
+            bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
+            page_title.Visibility = Visibility.Visible;
+            compactOverlayButton.Visibility = Visibility.Visible;
+            normalbtn.Visibility = Visibility.Collapsed;
+            mutebtn.Margin = new Thickness(0, 140, 0, 0);
+        }
+
+    private void Resize_page(object sender, SizeChangedEventArgs e)
+        {
+            if (((Frame)Window.Current.Content).ActualHeight < 500)
+            {
+                controls_box.Margin = new Thickness(0, 0, 0, 50);
+                launchbtn.Visibility = Visibility.Collapsed;
+                infotext.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                controls_box.Margin = new Thickness(0, 0, 0, 210);
+                launchbtn.Visibility = Visibility.Visible;
+                infotext.Visibility = Visibility.Visible;
+            }
+        }
     }
 }
+

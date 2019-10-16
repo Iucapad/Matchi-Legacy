@@ -88,5 +88,21 @@ namespace App1
         {
             contentFrame.Navigate(typeof(CreateMatchPage));            
         }
+
+        private void Resize(object sender, SizeChangedEventArgs e)
+        {
+            if (((Frame)Window.Current.Content).ActualHeight < 300)
+            {
+                web_header.Margin = new Thickness(0, 0, 0, 0);
+                navigationView.IsPaneToggleButtonVisible = false;
+                navigationView.IsPaneVisible = false;
+            }
+            else
+            {
+                web_header.Margin = new Thickness(40, 0, 0, 0);
+                navigationView.IsPaneToggleButtonVisible = true;
+                navigationView.IsPaneVisible = true;
+            }
+        }
     }
 }

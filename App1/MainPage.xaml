@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}">
+    Background="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}" SizeChanged="Resize">
     <Page.Resources>
         <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
@@ -57,7 +57,7 @@
             </Grid>
         </Grid>
         <Rectangle x:Name="web_header" Visibility="Collapsed" Height="auto"  Width="auto" Margin="40,0,0,0" Fill="#151515"></Rectangle>
-        <NavigationView x:Name="navigationView" Header="" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="0" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
+        <NavigationView x:Name="navigationView" Header="" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="350" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="OutlineStar"  Content="Match" Tag="matchNav" />
                 <NavigationViewItem Icon="Library" Content="Catégories" Tag="categoryNav" />
@@ -68,7 +68,7 @@
                 <Image x:Name="saison_logo" Width="40" Source="/Assets/app_saison_logo.png"/>
 
             </NavigationView.PaneFooter>
-            <Frame x:Name="contentFrame">
+            <Frame x:Name="contentFrame" MinHeight="200">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition></NavigationThemeTransition>

@@ -152,6 +152,8 @@
     <Content Include="Assets\app_spotify_logo.png" />
     <Content Include="Assets\mutebtn.png" />
     <Content Include="Assets\nextbtn.png" />
+    <Content Include="Assets\normal.png" />
+    <Content Include="Assets\overlay.png" />
     <Content Include="Assets\playbtn.png" />
     <Content Include="Assets\previousbtn.png" />
     <Content Include="Properties\Default.rd.xml" />

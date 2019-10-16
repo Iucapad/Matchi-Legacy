@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="Resize_page">
     <Page.Resources>
         <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
@@ -45,19 +45,24 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock Text="Musique" Foreground="Black" FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
+        <TextBlock x:Name="page_title" Text="Musique" Foreground="Black" FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
         <Grid>
-            <TextBox Foreground="Black" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,300" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Contrôlez votre application de musique"></TextBox>
-            <Button CornerRadius="3" Style="{ThemeResource ButtonRevealStyle}" Foreground="Black" HorizontalAlignment="Center" Height="80" Width="125"  VerticalAlignment="Bottom" Margin="60" FontFamily="Segoe UI" Click="Launch_Spotify">
+            <TextBox x:Name="infotext" Foreground="Black" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,270" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Contrôlez votre application de musique"></TextBox>
+            <Button x:Name="launchbtn" CornerRadius="3" Style="{ThemeResource ButtonRevealStyle}" Foreground="Black" HorizontalAlignment="Center" Height="80" Width="125"  VerticalAlignment="Bottom" Margin="60" FontFamily="Segoe UI" Click="Launch_Spotify">
                 <StackPanel>
                     <Image Width="40" Source="/Assets/app_spotify_logo.png"/>
                     <TextBlock>Ouvrir Spotify</TextBlock>
                 </StackPanel>
             </Button>
-            <Grid x:Name="controls_box" VerticalAlignment="Bottom" Margin="0,0,0,225" HorizontalAlignment="Center" Width="250">
-                <Button CornerRadius="25" Style="{ThemeResource ButtonRevealStyle}" Margin="0,150,0,0" Width="75" Height="50" Foreground="Black" HorizontalAlignment="Center" Click="show">
+            <Grid x:Name="controls_box" VerticalAlignment="Bottom" Margin="0,0,0,200" MinHeight="190" HorizontalAlignment="Center" Width="250">
+                <Button x:Name="mutebtn" CornerRadius="25" Style="{ThemeResource ButtonRevealStyle}" Margin="0,140,0,0" Width="75" Height="50" Foreground="Black" HorizontalAlignment="Center" Click="show">
                     <StackPanel>
                         <Image Width="30" Source="/Assets/mutebtn.png"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="normalbtn" Visibility="Collapsed" CornerRadius="25" Style="{ThemeResource ButtonRevealStyle}" Margin="0,140,90,0" Width="75" Height="50" Foreground="Black" HorizontalAlignment="Center" Click="normal">
+                    <StackPanel>
+                        <Image Width="30" Source="/Assets/normal.png"/>
                     </StackPanel>
                 </Button>
                 <Button CornerRadius="100" Style="{ThemeResource ButtonRevealStyle}" Width="75" Height="75" Foreground="Black" HorizontalAlignment="Center" Click="c1">
@@ -77,5 +82,10 @@
                 </Button>
             </Grid>
         </Grid>
+        <Button x:Name="compactOverlayButton" CornerRadius="100" Width="55" Height="55" Margin="0,20,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="compact">
+            <StackPanel>
+                <Image Width="35" Source="/Assets/overlay.png"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Page>
