@@ -60,7 +60,7 @@ namespace App1
         public StorageFolder Default_folder { get => default_folder; }
         public int Manches { get => manches; set => manches = value; }
 
-        public void AjouterCate(Categorie cate)
+        public void AjouterCate(Categorie cate)//Ajoute une catégorie à la liste de celles du match
         {
             if (!categories.Contains(cate))
             {
@@ -68,7 +68,7 @@ namespace App1
             }
         }
 
-        public void RetirerCate(Categorie cate)
+        public void RetirerCate(Categorie cate)//Retire une catégorie
         {
             if (categories.Contains(cate))
             {
@@ -76,7 +76,7 @@ namespace App1
             }
         }
 
-        private async void Defol()
+        private async void Defol()//définit le dossier de stockage par défaut
         {
             default_folder = ApplicationData.Current.LocalFolder;
             StorageFolder newFolder = await Default_folder.CreateFolderAsync("ImproData", CreationCollisionOption.OpenIfExists);
