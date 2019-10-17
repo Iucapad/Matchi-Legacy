@@ -27,7 +27,7 @@ namespace App1
     public sealed partial class CreateMatchPage : Page
     {
         private List<int> nombre;//liste du nombre de jouteur
-        private StorageFolder folder;//dossier de stockage du match choisi par l'utilisateur
+        private Matchimpro match;
         public CreateMatchPage()
         {
             this.InitializeComponent();
@@ -38,14 +38,15 @@ namespace App1
             }
             nombremanche.ItemsSource = nombre;
             nombremanche.SelectedIndex = 0;
-            folder = null;    
+            match = new Matchimpro(nomeq1.Text, nomeq2.Text, nombremanche.SelectedIndex+1);
+            this.filestate.Text = match.Folder.Path.ToString();
         }
 
         private async void Creer_match(object sender, RoutedEventArgs e)
         {
-            if (nomeq1.Text.Length>30 || nomeq2.Text.Length>30)//les noms dépassent 20 caractères
+            if (nomeq1.Text.Length>30 || nomeq2.Text.Length>30)//les noms dépassent 30 caractères
             {
-                await new MessageDialog("Les noms d'équipe ne peuvent pas dépasser 20 caractères.").ShowAsync();
+                await new MessageDialog("Les noms d'équipe ne peuvent pas dépasser 30 caractères.").ShowAsync();
                 Vider();
             }
             else if(nomeq1.Text.Length == 0 || nomeq2.Text.Length == 0)//les noms n'ont pas été inscrits
@@ -67,28 +68,26 @@ namespace App1
         private void Vider()// vide les champs de sélection
         {
             nomeq1.Text = "";
-            nomeq2.Text = "";
-            folder = null;
-            this.filestate.Text = "Emplacment non-choisi.";
+            nomeq2.Text = "";        
         }
 
         public async void Sauvegarder()//Sauvegarde les données entrées dans un fichier
         {
-            if(folder == null)//pas de dossier sélectionné
+            if(match.Folder == null)//pas de dossier sélectionné
             {
                 await new MessageDialog("Veuillez sélectionner un emplacement.").ShowAsync();
                 Vider();
             }
             else//dossier sélectionné
             {
-                string filename = nomeq1.Text + "_vs_" + nomeq2.Text + ".dat";
+                string filename = match.Equipe1 + "_vs_" + match.Equipe2 + ".matchi";
 
                 //le ficher est créé dans le dossier sélectionné et si un autre fichier a 
                 //un nom identique, le nouveau fichier aura un chiffre en plus dans son nom.
-                StorageFile newFile = await folder.CreateFileAsync(filename, CreationCollisionOption.GenerateUniqueName);
+                StorageFile newFile = await match.Folder.CreateFileAsync(filename, CreationCollisionOption.GenerateUniqueName);
 
                 //on écrit le contenu des champs à l'intérieur du fichier contenu dans l'objet newFile
-                await FileIO.WriteLinesAsync(newFile, new List<string>{nomeq1.Text, nomeq2.Text, nombremanche.SelectedValue.ToString()});
+                await FileIO.WriteLinesAsync(newFile, new List<string>{match.Equipe1, match.Equipe2, match.Manches.ToString()});
                 
             }
 
@@ -97,16 +96,16 @@ namespace App1
         private async void Choisir_dossier(object sender, RoutedEventArgs e)//Choisi le dossier 
         {
             var folderPicker = new Windows.Storage.Pickers.FolderPicker();
-            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
             folderPicker.FileTypeFilter.Add("*");
+            match.Folder = await folderPicker.PickSingleFolderAsync();
 
-            folder = await folderPicker.PickSingleFolderAsync();
-
-            if (folder != null)
+            if (match.Folder != null)
             {
+                
                 Windows.Storage.AccessCache.StorageApplicationPermissions.
-                FutureAccessList.AddOrReplace("PickedFolderToken", folder);
-                this.filestate.Text = "Emplacement de stockage: " + folder.Name;
+                FutureAccessList.AddOrReplace("PickedFolderToken", match.Folder);
+                this.filestate.Text = match.Folder.Path.ToString();             
             }
             else
             {
