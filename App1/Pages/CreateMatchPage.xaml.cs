@@ -32,14 +32,14 @@ namespace App1
         {
             this.InitializeComponent();
             nombre = new List<int>();
-            for(int i=1; i<=10; i++)
+            for(int i=1; i<=30; i++)
             {
                 nombre.Add(i);
             }
             nombremanche.ItemsSource = nombre;
             nombremanche.SelectedIndex = 0;
-            match = new Matchimpro(nomeq1.Text, nomeq2.Text, nombremanche.SelectedIndex+1);
-            this.filestate.Text = match.Folder.Path.ToString();
+            match = new Matchimpro();
+            filestate.Text = match.Folder.Path.ToString();
         }
 
         private async void Creer_match(object sender, RoutedEventArgs e)
@@ -80,7 +80,10 @@ namespace App1
             }
             else//dossier sélectionné
             {
-                string filename = match.Equipe1 + "_vs_" + match.Equipe2 + ".matchi";
+                match.Equipe1 = nomeq1.Text;
+                match.Equipe2 = nomeq2.Text;
+                match.Manches = nombremanche.SelectedIndex + 1;
+                string filename = match.Equipe1 + "_vs_" + match.Equipe2 + ".match";
 
                 //le ficher est créé dans le dossier sélectionné et si un autre fichier a 
                 //un nom identique, le nouveau fichier aura un chiffre en plus dans son nom.
@@ -101,8 +104,7 @@ namespace App1
             match.Folder = await folderPicker.PickSingleFolderAsync();
 
             if (match.Folder != null)
-            {
-                
+            {        
                 Windows.Storage.AccessCache.StorageApplicationPermissions.
                 FutureAccessList.AddOrReplace("PickedFolderToken", match.Folder);
                 this.filestate.Text = match.Folder.Path.ToString();             

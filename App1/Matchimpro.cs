@@ -31,6 +31,11 @@ namespace App1
         private StorageFolder folder;//dossier de stockage du match choisi par l'utilisateur
         private StorageFolder default_folder;//dossier de stockage du match par défaut
 
+        public Matchimpro()
+        {
+            Defol();
+            folder = default_folder;
+        }
         public Matchimpro(string team1, string team2, int m)
         {
             equipe1 = team1;
