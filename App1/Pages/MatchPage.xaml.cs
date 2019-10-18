@@ -25,7 +25,23 @@ namespace App1
         public MatchPage()
         {
             this.InitializeComponent();
-            
+            /*TODO
+             if (!sauvegarde.match) {
+                error_message.Visibility=Visibility.Visible;
+                list_of_matches.Visibility=Visibility.Collapsed;
+            }else{
+                error_message.Visibility=Visibility.Collapsed;
+                list_of_matches.Visibility=Visibility.Visible;
+
+                foreach(xxx){
+                list_of_matches.Items.Add(xxx);
+            }
+            }
+             */
+            list_of_matches.Items.Add("Match 1");
+            list_of_matches.Items.Add("Match 2");
+            list_of_matches.Items.Add("Match 3");
+
         }
 
         private void Create_Match(object sender, RoutedEventArgs e)
