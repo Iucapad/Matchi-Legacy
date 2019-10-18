@@ -26,5 +26,11 @@ namespace App1
         {
             this.InitializeComponent();
         }
+
+        private void Selection(object sender, SelectionChangedEventArgs e)
+        {
+            deletebtn.Visibility = Visibility.Visible;
+            addbtn.Margin = new Thickness(153, 0, 0, 60);
+        }
     }
 }

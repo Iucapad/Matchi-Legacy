@@ -48,7 +48,7 @@
         <TextBlock x:Name="page_title" Text="Musique" Foreground="Black" FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
         <Grid>
             <TextBox x:Name="infotext" Foreground="Black" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,270" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Contrôlez votre application de musique"></TextBox>
-            <Button x:Name="launchbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" Foreground="Black" HorizontalAlignment="Center" Height="80" Width="125"  VerticalAlignment="Bottom" Margin="60" FontFamily="Segoe UI" Click="Launch_Spotify">
+            <Button x:Name="launchbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" Foreground="Black" HorizontalAlignment="Center" Height="80" Width="150"  VerticalAlignment="Bottom" Margin="60" FontFamily="Segoe UI" Click="Launch_Spotify">
                 <StackPanel>
                     <Image Width="40" Source="/Assets/app_spotify_logo.png"/>
                     <TextBlock>Ouvrir Spotify</TextBlock>

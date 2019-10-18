@@ -48,5 +48,11 @@ namespace App1
         {
             MainPage.MainPageFrame?.Navigate(typeof(CreateMatchPage));     
         }
+
+        private void Selection(object sender, SelectionChangedEventArgs e)
+        {
+            deletebtn.Visibility = Visibility.Visible;
+            addbtn.Margin = new Thickness(153, 0, 0, 60);
+        }
     }
 }
