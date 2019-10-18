@@ -52,7 +52,34 @@ namespace App1
         private void Selection(object sender, SelectionChangedEventArgs e)
         {
             deletebtn.Visibility = Visibility.Visible;
+            details_card.Visibility = Visibility.Visible;
             addbtn.Margin = new Thickness(153, 0, 0, 60);
+            if (((Frame)).ActualWidth < 750)
+            {
+                list_of_matches.Margin = new Thickness(0, 200, 0, 160);
+            }
+        }
+
+        private void Resize_page(object sender, SizeChangedEventArgs e)
+        {
+            if (((Frame)).ActualWidth < 750)
+            {
+                list_of_matches.Margin = new Thickness(0, 60, 0, 160);
+                details_card.Height = 125;
+                details_card.VerticalAlignment = VerticalAlignment.Top;
+                details_card.Margin = new Thickness(0, 60, 0, 0);
+                if (details_card.Visibility == Visibility.Visible)
+                {
+                    list_of_matches.Margin = new Thickness(0, 200, 0, 160);
+                }                          
+            }
+            else
+            {
+                list_of_matches.Margin = new Thickness(0, 60, 370, 160);
+                details_card.Height = 260;
+                details_card.VerticalAlignment = VerticalAlignment.Center;
+                details_card.Margin = new Thickness(370, 60, 0, 160);                
+            }
         }
     }
 }

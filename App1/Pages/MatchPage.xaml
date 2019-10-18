@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="Resize_page">
     <Page.Resources>
         <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
@@ -40,13 +40,34 @@
         
         <Grid x:Name="home_match">
             <TextBox x:Name="error_message" Visibility="Collapsed" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Aucun match créé. Veuillez en créer un pour commencer."></TextBox>
-            <ListView x:Name="list_of_matches" CornerRadius="4" Margin="0,60,0,160" BorderBrush="#303030" BorderThickness="2" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
+            <ListView x:Name="list_of_matches" CornerRadius="4" Margin="0,60,350,160" BorderBrush="#303030" BorderThickness="2" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="300" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
                 <ListView.Items>
                     <TextBlock Text="Match A" Width="250"/>
                     <TextBlock Text="Match B" Width="250"/>
                     <TextBlock Text="Match C" Width="250"/>
+                    <TextBlock Text="Match D" Width="250"/>
+                    <TextBlock Text="Match C" Width="250"/>
+                    <TextBlock Text="Match D" Width="250"/>
+                    <TextBlock Text="Match C" Width="250"/>
+                    <TextBlock Text="Match D" Width="250"/>
+                    <TextBlock Text="Match C" Width="250"/>
+                    <TextBlock Text="Match D" Width="250"/>
                 </ListView.Items>
             </ListView>
+            <Grid x:Name="details_card" CornerRadius="4" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" Margin="0,450,0,0" BorderBrush="#303030" BorderThickness="2"  Visibility="Collapsed" Width="300" Height="260" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Ouvrir</TextBlock>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="24" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Left" Height="50" Width="100" Margin="15,0,0,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
+                    <StackPanel>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE78C;" FontWeight="Normal" FontSize="24"/>
+                    </StackPanel>
+                </Button>
+
+            </Grid>
             <Button x:Name="addbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Create_Match">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="24" HorizontalAlignment="Center"/>
