@@ -36,9 +36,9 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock Text="Match"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
-        
+        <TextBlock Text="Match"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>        
         <Grid x:Name="home_match">
+            <TextBlock x:Name="choose_message" FontSize="18" Text="Choisissez un match dans la liste" HorizontalAlignment="Center" Margin="0,80,0,0"></TextBlock>
             <TextBox x:Name="error_message" Visibility="Collapsed" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Aucun match créé. Veuillez en créer un pour commencer."></TextBox>
             <ListView x:Name="list_of_matches" CornerRadius="4" Margin="0,60,350,160" BorderBrush="#303030" BorderThickness="2" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="300" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
                 <ListView.Items>
@@ -66,7 +66,6 @@
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE78C;" FontWeight="Normal" FontSize="24"/>
                     </StackPanel>
                 </Button>
-
             </Grid>
             <Button x:Name="addbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Create_Match">
                 <StackPanel>

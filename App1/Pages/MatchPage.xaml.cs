@@ -51,6 +51,7 @@ namespace App1
 
         private void Selection(object sender, SelectionChangedEventArgs e)
         {
+            choose_message.Visibility = Visibility.Collapsed;
             deletebtn.Visibility = Visibility.Visible;
             details_card.Visibility = Visibility.Visible;
             addbtn.Margin = new Thickness(153, 0, 0, 60);
@@ -64,7 +65,9 @@ namespace App1
         {
             if (((Frame)).ActualWidth < 750)
             {
-                list_of_matches.Margin = new Thickness(0, 60, 0, 160);
+                list_of_matches.Margin = new Thickness(0, 130, 0, 160);
+                choose_message.VerticalAlignment = VerticalAlignment.Top;
+                choose_message.Margin = new Thickness(0, 80, 0, 0);
                 details_card.Height = 125;
                 details_card.VerticalAlignment = VerticalAlignment.Top;
                 details_card.Margin = new Thickness(0, 60, 0, 0);
@@ -76,6 +79,8 @@ namespace App1
             else
             {
                 list_of_matches.Margin = new Thickness(0, 60, 370, 160);
+                choose_message.VerticalAlignment = VerticalAlignment.Center;
+                choose_message.Margin = new Thickness(370, 0, 0, 0);
                 details_card.Height = 260;
                 details_card.VerticalAlignment = VerticalAlignment.Center;
                 details_card.Margin = new Thickness(370, 60, 0, 160);                
