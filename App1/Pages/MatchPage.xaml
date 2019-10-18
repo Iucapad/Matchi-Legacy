@@ -36,7 +36,7 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock Text="Match"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
+        <TextBlock Text="Match"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <Grid x:Name="home_match">
             <TextBlock x:Name="choose_message" FontSize="18" Text="Choisissez un match dans la liste" HorizontalAlignment="Center" Margin="0,80,0,0"></TextBlock>
             <TextBlock x:Name="image_message" Foreground="#454545" Visibility="Collapsed" FontFamily="Segoe MDL2 Assets" Text="&#xF78B;" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="48" Margin="370,0,0,110"/>

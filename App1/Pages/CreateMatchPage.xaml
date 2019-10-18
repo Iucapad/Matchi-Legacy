@@ -333,7 +333,7 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock Text="Nouveau match"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
+        <TextBlock Text="Nouveau match"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <ScrollViewer VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,60,0,0">
             <StackPanel x:Name="page" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBox HorizontalAlignment="Stretch" CornerRadius="4" Margin="20" Header="Équipe 1" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq1"/>

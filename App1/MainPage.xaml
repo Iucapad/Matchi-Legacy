@@ -35,11 +35,10 @@
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid x:Name="app_background" Background="{ThemeResource SystemControlAcrylicElementBrush}">
-        <Grid x:Name="home_interface" Background="{ThemeResource CustomAcrylicBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,60,0,0">
-
-            <TextBlock Text="Accueil"  FontFamily="Segoe UI Black" Margin="70,20,0,0"  FontSize="24"></TextBlock>
-            <TextBlock x:Name="date_of_day" HorizontalAlignment="Center" Margin="0,150,0,0" Text="vendredi 3 janvier" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="Bold"/>
+    <Grid x:Name="app_background" Background="{ThemeResource CustomAcrylicBrush}">
+        <Grid x:Name="home_interface" Background="{ThemeResource CustomAcrylicBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,33,0,0">
+            <TextBlock Text="Accueil"  FontFamily="Segoe UI" FontWeight="Bold" Margin="60,10,0,0"  FontSize="32"></TextBlock>
+            <TextBlock x:Name="date_of_day" HorizontalAlignment="Center" Margin="0,150,0,0" Text="vendredi 3 janvier" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="SemiBold"/>
 
             <Grid x:Name="links_box" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60">
                 <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150"  VerticalAlignment="Center" Margin="0,0,153,0" FontFamily="Segoe UI" Click="Create_Match">
@@ -57,7 +56,7 @@
             </Grid>
         </Grid>
         <Rectangle x:Name="web_header" Visibility="Collapsed" Height="auto"  Width="auto" Margin="40,0,0,0" Fill="#151515"></Rectangle>
-        <NavigationView x:Name="navigationView" Header="" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="500" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
+        <NavigationView x:Name="navigationView" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="500" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="OutlineStar"  Content="Match" Tag="matchNav" />
                 <NavigationViewItem Icon="Library" Content="Catégories" Tag="categoryNav" />
@@ -68,7 +67,7 @@
                 <Image x:Name="saison_logo" Width="40" Source="/Assets/app_saison_logo.png"/>
 
             </NavigationView.PaneFooter>
-            <Frame x:Name="contentFrame" MinHeight="200">
+            <Frame x:Name="contentFrame" Margin="0,33,0,0" MinHeight="200">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition></NavigationThemeTransition>
