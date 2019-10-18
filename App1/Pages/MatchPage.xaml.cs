@@ -67,7 +67,7 @@ namespace App1
             {
                 list_of_matches.Margin = new Thickness(0, 130, 0, 160);
                 choose_message.VerticalAlignment = VerticalAlignment.Top;
-                choose_message.Margin = new Thickness(0, 80, 0, 0);
+                choose_message.Margin = new Thickness(0, 90, 0, 0);
                 details_card.Height = 125;
                 details_card.VerticalAlignment = VerticalAlignment.Top;
                 details_card.Margin = new Thickness(0, 60, 0, 0);

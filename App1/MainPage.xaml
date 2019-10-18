@@ -41,7 +41,7 @@
             <TextBlock Text="Accueil"  FontFamily="Segoe UI Black" Margin="70,20,0,0"  FontSize="24"></TextBlock>
             <TextBlock x:Name="date_of_day" HorizontalAlignment="Center" Margin="0,150,0,0" Text="vendredi 3 janvier" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="Bold"/>
 
-            <Grid x:Name="links_box" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="2" BorderBrush="#303030" CornerRadius="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60">
+            <Grid x:Name="links_box" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60">
                 <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150"  VerticalAlignment="Center" Margin="0,0,153,0" FontFamily="Segoe UI" Click="Create_Match">
                     <StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="24" HorizontalAlignment="Center"/>
