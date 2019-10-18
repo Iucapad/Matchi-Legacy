@@ -37,35 +37,37 @@
     </Page.Resources>
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock Text="Match"  FontFamily="Segoe UI Black" Margin="30,20,0,0" FontSize="24"></TextBlock>
-        <Grid x:Name="home_match">            
+        <Grid x:Name="home_match">
             <TextBlock x:Name="choose_message" FontSize="18" Text="Choisissez un match dans la liste" HorizontalAlignment="Center" Margin="0,80,0,0"></TextBlock>
+            <TextBlock x:Name="image_message" Foreground="#454545" Visibility="Collapsed" FontFamily="Segoe MDL2 Assets" Text="&#xF78B;" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="48" Margin="370,0,0,110"/>
             <TextBox x:Name="error_message" Visibility="Collapsed" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Aucun match créé. Veuillez en créer un pour commencer."></TextBox>
             <Grid>
                 <Grid.Transitions>
                     <TransitionCollection>
                         <AddDeleteThemeTransition/>
                     </TransitionCollection>
-                </Grid.Transitions>            
-            <ListView x:Name="list_of_matches" CornerRadius="4" Margin="0,60,350,160" BorderBrush="#454545" BorderThickness="1" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="300" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
-                <ListView.Items>
-                    <TextBlock Text="Match A" Width="250"/>
-                    <TextBlock Text="Match B" Width="250"/>
-                    <TextBlock Text="Match C" Width="250"/>
-                    <TextBlock Text="Match D" Width="250"/>
-                    <TextBlock Text="Match C" Width="250"/>
-                    <TextBlock Text="Match D" Width="250"/>
+                </Grid.Transitions>
+                <ListView x:Name="list_of_matches" CornerRadius="4" Margin="0,60,350,160" BorderBrush="#454545" BorderThickness="1" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="300" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
+                    <ListView.Items>
+                        <TextBlock Text="Match A" Width="250"/>
+                        <TextBlock Text="Match B" Width="250"/>
+                        <TextBlock Text="Match C" Width="250"/>
+                        <TextBlock Text="Match D" Width="250"/>
+                        <TextBlock Text="Match C" Width="250"/>
+                        <TextBlock Text="Match D" Width="250"/>
                         <TextBlock Text="Match C" Width="250"/>
                     </ListView.Items>
-            </ListView>
+                </ListView>
             </Grid>
             <Grid x:Name="details_card" CornerRadius="4" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" Margin="0,450,0,0" BorderBrush="#454545" BorderThickness="1"  Visibility="Collapsed" Width="300" Height="260" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
+                <TextBlock Margin="15" FontWeight="Black" FontSize="18" Text="Nom du match"></TextBlock>
+                <Button CornerRadius="4" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock>Ouvrir</TextBlock>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="24" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Button>
-                <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Left" Height="50" Width="100" Margin="15,0,0,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
+                <Button CornerRadius="4" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Left" Height="50" Width="100" Margin="15,0,0,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                     <StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE78C;" FontWeight="Normal" FontSize="24"/>
                     </StackPanel>

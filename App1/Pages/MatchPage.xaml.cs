@@ -54,6 +54,7 @@ namespace App1
             choose_message.Visibility = Visibility.Collapsed;
             deletebtn.Visibility = Visibility.Visible;
             details_card.Visibility = Visibility.Visible;
+            image_message.Visibility = Visibility.Collapsed;
             addbtn.Margin = new Thickness(153, 0, 0, 60);
             if (((Frame)).ActualWidth < 750)
             {
@@ -73,8 +74,9 @@ namespace App1
                 details_card.Margin = new Thickness(0, 60, 0, 0);
                 if (details_card.Visibility == Visibility.Visible)
                 {
-                    list_of_matches.Margin = new Thickness(0, 200, 0, 160);
-                }                          
+                    list_of_matches.Margin = new Thickness(0, 200, 0, 160);                    
+                }
+                image_message.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -83,7 +85,11 @@ namespace App1
                 choose_message.Margin = new Thickness(370, 0, 0, 0);
                 details_card.Height = 260;
                 details_card.VerticalAlignment = VerticalAlignment.Center;
-                details_card.Margin = new Thickness(370, 60, 0, 160);                
+                details_card.Margin = new Thickness(370, 60, 0, 160);
+                if (details_card.Visibility == Visibility.Collapsed)
+                {
+                    image_message.Visibility = Visibility.Visible;
+                }
             }
         }
     }
