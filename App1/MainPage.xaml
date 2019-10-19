@@ -38,8 +38,14 @@
     <Grid x:Name="app_background" Background="{ThemeResource CustomAcrylicBrush}">
         <Grid x:Name="home_interface" Background="{ThemeResource CustomAcrylicBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,33,0,0">
             <TextBlock Text="Accueil"  FontFamily="Segoe UI" FontWeight="Bold" Margin="60,10,0,0"  FontSize="32"></TextBlock>
+            <Grid>
+                <Grid.Transitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition/>
+                    </TransitionCollection>
+                </Grid.Transitions>            
             <TextBlock x:Name="date_of_day" HorizontalAlignment="Center" Margin="0,150,0,0" Text="vendredi 3 janvier" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="SemiBold"/>
-
+            </Grid>
             <Grid x:Name="links_box" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60">
                 <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150"  VerticalAlignment="Center" Margin="0,0,153,0" FontFamily="Segoe UI" Click="Create_Match">
                     <StackPanel>
