@@ -25,7 +25,7 @@ namespace App1
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class EditPage : Page
+    public sealed partial class MusicPage : Page
     {
         public const int KEYEVENTF_EXTENTEDKEY = 1;
         public const int KEYEVENTF_KEYUP = 0;
@@ -36,7 +36,7 @@ namespace App1
         [DllImport("user32.dll")]
         public static extern void keybd_event(byte virtualKey, byte scanCode, uint flags, IntPtr extraInfo);
 
-        public EditPage()
+        public MusicPage()
         {
             this.InitializeComponent();
 

@@ -20,15 +20,16 @@ namespace App1
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class MatchPage : Page
+    public sealed partial class RecentMatchesPage : Page
     {
-        public MatchPage()
+        public RecentMatchesPage()
         {
             this.InitializeComponent();
             /*TODO
              if (!sauvegarde.match) {
                 error_message.Visibility=Visibility.Visible;
                 list_of_matches.Visibility=Visibility.Collapsed;
+                header_title.Text="Match";
             }else{
                 error_message.Visibility=Visibility.Collapsed;
                 list_of_matches.Visibility=Visibility.Visible;
@@ -42,6 +43,11 @@ namespace App1
             list_of_matches.Items.Add("Match 2");
             list_of_matches.Items.Add("Match 3");
 
+        }
+
+        private void Open_match(object sender, RoutedEventArgs e)
+        {
+            MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage));
         }
 
         private void Create_Match(object sender, RoutedEventArgs e)
@@ -91,6 +97,6 @@ namespace App1
                     image_message.Visibility = Visibility.Visible;
                 }
             }
-        }
+        }        
     }
 }

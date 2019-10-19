@@ -65,7 +65,7 @@ namespace App1
             switch (item.Tag.ToString()) //Navigation vers la page souhaitée
             {
                 case "matchNav":
-                    contentFrame.Navigate(typeof(MatchPage));
+                    contentFrame.Navigate(typeof(RecentMatchesPage));
                     web_header.Visibility = Visibility.Collapsed;
                     break;
                 case "categoryNav":
@@ -73,7 +73,7 @@ namespace App1
                     web_header.Visibility = Visibility.Collapsed;
                     break;
                 case "editNav":
-                    contentFrame.Navigate(typeof(EditPage));
+                    contentFrame.Navigate(typeof(MusicPage));
                     web_header.Fill = new SolidColorBrush(Color.FromArgb(255,30, 215, 96));
                     web_header.Visibility = Visibility.Visible;
                     break;
