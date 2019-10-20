@@ -49,7 +49,7 @@ namespace App1
             if (verification)
             {
                 StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
-
+                bool e = false;
                 IList<string> infos = await FileIO.ReadLinesAsync(cate_file);
 
                 for (int n = 1; n <= infos.Count; n++)
@@ -76,12 +76,27 @@ namespace App1
                     }
                     else
                     {
-                        List<int> test = new List<int>();
                         foreach(string info in infos)
                         {
-                            test.Add(infos.IndexOf(info));    
-                        }
+                            int v = 0;
+                            foreach (string test in infos)
+                            {
+                                if (info == test)
+                                {
+                                    v++;
+                                }
+                                if (v > 1)
+                                {
+                                    e = true;
+                                }
+                            }
+                        }   
                     }
+                }
+                if (e)
+                {
+                    list_of_categories.Items.Clear();
+                    categorylist.Clear();
                 }
             }
         }
