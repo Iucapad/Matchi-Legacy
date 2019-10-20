@@ -37,35 +37,32 @@ namespace App1
 
         private async void Read_storage()//lis le contenu du dossier de stockage
         {
-            Console.WriteLine("test");
             StorageFolder storageFolder = store.Folder;
             
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
 
-            if(match_files.Count == 0)//pas de fichier
+            foreach(StorageFile match_file in match_files)
             {
-                error_message.Visibility = Visibility.Visible;
-                info_messages.Visibility = Visibility.Collapsed;
-                list_of_matches.Visibility = Visibility.Collapsed;
-                header_title.Text = "Match";
-            }
-            else//existence de fichiers
-            {
-                error_message.Visibility = Visibility.Collapsed;
-                info_messages.Visibility = Visibility.Visible;
-                list_of_matches.Visibility = Visibility.Visible;
-                foreach (StorageFile match_file in match_files)
-                {
-                    if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")
-                    {
-                        IList<string> infos = await FileIO.ReadLinesAsync(match_file);
+                if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")//existence de fichiers
+                {       
+                    error_message.Visibility = Visibility.Collapsed;
 
-                        if (Int32.TryParse(infos[2], out int testnumber) && testnumber > 0)
-                        {
-                            list_of_matches.Items.Add(match_file.DisplayName);
-                            matchlist.Add(new Matchimpro(infos[0], infos[1], testnumber));
-                        }
+                    list_of_matches.Visibility = Visibility.Visible;
+
+                    IList<string> infos = await FileIO.ReadLinesAsync(match_file);
+
+                    if (Int32.TryParse(infos[2], out int testnumber) && testnumber > 0)
+                    {
+                        list_of_matches.Items.Add(match_file.DisplayName);
+                        matchlist.Add(new Matchimpro(infos[0], infos[1], testnumber));
                     }
+                }
+                else//pas de fichiers
+                {
+                    error_message.Visibility = Visibility.Visible;
+
+                    list_of_matches.Visibility = Visibility.Collapsed;
+                    header_title.Text = "Match";
                 }
             }
         }

@@ -26,7 +26,7 @@ namespace App1
         private string team1;//nom de l'équipe 1
         private string team2;//nom de l'équipe 2
         private int rounds;//nombre de manche
-        private List<Categorie> categories;//liste des catégories pour le match
+        private List<Category> categories;//liste des catégories pour le match
 
         public Matchimpro()
         {
@@ -44,9 +44,9 @@ namespace App1
         public string Team1 { get => team1; set => team1 = value; }
         public string Team2 { get => team2; set => team2 = value; }
         public int Rounds { get => rounds; set => rounds = value; }
-        internal List<Categorie> Categories { get => categories; set => categories = value; }
+        internal List<Category> Categories { get => categories; set => categories = value; }
 
-        public void AddCate(Categorie cate)//Ajoute une catégorie à la liste de celles du match
+        public void AddCate(Category cate)//Ajoute une catégorie à la liste de celles du match
         {
             if (!categories.Contains(cate))
             {
@@ -54,7 +54,7 @@ namespace App1
             }
         }
 
-        public void RemoveCate(Categorie cate)//Retire une catégorie
+        public void RemoveCate(Category cate)//Retire une catégorie
         {
             if (categories.Contains(cate))
             {

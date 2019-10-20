@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,9 +23,59 @@ namespace App1
     /// </summary>
     public sealed partial class CategoryPage : Page
     {
+        private MatchStorage store;
+        private List<Category> categorylist = new List<Category>();
         public CategoryPage()
         {
             this.InitializeComponent();
+            store = new MatchStorage();
+            Read_storage();
+        }
+
+        private async void Read_storage()//lis le contenu du dossier de stockage
+        {
+            StorageFolder storageFolder = store.Folder;
+            IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
+            bool verification = false;
+
+            foreach (StorageFile file in files)//vérifie si le fichier des catégorie existe (verification vaut true si le fichier est trouvé)
+            {
+                if(file.Name == "Categories.catei")
+                {
+                    verification = true;
+                }
+            }
+
+            if (verification)
+            {
+                StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
+
+                IList<string> infos = await FileIO.ReadLinesAsync(cate_file);
+
+                for (int n = 1; n <= infos.Count; n++)
+                {
+                    if (n % 2 == 0)
+                    {
+                        if (Int32.TryParse(infos[n - 1], out int testnumber) && testnumber > 0)
+                        {
+                            string catname = infos[n - 2];
+                            categorylist.Add(new Category(catname, testnumber));
+                            list_of_categories.Items.Add(catname);
+                        }
+                        else if (infos[n - 1] == "Illimité")
+                        {
+                            string catname = infos[n - 2];
+                            categorylist.Add(new Category(catname));
+                            list_of_categories.Items.Add(catname);
+                        }
+                        else
+                        {
+                            list_of_categories.Items.Clear();
+                            categorylist.Clear();
+                        }
+                    }
+                }
+            }
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)

@@ -46,9 +46,7 @@
             </Grid.Transitions>        
         <ListView x:Name="list_of_categories" CornerRadius="4" Margin="0,60,0,160" BorderBrush="#454545" BorderThickness="1" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
             <ListView.Items>
-                <TextBlock Text="Catégorie 1" Width="250"/>
-                <TextBlock Text="Catégorie 2" Width="250"/>
-                <TextBlock Text="Catégorie 3" Width="250"/>
+                
             </ListView.Items>
         </ListView>
         </Grid>
