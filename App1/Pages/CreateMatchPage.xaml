@@ -338,15 +338,15 @@
             <StackPanel x:Name="page" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBox HorizontalAlignment="Stretch" CornerRadius="4" Margin="20" Header="Équipe 1" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq1"/>
                 <TextBox HorizontalAlignment="Stretch" CornerRadius="4" Margin="20" Header="Équipe 2" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq2"/>
-                <ComboBox HorizontalAlignment="Left" CornerRadius="4" Margin="20" Header="Nombre de manches" Width="150" Name="nombremanche"/>
-                <Button Style="{ThemeResource ButtonRevealStyle}" CornerRadius="4" Margin="40" Height="80" Width="250" Click="Creer_match" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <ComboBox HorizontalAlignment="Left" CornerRadius="4" Margin="20" Header="Nombre de manches" Width="150" Name="numberofround"/>
+                <Button Style="{ThemeResource ButtonRevealStyle}" CornerRadius="4" Margin="40" Height="80" Width="250" Click="Create_match" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" FontSize="24" HorizontalAlignment="Center"/>
                         <TextBlock>Créer le match</TextBlock>
                     </StackPanel>
                 </Button>
-                <TextBlock x:Name="filestate" TextWrapping="Wrap" Width="247" Height="40"/>
-                <Button Width="247" Height="40" Content="Parcourir" Click="Choisir_dossier"/>
+                <TextBlock x:Name="filestate" TextWrapping="Wrap" Width="380" Height="40"/>
+
 
             </StackPanel>
         </ScrollViewer>

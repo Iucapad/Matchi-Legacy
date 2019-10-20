@@ -49,13 +49,7 @@
                 </Grid.Transitions>
                 <ListView x:Name="list_of_matches" CornerRadius="4" Margin="0,60,350,160" BorderBrush="#454545" BorderThickness="1" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="300" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
                     <ListView.Items>
-                        <TextBlock Text="Match A" Width="250"/>
-                        <TextBlock Text="Match B" Width="250"/>
-                        <TextBlock Text="Match C" Width="250"/>
-                        <TextBlock Text="Match D" Width="250"/>
-                        <TextBlock Text="Match C" Width="250"/>
-                        <TextBlock Text="Match D" Width="250"/>
-                        <TextBlock Text="Match C" Width="250"/>
+                        
                     </ListView.Items>
                 </ListView>
             </Grid>

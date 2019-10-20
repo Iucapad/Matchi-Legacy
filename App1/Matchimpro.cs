@@ -23,44 +23,30 @@ namespace App1
 {
     class Matchimpro
     {
-        private string equipe1;//nom de l'équipe 1
-        private string equipe2;//nom de l'équipe 2
-        private int manches;//nombre de manche
+        private string team1;//nom de l'équipe 1
+        private string team2;//nom de l'équipe 2
+        private int rounds;//nombre de manche
         private List<Categorie> categories;//liste des catégories pour le match
-
-        private StorageFolder folder;//dossier de stockage du match choisi par l'utilisateur
-        private StorageFolder default_folder;//dossier de stockage du match par défaut
 
         public Matchimpro()
         {
-            Defol();
-            folder = default_folder;
+            team1 = "Equipe 1";
+            team2 = "Equipe 2";
+            rounds = 5;
         }
-        public Matchimpro(string team1, string team2, int m)
+        public Matchimpro(string t1, string t2, int r)
         {
-            equipe1 = team1;
-            equipe2 = team2;
-            manches = m;
-            Defol();
-            folder = default_folder;
+            team1 = t1;
+            team2 = t2;
+            rounds = r;
         }
 
-        public Matchimpro(string team1, string team2, int m, StorageFolder f)
-        {
-            equipe1 = team1;
-            equipe2 = team2;
-            manches = m;
-            folder = f;
-        }
+        public string Team1 { get => team1; set => team1 = value; }
+        public string Team2 { get => team2; set => team2 = value; }
+        public int Rounds { get => rounds; set => rounds = value; }
+        internal List<Categorie> Categories { get => categories; set => categories = value; }
 
-        public string Equipe1 { get => equipe1; set => equipe1 = value; }
-        public string Equipe2 { get => equipe2; set => equipe2 = value; }
-        public List<Categorie> Categories { get => categories; set => categories = value; }
-        public StorageFolder Folder { get => folder; set => folder = value; }
-        public StorageFolder Default_folder { get => default_folder; }
-        public int Manches { get => manches; set => manches = value; }
-
-        public void AjouterCate(Categorie cate)//Ajoute une catégorie à la liste de celles du match
+        public void AddCate(Categorie cate)//Ajoute une catégorie à la liste de celles du match
         {
             if (!categories.Contains(cate))
             {
@@ -68,19 +54,12 @@ namespace App1
             }
         }
 
-        public void RetirerCate(Categorie cate)//Retire une catégorie
+        public void RemoveCate(Categorie cate)//Retire une catégorie
         {
             if (categories.Contains(cate))
             {
                 categories.Remove(cate);
             }
-        }
-
-        private async void Defol()//définit le dossier de stockage par défaut
-        {
-            default_folder = ApplicationData.Current.LocalFolder;
-            StorageFolder newFolder = await Default_folder.CreateFolderAsync("ImproData", CreationCollisionOption.OpenIfExists);
-            default_folder = newFolder;
         }
     }
 }

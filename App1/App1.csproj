@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Categorie.cs" />
+    <Compile Include="MatchStorage.cs" />
     <Compile Include="Pages\CurrentMatchPage.xaml.cs">
       <DependentUpon>CurrentMatchPage.xaml</DependentUpon>
     </Compile>

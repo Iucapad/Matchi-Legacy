@@ -26,71 +26,73 @@ namespace App1
     /// </summary>
     public sealed partial class CreateMatchPage : Page
     {
-        private List<int> nombre;//liste du nombre de jouteur
+        private List<int> number;//liste du nombre de jouteur
         private Matchimpro match;
+        private MatchStorage store;
         public CreateMatchPage()
         {
             this.InitializeComponent();
-            nombre = new List<int>();
+            number = new List<int>();
             for(int i=1; i<=30; i++)
             {
-                nombre.Add(i);
+                number.Add(i);
             }
-            nombremanche.ItemsSource = nombre;
-            nombremanche.SelectedIndex = 0;
+            numberofround.ItemsSource = number;
+            numberofround.SelectedIndex = 0;
+            store = new MatchStorage();
             match = new Matchimpro();
-            filestate.Text = match.Folder.Path.ToString();
+            filestate.Text = store.Folder.Path.ToString();
         }
 
-        private async void Creer_match(object sender, RoutedEventArgs e)
+        private async void Create_match(object sender, RoutedEventArgs e)
         {
             if (nomeq1.Text.Length>30 || nomeq2.Text.Length>30)//les noms dépassent 30 caractères
             {
                 await new MessageDialog("Les noms d'équipe ne peuvent pas dépasser 30 caractères.").ShowAsync();
-                Vider();
+                Clean();
             }
             else if(nomeq1.Text.Length == 0 || nomeq2.Text.Length == 0)//les noms n'ont pas été inscrits
             {
                 await new MessageDialog("Vous devez nommer les équipes.").ShowAsync();
-                Vider();
+                Clean();
             }
             else if(nomeq1.Text == nomeq2.Text)//les noms sont identiques
             {
                 await new MessageDialog("Les équipes doivent porter des noms différents.").ShowAsync();
-                Vider();
+                Clean();
             }
             else//tout est correct
             {
-                Sauvegarder();
+                Save();
             }
         }
 
-        private void Vider()// vide les champs de sélection
+        private void Clean()// vide les champs de sélection
         {
             nomeq1.Text = "";
             nomeq2.Text = "";        
         }
 
-        public async void Sauvegarder()//Sauvegarde les données entrées dans un fichier
+        public async void Save()//Sauvegarde les données entrées dans un fichier
         {
-            if(match.Folder == null)//pas de dossier sélectionné
+            if(store.Folder == null)//pas de dossier sélectionné
             {
                 await new MessageDialog("Veuillez sélectionner un emplacement.").ShowAsync();
-                Vider();
+                Clean();
             }
             else//dossier sélectionné
             {
-                match.Equipe1 = nomeq1.Text;
-                match.Equipe2 = nomeq2.Text;
-                match.Manches = nombremanche.SelectedIndex + 1;
-                string filename = match.Equipe1 + "_vs_" + match.Equipe2 + ".match";
+                match.Team1 = nomeq1.Text;
+                match.Team2 = nomeq2.Text;
+                match.Rounds = numberofround.SelectedIndex + 1;
+                string filename = match.Team1 + "_vs_" + match.Team2 + ".matchi";
 
                 //le ficher est créé dans le dossier sélectionné et si un autre fichier a 
                 //un nom identique, le nouveau fichier aura un chiffre en plus dans son nom.
-                StorageFile newFile = await match.Folder.CreateFileAsync(filename, CreationCollisionOption.GenerateUniqueName);
+                StorageFile newFile = await store.Folder.CreateFileAsync(filename, CreationCollisionOption.GenerateUniqueName);
 
                 //on écrit le contenu des champs à l'intérieur du fichier contenu dans l'objet newFile
-                await FileIO.WriteLinesAsync(newFile, new List<string>{match.Equipe1, match.Equipe2, match.Manches.ToString()});
+                await FileIO.WriteLinesAsync(newFile, new List<string>{match.Team1, match.Team2, match.Rounds.ToString()});
 
                 MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage)); //renvoie à la page de match
 
@@ -103,13 +105,13 @@ namespace App1
             var folderPicker = new Windows.Storage.Pickers.FolderPicker();
             folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
             folderPicker.FileTypeFilter.Add("*");
-            match.Folder = await folderPicker.PickSingleFolderAsync();
+            store.Folder = await folderPicker.PickSingleFolderAsync();
 
-            if (match.Folder != null)
+            if (store.Folder != null)
             {        
                 Windows.Storage.AccessCache.StorageApplicationPermissions.
-                FutureAccessList.AddOrReplace("PickedFolderToken", match.Folder);
-                this.filestate.Text = match.Folder.Path.ToString();             
+                FutureAccessList.AddOrReplace("PickedFolderToken", store.Folder);
+                this.filestate.Text = store.Folder.Path.ToString();             
             }
             else
             {
