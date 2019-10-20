@@ -17,7 +17,7 @@
                           BackgroundSource="HostBackdrop"
                           TintColor="Black"
                           TintOpacity="0.8"
-                          FallbackColor="#303030"/>
+                          FallbackColor="#151515"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="HighContrast">

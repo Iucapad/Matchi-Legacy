@@ -76,6 +76,9 @@ namespace App1
                 choose_message.VerticalAlignment = VerticalAlignment.Top;
                 choose_message.Margin = new Thickness(0, 90, 0, 0);
                 details_card.Height = 125;
+                details_card.CornerRadius = new CornerRadius(0);
+                details_card.Width = double.NaN;
+                details_card.HorizontalAlignment = HorizontalAlignment.Stretch;
                 details_card.VerticalAlignment = VerticalAlignment.Top;
                 details_card.Margin = new Thickness(0, 60, 0, 0);
                 if (details_card.Visibility == Visibility.Visible)
@@ -90,6 +93,9 @@ namespace App1
                 choose_message.VerticalAlignment = VerticalAlignment.Center;
                 choose_message.Margin = new Thickness(370, 0, 0, 0);
                 details_card.Height = 260;
+                details_card.Width =300;
+                details_card.CornerRadius = new CornerRadius(4);
+                details_card.HorizontalAlignment = HorizontalAlignment.Center;
                 details_card.VerticalAlignment = VerticalAlignment.Center;
                 details_card.Margin = new Thickness(370, 60, 0, 160);
                 if (details_card.Visibility == Visibility.Collapsed)

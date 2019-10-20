@@ -26,5 +26,15 @@ namespace App1
         {
             this.InitializeComponent();
         }
+
+        private void show(object sender, RoutedEventArgs e)
+        {
+            page.Children.Add(new_round);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            page.Children.Remove(new_round);
+        }
     }
 }

@@ -17,7 +17,7 @@
                           BackgroundSource="HostBackdrop"
                           TintColor="Black"
                           TintOpacity="0.8"
-                          FallbackColor="#303030"/>
+                          FallbackColor="#151515"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="HighContrast">
@@ -60,6 +60,11 @@
                 </ListView>
             </Grid>
             <Grid x:Name="details_card" CornerRadius="4" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" Margin="0,450,0,0" BorderBrush="#454545" BorderThickness="1"  Visibility="Collapsed" Width="300" Height="260" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.Transitions>
+                    <TransitionCollection>
+                        <EdgeUIThemeTransition Edge="Bottom"/>
+                    </TransitionCollection>
+                </Grid.Transitions>
                 <TextBlock Margin="15" FontWeight="Black" FontSize="18" Text="Nom du match"></TextBlock>
                 <Button CornerRadius="4"  Click="Open_match" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                     <StackPanel Orientation="Horizontal">
