@@ -32,6 +32,8 @@ namespace App1
         public RecentMatchesPage()
         {
             this.InitializeComponent();
+            store = new MatchStorage();
+            Read_storage();
         }
 
         private async void Read_storage()//lis le contenu du dossier de stockage
@@ -40,29 +42,28 @@ namespace App1
             
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
 
-            foreach(StorageFile match_file in match_files)
+            info_messages.Visibility = Visibility.Collapsed;//messages par défaut si pas de fichiers ou mauvais format
+            error_message.Visibility = Visibility.Visible;
+            list_of_matches.Visibility = Visibility.Collapsed;
+            header_title.Text = "Match";
+
+            if (match_files.Count > 0)
             {
-                if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")//existence de fichiers match
-                {       
-                    error_message.Visibility = Visibility.Collapsed;
-
-                    list_of_matches.Visibility = Visibility.Visible;
-
-                    IList<string> infos = await FileIO.ReadLinesAsync(match_file);
-
-                    if (Int32.TryParse(infos[2], out int testnumber) && testnumber > 0)
-                    {
-                        list_of_matches.Items.Add(match_file.DisplayName);
-                        matchlist.Add(new Matchimpro(infos[0], infos[1], testnumber));
-                    }
-                }
-                else//pas de fichiers match 
+                foreach (StorageFile match_file in match_files)
                 {
-                    if(match_file.FileType != ".catei")
+                    if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")//existence de fichiers match
                     {
-                        error_message.Visibility = Visibility.Visible;
-                        list_of_matches.Visibility = Visibility.Collapsed;
-                        header_title.Text = "Match";
+                        error_message.Visibility = Visibility.Collapsed;
+                        info_messages.Visibility = Visibility.Visible;
+                        list_of_matches.Visibility = Visibility.Visible;
+
+                        IList<string> infos = await FileIO.ReadLinesAsync(match_file);
+
+                        if (Int32.TryParse(infos[2], out int testnumber) && testnumber > 0)
+                        {
+                            list_of_matches.Items.Add(match_file.DisplayName);
+                            matchlist.Add(new Matchimpro(infos[0], infos[1], testnumber));
+                        }
                     }
                 }
             }
@@ -126,11 +127,6 @@ namespace App1
                     image_message.Visibility = Visibility.Visible;
                 }
             }
-        }
-        private void Page_loaded(object sender, RoutedEventArgs e)
-        {
-            store = new MatchStorage();
-            Read_storage();
         }
     }
 }
