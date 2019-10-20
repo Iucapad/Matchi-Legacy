@@ -68,10 +68,18 @@ namespace App1
                             categorylist.Add(new Category(catname));
                             list_of_categories.Items.Add(catname);
                         }
-                        else
+                        else//fichier corrompu car données non-valides
                         {
                             list_of_categories.Items.Clear();
                             categorylist.Clear();
+                        }
+                    }
+                    else
+                    {
+                        List<int> test = new List<int>();
+                        foreach(string info in infos)
+                        {
+                            test.Add(infos.IndexOf(info));    
                         }
                     }
                 }

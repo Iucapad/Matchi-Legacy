@@ -32,7 +32,6 @@ namespace App1
         public RecentMatchesPage()
         {
             this.InitializeComponent();
-           
         }
 
         private async void Read_storage()//lis le contenu du dossier de stockage
@@ -43,7 +42,7 @@ namespace App1
 
             foreach(StorageFile match_file in match_files)
             {
-                if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")//existence de fichiers
+                if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")//existence de fichiers match
                 {       
                     error_message.Visibility = Visibility.Collapsed;
 
@@ -57,12 +56,14 @@ namespace App1
                         matchlist.Add(new Matchimpro(infos[0], infos[1], testnumber));
                     }
                 }
-                else//pas de fichiers
+                else//pas de fichiers match 
                 {
-                    error_message.Visibility = Visibility.Visible;
-
-                    list_of_matches.Visibility = Visibility.Collapsed;
-                    header_title.Text = "Match";
+                    if(match_file.FileType != ".catei")
+                    {
+                        error_message.Visibility = Visibility.Visible;
+                        list_of_matches.Visibility = Visibility.Collapsed;
+                        header_title.Text = "Match";
+                    }
                 }
             }
         }

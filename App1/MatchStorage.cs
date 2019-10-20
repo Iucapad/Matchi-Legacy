@@ -14,7 +14,7 @@ namespace App1
 
         public MatchStorage()
         {
-            Defol();
+            default_folder = ApplicationData.Current.LocalFolder;
             folder = default_folder;
         }
         
@@ -25,12 +25,5 @@ namespace App1
 
         public StorageFolder Default_folder { get => default_folder; set => default_folder = value; }
         public StorageFolder Folder { get => folder; set => folder = value; }
-
-        private async void Defol()//définit le dossier de stockage par défaut
-        {
-            default_folder = ApplicationData.Current.LocalFolder;
-            StorageFolder newFolder = await default_folder.CreateFolderAsync("ImproData", CreationCollisionOption.OpenIfExists);
-            default_folder = newFolder;
-        }
     }
 }
