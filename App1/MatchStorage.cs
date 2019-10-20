@@ -21,6 +21,7 @@ namespace App1
         public MatchStorage(StorageFolder f)
         {
             folder = f;
+            default_folder = ApplicationData.Current.LocalFolder;
         }
 
         public StorageFolder Default_folder { get => default_folder; set => default_folder = value; }
