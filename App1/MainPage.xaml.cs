@@ -93,11 +93,11 @@ namespace App1
         {
             if (((Frame)Window.Current.Content).ActualHeight < 500)
             {
-                date_of_day.Margin = new Thickness(0, 50, 0, 0);
+                date_of_day.Margin = new Thickness(40, 50, 0, 0);
             }
             else
             {
-                date_of_day.Margin = new Thickness(0, 150, 0, 0);
+                date_of_day.Margin = new Thickness(40, 150, 0, 0);
             }
                 if (((Frame)Window.Current.Content).ActualWidth < 500)
             {
