@@ -32,12 +32,12 @@ namespace App1
         public RecentMatchesPage()
         {
             this.InitializeComponent();
-            store = new MatchStorage();
-            Read_storage();
+           
         }
 
         private async void Read_storage()//lis le contenu du dossier de stockage
         {
+            Console.WriteLine("test");
             StorageFolder storageFolder = store.Folder;
             
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
@@ -45,14 +45,15 @@ namespace App1
             if(match_files.Count == 0)//pas de fichier
             {
                 error_message.Visibility = Visibility.Visible;
+                info_messages.Visibility = Visibility.Collapsed;
                 list_of_matches.Visibility = Visibility.Collapsed;
                 header_title.Text = "Match";
             }
             else//existence de fichiers
             {
                 error_message.Visibility = Visibility.Collapsed;
+                info_messages.Visibility = Visibility.Visible;
                 list_of_matches.Visibility = Visibility.Visible;
-
                 foreach (StorageFile match_file in match_files)
                 {
                     if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")
@@ -127,6 +128,11 @@ namespace App1
                     image_message.Visibility = Visibility.Visible;
                 }
             }
-        }        
+        }
+        private void Page_loaded(object sender, RoutedEventArgs e)
+        {
+            store = new MatchStorage();
+            Read_storage();
+        }
     }
 }

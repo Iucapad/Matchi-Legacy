@@ -334,22 +334,18 @@
 
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock Text="Nouveau match"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
-        <ScrollViewer VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,60,0,0">
+        <ScrollViewer VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,60,0,160">
             <StackPanel x:Name="page" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBox HorizontalAlignment="Stretch" CornerRadius="4" Margin="20" Header="Équipe 1" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq1"/>
-                <TextBox HorizontalAlignment="Stretch" CornerRadius="4" Margin="20" Header="Équipe 2" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" Name="nomeq2"/>
-                <ComboBox HorizontalAlignment="Left" CornerRadius="4" Margin="20" Header="Nombre de manches" Width="150" Name="numberofround"/>
-                <Button Style="{ThemeResource ButtonRevealStyle}" CornerRadius="4" Margin="40" Height="80" Width="250" Click="Create_match" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                    <StackPanel>
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" FontSize="24" HorizontalAlignment="Center"/>
-                        <TextBlock>Créer le match</TextBlock>
-                    </StackPanel>
-                </Button>
-                <TextBlock x:Name="filestate" TextWrapping="Wrap" Width="380" Height="40"/>
-
-
+                <TextBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Header="Équipe 1" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Name="nomeq1"/>
+                <TextBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Header="Équipe 2" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Name="nomeq2"/>
+                <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Header="Nombre de manches" Height="60" Width="300" Name="numberofround"/>
             </StackPanel>
         </ScrollViewer>
-
+        <Button Style="{ThemeResource ButtonRevealStyle}" CornerRadius="4" Margin="60" Height="80" Width="150" Click="Create_match" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <StackPanel>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" FontSize="24" HorizontalAlignment="Center"/>
+                <TextBlock>Créer le match</TextBlock>
+            </StackPanel>
+        </Button>
     </Grid>
 </Page>

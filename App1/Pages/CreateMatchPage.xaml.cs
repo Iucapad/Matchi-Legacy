@@ -41,7 +41,6 @@ namespace App1
             numberofround.SelectedIndex = 0;
             store = new MatchStorage();
             match = new Matchimpro();
-            filestate.Text = store.Folder.Path.ToString();
         }
 
         private async void Create_match(object sender, RoutedEventArgs e)
@@ -100,6 +99,7 @@ namespace App1
 
         }
 
+        /* CODE NON UTILISE
         private async void Choisir_dossier(object sender, RoutedEventArgs e)//Choisi le dossier 
         {
             var folderPicker = new Windows.Storage.Pickers.FolderPicker();
@@ -117,7 +117,7 @@ namespace App1
             {
                 this.filestate.Text = "Emplacment non-choisi.";
             }
-        }
+        }*/
 
     }
 }

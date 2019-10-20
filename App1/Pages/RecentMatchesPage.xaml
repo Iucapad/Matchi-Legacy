@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="Resize_page">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="Resize_page" Loaded="Page_loaded">
     <Page.Resources>
         <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
@@ -38,9 +38,11 @@
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock x:Name="header_title" Text="Matchs récents"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <Grid x:Name="home_match">
+            <Grid x:Name="info_messages">
             <TextBlock x:Name="choose_message" FontSize="18" Text="Choisissez un match dans la liste" HorizontalAlignment="Center" Margin="0,80,0,0"></TextBlock>
             <TextBlock x:Name="image_message" Foreground="#454545" Visibility="Collapsed" FontFamily="Segoe MDL2 Assets" Text="&#xF78B;" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="48" Margin="370,0,0,110"/>
-            <TextBox x:Name="error_message" Visibility="Collapsed" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Aucun match créé. Veuillez en créer un pour commencer."></TextBox>
+            </Grid>
+                <TextBox x:Name="error_message" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Aucun match créé. Veuillez en créer un pour commencer."></TextBox>
             <Grid>
                 <Grid.Transitions>
                     <TransitionCollection>
@@ -48,9 +50,6 @@
                     </TransitionCollection>
                 </Grid.Transitions>
                 <ListView x:Name="list_of_matches" CornerRadius="4" Margin="0,60,350,160" BorderBrush="#454545" BorderThickness="1" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="300" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
-                    <ListView.Items>
-                        
-                    </ListView.Items>
                 </ListView>
             </Grid>
             <Grid x:Name="details_card" CornerRadius="4" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" Margin="0,450,0,0" BorderBrush="#454545" BorderThickness="1"  Visibility="Collapsed" Width="300" Height="260" VerticalAlignment="Center" HorizontalAlignment="Center">
