@@ -39,7 +39,7 @@ namespace App1
         {            
             if (IsInternet())
             {
-                webView.Navigate(new Uri("https://iucapad.github.io/"));
+                webView.Navigate(new Uri("https://teaflex.github.io/bapsite"));
                 webView.Visibility = Visibility.Visible;
                 error_message.Visibility = Visibility.Collapsed;
             }

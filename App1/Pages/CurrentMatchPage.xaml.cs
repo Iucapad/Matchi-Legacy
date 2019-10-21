@@ -29,7 +29,10 @@ namespace App1
 
         private void show(object sender, RoutedEventArgs e)
         {
-            page.Children.Add(new_round);
+            if (!page.Children.Contains(new_round))
+            {
+                page.Children.Add(new_round);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

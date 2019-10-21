@@ -28,6 +28,7 @@ namespace App1
         public CategoryPage()
         {
             this.InitializeComponent();
+            page.Children.Remove(add_ui);
             store = new MatchStorage();
             Read_storage();
         }
@@ -105,6 +106,19 @@ namespace App1
         {
             deletebtn.Visibility = Visibility.Visible;
             addbtn.Margin = new Thickness(153, 0, 0, 60);
+        }
+
+        private void Show_addui(object sender, RoutedEventArgs e)
+        {
+            if (!page.Children.Contains(add_ui))
+            {
+                page.Children.Add(add_ui);
+            }
+        }
+
+        private void Save_category(object sender, RoutedEventArgs e)
+        {
+            page.Children.Remove(add_ui);
         }
     }
 }

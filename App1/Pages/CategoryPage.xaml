@@ -36,8 +36,8 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock Text="Catégories"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
+    <Grid x:Name="page" Background="{ThemeResource CustomAcrylicBrush}">
+        <TextBlock Text="Catégories"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>        
         <Grid>
             <Grid.Transitions>
                 <TransitionCollection>
@@ -50,7 +50,7 @@
             </ListView.Items>
         </ListView>
         </Grid>
-        <Button x:Name="addbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI">
+        <Button x:Name="addbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Show_addui">
             <StackPanel>
                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="24" HorizontalAlignment="Center"/>
                 <TextBlock>Ajouter une catégorie</TextBlock>
@@ -62,5 +62,21 @@
                 <TextBlock>Supprimer</TextBlock>
             </StackPanel>
         </Button>
+        <Grid x:Name="add_ui" Padding="0,60,0,0">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Bottom"/>
+                </TransitionCollection>
+            </Grid.Transitions>
+            <Rectangle Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"></Rectangle>
+            <TextBlock Text="Ajouter une catégorie"  FontFamily="Segoe UI" HorizontalAlignment="Center" FontWeight="Black" Margin="0,25,0,0" FontSize="24"></TextBlock>
+            <TextBox HorizontalAlignment="Center" CornerRadius="4" Header="Nom" Height="60" Margin="0,60,0,160" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Name="nomeq1"/>
+            <Button x:Name="add_save" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Save_category">
+                <StackPanel>
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" FontSize="24" HorizontalAlignment="Center"/>
+                    <TextBlock>Valider</TextBlock>
+                </StackPanel>
+            </Button>
+        </Grid>
     </Grid>
 </Page>
