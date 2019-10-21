@@ -60,7 +60,7 @@ namespace App1
             StorageFolder storageFolder = store.Folder;
 
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
-            int num_matches = match_files.Count;
+            int num_matches = match_files.Count-1;
             if (num_matches > 0) {
                 nb_matches.Text = num_matches + " Matchs Récents";
                 if (num_matches < 2)

@@ -86,10 +86,12 @@ namespace App1
             details_card.Visibility = Visibility.Visible;
             image_message.Visibility = Visibility.Collapsed;
             addbtn.Margin = new Thickness(153, 0, 0, 60);
+            string str = list_of_matches.SelectedItem.ToString();
+            match_name.Text = str.Replace('_', ' ').ToUpper();
             if (((Frame)).ActualWidth < 750)
             {
                 list_of_matches.Margin = new Thickness(0, 200, 0, 160);
-            }
+            }            
         }
 
         private void Resize_page(object sender, SizeChangedEventArgs e)
