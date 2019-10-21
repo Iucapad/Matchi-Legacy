@@ -46,6 +46,11 @@
                 </Grid.Transitions>            
             <TextBlock x:Name="date_of_day" HorizontalAlignment="Center" Margin="40,150,0,0" Text="vendredi 3 janvier" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="SemiBold"/>
             </Grid>
+            <Grid x:Name="recent_matches" Visibility="Collapsed" HorizontalAlignment="Center" Margin="40,0,0,50" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="20" Padding="10">
+                <TextBlock x:Name="nb_matches" FontSize="18" FontWeight="Bold" Text="4 Matchs Récents">                    
+                </TextBlock>
+                
+            </Grid>
             <Grid x:Name="links_box" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="40,0,0,60">
                 <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150"  VerticalAlignment="Center" Margin="0,0,153,0" FontFamily="Segoe UI" Click="Create_Match">
                     <StackPanel>

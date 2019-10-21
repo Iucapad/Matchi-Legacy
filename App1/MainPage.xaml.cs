@@ -17,6 +17,7 @@ using System.Net.NetworkInformation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI;
+using Windows.Storage;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,12 +29,14 @@ namespace App1
     public sealed partial class MainPage : Page
     {
         public static Frame MainPageFrame;
+        private List<Matchimpro> matchlist = new List<Matchimpro>();//liste des impros
+        private MatchStorage store;//magasin de gestion des fichiers
         public MainPage()
         {
             this.InitializeComponent();
             MainPageFrame = contentFrame;
 
-            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar; 
+            var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
             ApplicationViewTitleBar titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
             titleBar.ButtonBackgroundColor = Windows.UI.Colors.Transparent;
@@ -45,9 +48,27 @@ namespace App1
             titleBar.ButtonPressedBackgroundColor = Windows.UI.Colors.Gray;
             titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.White;
             if (Application.Current.RequestedTheme == ApplicationTheme.Light)
-            { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo_light.png"));}
+            { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo_light.png")); }
             //Paramétrage de l'interface
             Date_display();
+
+            store = new MatchStorage();
+            Read_storage();
+        }
+        private async void Read_storage()//lis le contenu du dossier de stockage
+        {
+            StorageFolder storageFolder = store.Folder;
+
+            IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
+            int num_matches = match_files.Count;
+            if (num_matches > 0) {
+                nb_matches.Text = num_matches + " Matchs Récents";
+                if (num_matches < 2)
+                {
+                    nb_matches.Text = num_matches + " Match Récent";
+                }
+                recent_matches.Visibility = Visibility.Visible;
+            }                     
         }
         private void Date_display()
         {
@@ -94,10 +115,12 @@ namespace App1
             if (((Frame)Window.Current.Content).ActualHeight < 500)
             {
                 date_of_day.Margin = new Thickness(40, 50, 0, 0);
+                recent_matches.Margin=new Thickness(40, 0, 0, 50);
             }
             else
             {
                 date_of_day.Margin = new Thickness(40, 150, 0, 0);
+                recent_matches.Margin = new Thickness(40, 0, 0, 0);
             }
                 if (((Frame)Window.Current.Content).ActualWidth < 500)
             {
