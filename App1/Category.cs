@@ -14,7 +14,19 @@ namespace App1
         public Category(string n)
         {
             name = n;
-            nbrplayer = "Illimité";
+
+            switch (n)
+            {
+                case "Illimité":
+                    nbrplayer = "Illimité";
+                    break;
+
+                case "Tous":
+                    nbrplayer = "Tous";
+                    break;
+                default:
+                    break;
+            }
         }
 
         public Category(string n, int j)

@@ -63,7 +63,7 @@ namespace App1
                             categorylist.Add(new Category(catname, testnumber));
                             list_of_categories.Items.Add(catname);
                         }
-                        else if (infos[n - 1] == "Illimité")
+                        else if (infos[n - 1] == "Illimité" || infos[n - 1] == "Tous")
                         {
                             string catname = infos[n - 2];
                             categorylist.Add(new Category(catname));
@@ -71,8 +71,7 @@ namespace App1
                         }
                         else//fichier corrompu car données non-valides
                         {
-                            list_of_categories.Items.Clear();
-                            categorylist.Clear();
+                            Clear_lists();
                         }
                     }
                     else
@@ -96,10 +95,15 @@ namespace App1
                 }
                 if (e)
                 {
-                    list_of_categories.Items.Clear();
-                    categorylist.Clear();
+                    Clear_lists();
                 }
             }
+        }
+
+        private void Clear_lists()
+        {
+            list_of_categories.Items.Clear();
+            categorylist.Clear();
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)
