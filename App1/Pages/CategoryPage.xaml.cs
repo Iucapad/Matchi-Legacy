@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,21 +33,12 @@ namespace App1
             Read_storage();
         }
 
-        private async void Read_storage()//lis le contenu du dossier de stockage
+        private async void Read_storage()//lit le contenu du dossier de stockage
         {
             StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
-            bool verification = false;
 
-            foreach (StorageFile file in files)//vérifie si le fichier des catégorie existe (verification vaut true si le fichier est trouvé)
-            {
-                if(file.Name == "Categories.catei")
-                {
-                    verification = true;
-                }
-            }
-
-            if (verification)
+            if (File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
             {
                 StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
                 bool e = false;
@@ -140,6 +131,6 @@ namespace App1
                 list_of_categories.HorizontalAlignment = HorizontalAlignment.Center;
 
             }
-            }
+        }
     }
 }
