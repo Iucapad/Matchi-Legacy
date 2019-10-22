@@ -58,7 +58,7 @@
                         <TextBlock>Nouveau match</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" VerticalAlignment="Center" Margin="153,0,0,0" FontFamily="Segoe UI">
+                <Button CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" VerticalAlignment="Center" Margin="153,0,0,0" FontFamily="Segoe UI" Click="Category_button">
                     <StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE74C;" FontSize="24" HorizontalAlignment="Center"/>
                         <TextBlock>Catégories</TextBlock>
@@ -69,8 +69,8 @@
         <Rectangle x:Name="web_header" Visibility="Collapsed" Height="auto"  Width="auto" Margin="40,0,0,0" Fill="#151515"></Rectangle>
         <NavigationView x:Name="navigationView" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="500" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="OutlineStar"  Content="Match" Tag="matchNav" />
-                <NavigationViewItem Icon="Library" Content="Catégories" Tag="categoryNav" />
+                <NavigationViewItem x:Name="MATCH" Icon="OutlineStar"  Content="Match" Tag="matchNav" />
+                <NavigationViewItem x:Name="CATEGORIES" Icon="Library" Content="Catégories" Tag="categoryNav" />
                 <NavigationViewItem Icon="Audio" Content="Musique" Tag="editNav" />
                 <NavigationViewItem Icon="Globe" Content="Site" Tag="webNav" />
             </NavigationView.MenuItems>

@@ -134,8 +134,7 @@ namespace App1
                 list_of_categories.Margin = new Thickness(30, 130, 30, 160);
                 list_of_categories.Width = 300;
                 list_of_categories.HorizontalAlignment = HorizontalAlignment.Center;
-
             }
-            }
+        }
     }
 }

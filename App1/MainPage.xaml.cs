@@ -82,7 +82,6 @@ namespace App1
         {
             home_interface.Visibility = Visibility.Collapsed;
             NavigationViewItem item = args.SelectedItem as NavigationViewItem;
-            
             switch (item.Tag.ToString()) //Navigation vers la page souhaitée
             {
                 case "matchNav":
@@ -107,7 +106,13 @@ namespace App1
         }
         private void Create_Match(object sender, RoutedEventArgs e)
         {
-            contentFrame.Navigate(typeof(CreateMatchPage));            
+            contentFrame.Navigate(typeof(CreateMatchPage));
+            navigationView.SelectedItem = MATCH;
+        }
+        private void Category_button(object sender, RoutedEventArgs e)
+        {
+            contentFrame.Navigate(typeof(CategoryPage));
+            navigationView.SelectedItem = CATEGORIES;
         }
 
         private void Resize(object sender, SizeChangedEventArgs e)
@@ -134,6 +139,6 @@ namespace App1
                 navigationView.IsPaneToggleButtonVisible = true;
                 navigationView.IsPaneVisible = true;
             }
-        }
+        }        
     }
 }

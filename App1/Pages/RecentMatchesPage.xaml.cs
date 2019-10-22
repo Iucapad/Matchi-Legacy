@@ -150,16 +150,11 @@ namespace App1
                 PrimaryButtonText = "Supprimer",
                 CloseButtonText = "Annuler"
             };
-
             ContentDialogResult result = await deleteFileDialog.ShowAsync();
-
-            // Delete the file if the user clicked the primary button.
-            /// Otherwise, do nothing.
             if (result == ContentDialogResult.Primary)
             {
                 StorageFolder storageFolder = store.Folder;
                 IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
-
                 foreach (var file in files)
                 {
                     if (file.DisplayName == list_of_matches.SelectedItem.ToString())
