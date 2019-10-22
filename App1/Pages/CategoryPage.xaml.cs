@@ -57,7 +57,7 @@ namespace App1
                         else if (infos[n - 1] == "Illimité" || infos[n - 1] == "Tous")
                         {
                             string catname = infos[n - 2];
-                            categorylist.Add(new Category(catname));
+                            categorylist.Add(new Category(catname,"j"));
                             list_of_categories.Items.Add(catname);
                         }
                         else//fichier corrompu car données non-valides
