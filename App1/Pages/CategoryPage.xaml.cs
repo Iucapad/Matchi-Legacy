@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,21 +33,12 @@ namespace App1
             Read_storage();
         }
 
-        private async void Read_storage()//lis le contenu du dossier de stockage
+        private async void Read_storage()//lit le contenu du dossier de stockage
         {
             StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
-            bool verification = false;
 
-            foreach (StorageFile file in files)//vérifie si le fichier des catégorie existe (verification vaut true si le fichier est trouvé)
-            {
-                if(file.Name == "Categories.catei")
-                {
-                    verification = true;
-                }
-            }
-
-            if (verification)
+            if (File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
             {
                 StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
                 bool e = false;
@@ -63,7 +54,7 @@ namespace App1
                             categorylist.Add(new Category(catname, testnumber));
                             list_of_categories.Items.Add(catname);
                         }
-                        else if (infos[n - 1] == "Illimité")
+                        else if (infos[n - 1] == "Illimité" || infos[n - 1] == "Tous")
                         {
                             string catname = infos[n - 2];
                             categorylist.Add(new Category(catname));
@@ -71,8 +62,7 @@ namespace App1
                         }
                         else//fichier corrompu car données non-valides
                         {
-                            list_of_categories.Items.Clear();
-                            categorylist.Clear();
+                            Clear_lists();
                         }
                     }
                     else
@@ -96,10 +86,15 @@ namespace App1
                 }
                 if (e)
                 {
-                    list_of_categories.Items.Clear();
-                    categorylist.Clear();
+                    Clear_lists();
                 }
             }
+        }
+
+        private void Clear_lists()
+        {
+            list_of_categories.Items.Clear();
+            categorylist.Clear();
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)
