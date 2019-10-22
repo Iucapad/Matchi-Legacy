@@ -49,6 +49,7 @@ namespace App1
 
             if (match_files.Count > 0)
             {
+                header_title.Text = "Matchs récents";
                 foreach (StorageFile match_file in match_files)
                 {
                     if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")//existence de fichiers match
@@ -81,24 +82,29 @@ namespace App1
 
         private void Selection(object sender, SelectionChangedEventArgs e)
         {
-            choose_message.Visibility = Visibility.Collapsed;
-            deletebtn.Visibility = Visibility.Visible;
-            details_card.Visibility = Visibility.Visible;
-            image_message.Visibility = Visibility.Collapsed;
-            addbtn.Margin = new Thickness(153, 0, 0, 60);
-            string str = list_of_matches.SelectedItem.ToString();
-            match_name.Text = str.Replace('_', ' ').ToUpper();
-            if (((Frame)).ActualWidth < 750)
+            if (list_of_matches.Items.Count > 0)
             {
-                list_of_matches.Margin = new Thickness(0, 200, 0, 160);
-            }            
+                choose_message.Visibility = Visibility.Collapsed;
+                deletebtn.Visibility = Visibility.Visible;
+                details_card.Visibility = Visibility.Visible;
+                image_message.Visibility = Visibility.Collapsed;
+                addbtn.Margin = new Thickness(153, 0, 0, 60);
+                string str = list_of_matches.SelectedItem.ToString();
+                match_name.Text = str.Replace('_', ' ').ToUpper();
+                if (((Frame)).ActualWidth < 750)
+                {
+                    list_of_matches.Margin = new Thickness(30, 200, 30, 160);
+                }
+            }         
         }
 
         private void Resize_page(object sender, SizeChangedEventArgs e)
         {
             if (((Frame)).ActualWidth < 750)
             {
-                list_of_matches.Margin = new Thickness(0, 130, 0, 160);
+                list_of_matches.Margin = new Thickness(30, 130, 30, 160);
+                list_of_matches.Width = double.NaN;
+                list_of_matches.HorizontalAlignment = HorizontalAlignment.Stretch;
                 choose_message.VerticalAlignment = VerticalAlignment.Top;
                 choose_message.Margin = new Thickness(0, 90, 0, 0);
                 details_card.Height = 125;
@@ -110,13 +116,15 @@ namespace App1
                 match_name.TextWrapping = TextWrapping.NoWrap;
                 if (details_card.Visibility == Visibility.Visible)
                 {
-                    list_of_matches.Margin = new Thickness(0, 200, 0, 160);                    
+                    list_of_matches.Margin = new Thickness(30, 200, 30, 160);                    
                 }
                 image_message.Visibility = Visibility.Collapsed;
             }
             else
             {
                 list_of_matches.Margin = new Thickness(0, 60, 370, 160);
+                list_of_matches.Width = 300;
+                list_of_matches.HorizontalAlignment = HorizontalAlignment.Center;
                 choose_message.VerticalAlignment = VerticalAlignment.Center;
                 choose_message.Margin = new Thickness(370, 0, 0, 0);
                 details_card.Height = 260;
@@ -131,6 +139,44 @@ namespace App1
                     image_message.Visibility = Visibility.Visible;
                 }
             }
+        }
+
+        private async void Delete_click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog deleteFileDialog = new ContentDialog
+            {
+                Title = "Attention",
+                Content = "Voulez-vous vraiment supprimer ce match ?",
+                PrimaryButtonText = "Supprimer",
+                CloseButtonText = "Annuler"
+            };
+
+            ContentDialogResult result = await deleteFileDialog.ShowAsync();
+
+            // Delete the file if the user clicked the primary button.
+            /// Otherwise, do nothing.
+            if (result == ContentDialogResult.Primary)
+            {
+                StorageFolder storageFolder = store.Folder;
+                IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
+
+                foreach (var file in files)
+                {
+                    if (file.DisplayName == list_of_matches.SelectedItem.ToString())
+                    {
+                        await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                    }
+                }
+                list_of_matches.Items.Clear();
+                details_card.Visibility = Visibility.Collapsed;
+                deletebtn.Visibility = Visibility.Collapsed;
+                addbtn.Margin = new Thickness(0, 0, 0, 60);
+                if (((Frame)).ActualWidth < 750)
+                {
+                    list_of_matches.Margin = new Thickness(30, 130, 30, 160);
+                }
+                Read_storage();
+            }            
         }
     }
 }

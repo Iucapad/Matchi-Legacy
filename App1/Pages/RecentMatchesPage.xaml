@@ -77,7 +77,7 @@
                     <TextBlock>Nouveau match</TextBlock>
                 </StackPanel>
             </Button>
-            <Button x:Name="deletebtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Visibility="Collapsed" Height="80" Width="150" Margin="0,0,153,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI">
+            <Button x:Name="deletebtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Visibility="Collapsed" Height="80" Width="150" Margin="0,0,153,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Delete_click">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE74D;" FontSize="24" HorizontalAlignment="Center"/>
                     <TextBlock>Supprimer</TextBlock>
