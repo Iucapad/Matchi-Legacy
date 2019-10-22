@@ -97,11 +97,6 @@ namespace App1
                     web_header.Fill = new SolidColorBrush(Color.FromArgb(255,30, 215, 96));
                     web_header.Visibility = Visibility.Visible;
                     break;
-                case "webNav":
-                    contentFrame.Navigate(typeof(WebPage));
-                    web_header.Fill = new SolidColorBrush(Color.FromArgb(255, 21, 21, 21));
-                    web_header.Visibility = Visibility.Visible;
-                    break;
             }
         }
         private void Create_Match(object sender, RoutedEventArgs e)
