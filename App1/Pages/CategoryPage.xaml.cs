@@ -120,5 +120,22 @@ namespace App1
         {
             page.Children.Remove(add_ui);
         }
+
+        private void Resize(object sender, SizeChangedEventArgs e)
+        {
+            if (((Frame)).ActualWidth < 750)
+            {
+                list_of_categories.Margin = new Thickness(30, 130, 30, 160);
+                list_of_categories.Width = double.NaN;
+                list_of_categories.HorizontalAlignment = HorizontalAlignment.Stretch;
+            }
+            else
+            {
+                list_of_categories.Margin = new Thickness(30, 130, 30, 160);
+                list_of_categories.Width = 300;
+                list_of_categories.HorizontalAlignment = HorizontalAlignment.Center;
+
+            }
+            }
     }
 }
