@@ -11,11 +11,11 @@ namespace App1
         private string name;
         private string nbrplayer;
 
-        public Category(string n)
+        public Category(string n, string j)
         {
             name = n;
 
-            switch (n)
+            switch (j)
             {
                 case "Illimité":
                     nbrplayer = "Illimité";
