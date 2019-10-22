@@ -107,6 +107,7 @@ namespace App1
                 details_card.HorizontalAlignment = HorizontalAlignment.Stretch;
                 details_card.VerticalAlignment = VerticalAlignment.Top;
                 details_card.Margin = new Thickness(0, 60, 0, 0);
+                match_name.TextWrapping = TextWrapping.NoWrap;
                 if (details_card.Visibility == Visibility.Visible)
                 {
                     list_of_matches.Margin = new Thickness(0, 200, 0, 160);                    
@@ -124,6 +125,7 @@ namespace App1
                 details_card.HorizontalAlignment = HorizontalAlignment.Center;
                 details_card.VerticalAlignment = VerticalAlignment.Center;
                 details_card.Margin = new Thickness(370, 60, 0, 160);
+                match_name.TextWrapping = TextWrapping.Wrap;
                 if (details_card.Visibility == Visibility.Collapsed)
                 {
                     image_message.Visibility = Visibility.Visible;

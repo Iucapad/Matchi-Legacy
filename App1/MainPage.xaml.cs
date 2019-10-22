@@ -62,10 +62,10 @@ namespace App1
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
             int num_matches = match_files.Count-1;
             if (num_matches > 0) {
-                nb_matches.Text = num_matches + " Matchs Récents";
+                nb_matches.Text = num_matches + " matchs récents";
                 if (num_matches < 2)
                 {
-                    nb_matches.Text = num_matches + " Match Récent";
+                    nb_matches.Text = num_matches + " match récent";
                 }
                 recent_matches.Visibility = Visibility.Visible;
             }                     
