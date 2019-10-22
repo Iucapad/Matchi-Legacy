@@ -123,7 +123,7 @@ namespace App1
             }
             else
             {
-                date_of_day.Margin = new Thickness(40, 150, 0, 0);
+                date_of_day.Margin = new Thickness(40, 110, 0, 0);
                 recent_matches.Margin = new Thickness(40, 0, 0, 0);
             }
                 if (((Frame)Window.Current.Content).ActualWidth < 500)
