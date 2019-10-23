@@ -39,5 +39,27 @@ namespace App1
         {
             page.Children.Remove(new_round);
         }
+
+        private void Resize(object sender, SizeChangedEventArgs e)
+        {
+            if (((Frame)).ActualWidth < 750)
+            {
+                ui_container.Orientation = Orientation.Vertical;
+                ui_container.Margin = new Thickness(0, 60, 0, 60);
+                ui_container.HorizontalAlignment = HorizontalAlignment.Stretch;
+                ui_container.CornerRadius = new CornerRadius(0);
+                ui_leftcard.Height = 125;
+                ui_rightcard.Height = 125;
+            }
+            else
+            {
+                ui_container.Orientation = Orientation.Horizontal;
+                ui_container.Margin = new Thickness(20, 100, 20, 60);
+                ui_container.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_container.CornerRadius = new CornerRadius(10);
+                ui_leftcard.Height = 250;
+                ui_rightcard.Height = 250;
+            }
+        }
     }
 }
