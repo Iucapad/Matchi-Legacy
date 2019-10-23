@@ -41,7 +41,6 @@ namespace App1
             if (File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
             {
                 StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
-                bool e = false;
                 IList<string> infos = await FileIO.ReadLinesAsync(cate_file);
 
                 for (int n = 1; n <= infos.Count; n++)
@@ -65,26 +64,8 @@ namespace App1
                             Clear_lists();
                         }
                     }
-                    else
-                    {
-                        foreach(string info in infos)
-                        {
-                            int v = 0;
-                            foreach (string test in infos)
-                            {
-                                if (info == test)
-                                {
-                                    v++;
-                                }
-                                if (v > 1)
-                                {
-                                    e = true;
-                                }
-                            }
-                        }   
-                    }
                 }
-                if (e)
+                if (infos.Count == infos.Distinct().Count())
                 {
                     Clear_lists();
                 }
