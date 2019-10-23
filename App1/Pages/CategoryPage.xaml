@@ -70,7 +70,8 @@
             </Grid.Transitions>
             <Rectangle Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"></Rectangle>
             <TextBlock Text="Ajouter une catégorie"  FontFamily="Segoe UI" HorizontalAlignment="Center" FontWeight="Black" Margin="0,25,0,0" FontSize="24"></TextBlock>
-            <TextBox HorizontalAlignment="Center" CornerRadius="4" Header="Nom" Height="60" Margin="0,60,0,160" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Name="nomeq1"/>
+            <TextBox x:Name="category_name" HorizontalAlignment="Center" CornerRadius="4" Header="Nom" Height="60" Margin="0,60,0,160" TextWrapping="Wrap" VerticalAlignment="Center" Width="300"/>
+            <ComboBox x:Name="category_nb" HorizontalAlignment="Center" VerticalAlignment="Center"></ComboBox>
             <Button x:Name="add_save" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Save_category">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" FontSize="24" HorizontalAlignment="Center"/>

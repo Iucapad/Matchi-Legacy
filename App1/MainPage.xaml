@@ -52,8 +52,8 @@
                 </TextBlock>                
             </Grid>
             <Grid Width="175" Height="90" HorizontalAlignment="Center" Margin="0,75,0,50" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="4" Padding="10">
-                <TextBlock Text="Dernier match" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
-                <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" CornerRadius="20" Padding="10,7,10,7" FontWeight="Bold" FontSize="14" >
+                <TextBlock x:Name="most_recent_match" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
+                <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" CornerRadius="20" Padding="10,7,10,7" FontWeight="Bold" FontSize="14" Click="MostRecent_click" >
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE777;"  FontWeight="Normal" FontSize="18" Margin="0,0,10,0"/>
                         <TextBlock>Reprendre</TextBlock>

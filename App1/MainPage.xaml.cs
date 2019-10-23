@@ -51,14 +51,12 @@ namespace App1
             { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo_light.png")); }
             //Paramétrage de l'interface
             Date_display();
-
             store = new MatchStorage();
             Read_storage();
         }
         private async void Read_storage()//lis le contenu du dossier de stockage
         {
-            StorageFolder storageFolder = store.Folder;
-
+            StorageFolder storageFolder = store.Folder;            
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
             int num_matches = match_files.Count-1;
             if (num_matches > 0) {
@@ -68,7 +66,18 @@ namespace App1
                     nb_matches.Text = num_matches + " match récent";
                 }
                 recent_matches.Visibility = Visibility.Visible;
-            }                     
+            }
+            var mr_time = new DateTime(2019, 1,1, 1, 0, 1);
+            string mr_file = "";
+            foreach (StorageFile match_file in match_files)
+            {
+                if (match_file.DateCreated > mr_time)
+                {
+                    mr_time = match_file.DateCreated.DateTime;
+                    mr_file = match_file.DisplayName;
+                }                
+            }
+            most_recent_match.Text = mr_file;
         }
         private void Date_display()
         {
@@ -133,6 +142,12 @@ namespace App1
                 navigationView.IsPaneToggleButtonVisible = true;
                 navigationView.IsPaneVisible = true;
             }
-        }        
+        }
+
+        private void MostRecent_click(object sender, RoutedEventArgs e)
+        {
+            navigationView.SelectedItem = MATCH;
+            contentFrame.Navigate(typeof(CurrentMatchPage));
+        }
     }
 }
