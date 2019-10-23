@@ -9,22 +9,18 @@ namespace App1
 {
     class MatchStorage
     {
-        private StorageFolder folder;//dossier de stockage du match choisi par l'utilisateur
-        private StorageFolder default_folder;//dossier de stockage du match par défaut
+        public static readonly StorageFolder Default_folder = ApplicationData.Current.LocalFolder;
+        public StorageFolder Folder { get; set; }
 
         public MatchStorage()
         {
-            default_folder = ApplicationData.Current.LocalFolder;
-            folder = default_folder;
+            Folder = Default_folder;
         }
         
         public MatchStorage(StorageFolder f)
         {
-            folder = f;
-            default_folder = ApplicationData.Current.LocalFolder;
+            Folder = f;
         }
 
-        public StorageFolder Default_folder { get => default_folder; set => default_folder = value; }
-        public StorageFolder Folder { get => folder; set => folder = value; }
     }
 }
