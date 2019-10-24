@@ -120,7 +120,6 @@ namespace App1
                 list_of_categories.Width = 300;
                 list_of_categories.HorizontalAlignment = HorizontalAlignment.Center;
             }
-            Save_to_file();
         }
 
         private void Delete_category(object sender, RoutedEventArgs e) 
