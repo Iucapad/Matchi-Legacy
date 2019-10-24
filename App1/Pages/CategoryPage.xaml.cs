@@ -38,44 +38,35 @@ namespace App1
             StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
 
-            if (File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
-            {
-                StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
-                IList<string> infos = await FileIO.ReadLinesAsync(cate_file);
+            if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
+                return; //TODO : Erreur ?
 
-                for (int n = 1; n <= infos.Count; n++)
+            StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
+            IList<string> infos = await FileIO.ReadLinesAsync(cate_file);
+
+            if (infos.Count == infos.Distinct().Count())
+                return; //TODO : Erreur ?
+
+            for (int n = 1; n <= infos.Count; n += 2)
+            {
+                if (int.TryParse(infos[n], out int playerCount)) 
                 {
-                    if (n % 2 == 0)
+                    try 
                     {
-                        if (Int32.TryParse(infos[n - 1], out int testnumber) && testnumber > 0)
-                        {
-                            string catname = infos[n - 2];
-                            categorylist.Add(new Category(catname, testnumber));
-                            list_of_categories.Items.Add(catname);
-                        }
-                        else if (infos[n - 1] == "Illimité" || infos[n - 1] == "Tous")
-                        {
-                            string catname = infos[n - 2];
-                            categorylist.Add(new Category(catname,"j"));
-                            list_of_categories.Items.Add(catname);
-                        }
-                        else//fichier corrompu car données non-valides
-                        {
-                            Clear_lists();
-                        }
+                        categorylist.Add(new Category(infos[n - 1], playerCount));
+                    } 
+                    catch (ArgumentOutOfRangeException) 
+                    {
+                        categorylist.Clear();
+                        break;
                     }
-                }
-                if (infos.Count == infos.Distinct().Count())
+                } 
+                else 
                 {
-                    Clear_lists();
+                    categorylist.Clear();
+                    break;
                 }
             }
-        }
-
-        private void Clear_lists()
-        {
-            list_of_categories.Items.Clear();
-            categorylist.Clear();
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)

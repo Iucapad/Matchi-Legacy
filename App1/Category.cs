@@ -8,31 +8,14 @@ namespace App1
 {
     class Category
     {
-        private string name;
-        private string nbrplayer;
+        public string Name { get; private set; }
+        public int PlayerCount { get; private set; }
 
-        public Category(string n, string j)
-        {
-            name = n;
-
-            switch (j)
-            {
-                case "Illimité":
-                    nbrplayer = "Illimité";
-                    break;
-
-                case "Tous":
-                    nbrplayer = "Tous";
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public Category(string n, int j)
-        {
-            name = n;
-            nbrplayer = j.ToString();
+        public Category(string name, int playerCount) {
+            if (playerCount < -1)
+                throw new ArgumentOutOfRangeException("playerCount", "Player count must be positive or -1.");
+            Name = name;
+            PlayerCount = playerCount;
         }
     }
     

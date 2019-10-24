@@ -43,12 +43,8 @@
                 <TransitionCollection>
                     <AddDeleteThemeTransition/>
                 </TransitionCollection>
-            </Grid.Transitions>        
-        <ListView x:Name="list_of_categories" CornerRadius="4" Margin="0,60,0,160" BorderBrush="#454545" BorderThickness="1" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
-            <ListView.Items>
-                
-            </ListView.Items>
-        </ListView>
+            </Grid.Transitions>
+            <ListView x:Name="list_of_categories" CornerRadius="4" Margin="0,60,0,160" BorderBrush="#454545" BorderThickness="1" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection" ItemsSource="{Binding categorylist}" DisplayMemberPath="Name"/>
         </Grid>
         <Button x:Name="addbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Show_addui">
             <StackPanel>
