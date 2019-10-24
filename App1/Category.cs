@@ -25,6 +25,10 @@ namespace App1
             Category other = (Category)obj;
             return Name == other.Name && PlayerCount == other.PlayerCount;
         }
+
+        public override string ToString() {
+            return $"{Name}\n{PlayerCount}";
+        }
     }
     
 }

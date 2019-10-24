@@ -103,6 +103,7 @@ namespace App1
             categorylist.Add(new Category(category_name.Text, category_nb.SelectedIndex - 1));
             category_name.Text = "";
             page.Children.Remove(add_ui);
+            Save_to_file();
         }
 
         private void Resize(object sender, SizeChangedEventArgs e)
@@ -119,6 +120,19 @@ namespace App1
                 list_of_categories.Width = 300;
                 list_of_categories.HorizontalAlignment = HorizontalAlignment.Center;
             }
+            Save_to_file();
+        }
+
+        private void Delete_category(object sender, RoutedEventArgs e) 
+        {
+            categorylist.Remove((Category) list_of_categories.SelectedItem);
+            Save_to_file();
+        }
+
+        private async void Save_to_file() 
+        {
+            StorageFile file = await store.Folder.CreateFileAsync("Categories.catei", CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, string.Join("\n", categorylist.Select(x => x.ToString())));
         }
     }
 }
