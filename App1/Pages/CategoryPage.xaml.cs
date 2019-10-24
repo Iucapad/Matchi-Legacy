@@ -95,6 +95,11 @@ namespace App1
                 await new MessageDialog("Veuillez saisir un nom entre 1 et 30 caractères.").ShowAsync();
                 return;
             }
+            if (categorylist.Contains(new Category(category_name.Text, category_nb.SelectedIndex - 1)))
+            {
+                await new MessageDialog("Ce nom de catégorie existe déjà.").ShowAsync();
+                return;
+            }
             categorylist.Add(new Category(category_name.Text, category_nb.SelectedIndex - 1));
             category_name.Text = "";
             page.Children.Remove(add_ui);

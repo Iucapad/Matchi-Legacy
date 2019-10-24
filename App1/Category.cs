@@ -17,6 +17,14 @@ namespace App1
             Name = name;
             PlayerCount = playerCount;
         }
+
+        public override bool Equals(Object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+                return false;
+            Category other = (Category)obj;
+            return Name == other.Name && PlayerCount == other.PlayerCount;
+        }
     }
     
 }
