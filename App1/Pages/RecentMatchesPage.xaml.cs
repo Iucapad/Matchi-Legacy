@@ -33,7 +33,7 @@ namespace App1
         {
             this.InitializeComponent();
             store = new MatchStorage();
-            Read_storage();
+            Read_storage();                      
         }
 
         private async void Read_storage()//lis le contenu du dossier de stockage

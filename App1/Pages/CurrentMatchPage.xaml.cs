@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,19 +29,30 @@ namespace App1
         {
             this.InitializeComponent();
             page.Children.Remove(new_round);
+            MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
+            if (mainFrame.navigationView.MenuItems.Count < 4)
+            {
+                mainFrame.navigationView.MenuItems.Insert(0, new NavigationViewItem
+                {
+                    Name="CURRENT",
+                    IsSelected=true,
+                    Content = "Reprendre",
+                    Icon = new SymbolIcon((Symbol)0xE945),
+                    Tag = "currentNav"                    
+                });
+            }
         }
 
         private void show(object sender, RoutedEventArgs e)
         {
             if (!page.Children.Contains(new_round))
             {
-                page.Children.Add(new_round);
+                page.Children.Add(new_round);   
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public static void HideNav(MainPage page)
         {
-            page.Children.Remove(new_round);
+            page.navigationView.Visibility = Visibility.Collapsed;
         }
 
         private void Resize(object sender, SizeChangedEventArgs e)
@@ -59,6 +73,8 @@ namespace App1
                 ui_rightcard.Height = 125;
                 ui_rightcard.HorizontalAlignment = HorizontalAlignment.Stretch;
                 ui_rightcard.Width = double.NaN;
+                ui_leftname.TextAlignment = TextAlignment.Left;
+                ui_rightname.TextAlignment = TextAlignment.Left;
             }
             else
             {
@@ -76,7 +92,14 @@ namespace App1
                 ui_rightcard.Height = 250;
                 ui_rightcard.HorizontalAlignment = HorizontalAlignment.Center;
                 ui_rightcard.Width = 300;
+                ui_leftname.TextAlignment = TextAlignment.Center;
+                ui_rightname.TextAlignment = TextAlignment.Center;
             }
+        }
+
+        private void Start_click(object sender, RoutedEventArgs e)
+        {
+            page.Children.Remove(new_round);
         }
     }
 }

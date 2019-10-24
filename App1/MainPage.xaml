@@ -78,9 +78,10 @@
             </Grid>
         </Grid>
         <Rectangle x:Name="web_header" Visibility="Collapsed" Height="auto"  Width="auto" Margin="40,0,0,0" Fill="#151515"></Rectangle>
-        <NavigationView x:Name="navigationView" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="500" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
+        <NavigationView x:Name="navigationView" x:FieldModifier="public" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="500" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
             <NavigationView.MenuItems>
-                <NavigationViewItem x:Name="MATCH" Icon="OutlineStar"  Content="Match" Tag="matchNav" />
+                <NavigationViewItem x:Name="MATCH" Icon="OutlineStar" Content="Matchs récents" Tag="matchNav">
+                </NavigationViewItem>
                 <NavigationViewItem x:Name="CATEGORIES" Icon="Library" Content="Catégories" Tag="categoryNav" />
                 <NavigationViewItem Icon="Audio" Content="Musique" Tag="editNav" />
             </NavigationView.MenuItems>

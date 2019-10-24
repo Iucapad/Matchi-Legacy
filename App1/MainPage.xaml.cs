@@ -50,6 +50,7 @@ namespace App1
             if (Application.Current.RequestedTheme == ApplicationTheme.Light)
             { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo_light.png")); }
             //Paramétrage de l'interface
+            MATCH.Icon = new SymbolIcon((Symbol)0xE81C);
             Date_display();
             store = new MatchStorage();
             Read_storage();
@@ -106,6 +107,10 @@ namespace App1
                     web_header.Fill = new SolidColorBrush(Color.FromArgb(255,30, 215, 96));
                     web_header.Visibility = Visibility.Visible;
                     break;
+                case "currentNav":
+                    contentFrame.Navigate(typeof(CurrentMatchPage));
+                    web_header.Visibility = Visibility.Collapsed;
+                    break;
             }
         }
         private void Create_Match(object sender, RoutedEventArgs e)
@@ -117,7 +122,6 @@ namespace App1
         {
             navigationView.SelectedItem = CATEGORIES;        
         }
-
         private void Resize(object sender, SizeChangedEventArgs e)
         {
             if (((Frame)Window.Current.Content).ActualHeight < 500)

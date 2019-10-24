@@ -82,7 +82,7 @@
                 </Button>
             </Grid>
         </Grid>
-        <Button x:Name="compactOverlayButton" Style="{ThemeResource ButtonRevealStyle}" CornerRadius="100" Width="55" Height="55" Margin="0,20,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="compact">
+        <Button x:Name="compactOverlayButton" Style="{ThemeResource ButtonRevealStyle}" CornerRadius="100" Width="55" Height="55" Margin="0,40,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="compact">
             <StackPanel>
                 <Image Width="35" Source="/Assets/overlay.png"/>
             </StackPanel>
