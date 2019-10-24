@@ -27,17 +27,11 @@ namespace App1
     {
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
         private ObservableCollection<Category> categorylist = new ObservableCollection<Category>();//liste de catégories courante
-        private List<string> visual_categorylist = new List<string> { "Illimité", "Tous" }; //liste de remplissage combobox
         public CategoryPage()
         {
             this.InitializeComponent();
             page.Children.Remove(add_ui);
-            category_nb.ItemsSource = visual_categorylist;
-            category_nb.SelectedIndex = 0;
-            for(int i=1; i <= 20; i++)
-            {
-                visual_categorylist.Add(i.ToString());
-            }
+            category_nb.ItemsSource = new List<string> {"Tous", "Illimité"}.Concat(Enumerable.Range(1, 5).Select(x => x.ToString())); 
             list_of_categories.ItemsSource = categorylist;
             list_of_categories.DisplayMemberPath = "Name";
             Read_storage();
@@ -101,18 +95,8 @@ namespace App1
                 await new MessageDialog("Veuillez saisir un nom entre 1 et 30 caractères.").ShowAsync();
                 return;
             }
-            if (category_nb.SelectedValue.ToString() == "Illimité")
-            {
-                categorylist.Add(new Category(category_name.Text, 0));
-            }
-            else if(category_nb.SelectedValue.ToString() == "Tous")
-            {
-                categorylist.Add(new Category(category_name.Text, -1));
-            }
-            else
-            {
-                categorylist.Add(new Category(category_name.Text, int.Parse(category_nb.SelectedItem.ToString())));
-            }
+            categorylist.Add(new Category(category_name.Text, category_nb.SelectedIndex - 1));
+            category_name.Text = "";
             page.Children.Remove(add_ui);
         }
 
