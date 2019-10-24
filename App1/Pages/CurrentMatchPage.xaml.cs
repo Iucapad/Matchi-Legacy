@@ -36,7 +36,7 @@ namespace App1
                 {
                     Name="CURRENT",
                     IsSelected=true,
-                    Content = "Reprendre",
+                    Content = "Match en cours",
                     Icon = new SymbolIcon((Symbol)0xE945),
                     Tag = "currentNav"                    
                 });

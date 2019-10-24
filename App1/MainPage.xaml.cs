@@ -49,8 +49,8 @@ namespace App1
             titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.White;
             if (Application.Current.RequestedTheme == ApplicationTheme.Light)
             { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo_light.png")); }
-            //Paramétrage de l'interface
             MATCH.Icon = new SymbolIcon((Symbol)0xE81C);
+            CATEGORIES.Icon= new SymbolIcon((Symbol)0xE74C);
             Date_display();
             store = new MatchStorage();
             Read_storage();
