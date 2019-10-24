@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
+using System.Collections.ObjectModel;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,12 +25,14 @@ namespace App1
     public sealed partial class CategoryPage : Page
     {
         private MatchStorage store;
-        private List<Category> categorylist = new List<Category>();
+        private ObservableCollection<Category> categorylist = new ObservableCollection<Category>();
         public CategoryPage()
         {
             this.InitializeComponent();
             page.Children.Remove(add_ui);
             store = new MatchStorage();
+            list_of_categories.ItemsSource = categorylist;
+            list_of_categories.DisplayMemberPath = "Name";
             Read_storage();
         }
 
@@ -44,7 +47,8 @@ namespace App1
             StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
             IList<string> infos = await FileIO.ReadLinesAsync(cate_file);
 
-            if (infos.Count == infos.Distinct().Count())
+            List<string> categoryNames = infos.Where((x, i) => i % 2 == 0).ToList();
+            if (categoryNames.Count != categoryNames.Distinct().Count())
                 return; //TODO : Erreur ?
 
             for (int n = 1; n <= infos.Count; n += 2)
