@@ -68,7 +68,13 @@
             <TextBlock Text="Ajouter une catégorie"  FontFamily="Segoe UI" HorizontalAlignment="Center" FontWeight="Black" Margin="0,25,0,0" FontSize="24"></TextBlock>
             <TextBox x:Name="category_name" HorizontalAlignment="Center" CornerRadius="4" Header="Nom" Height="60" Margin="0,0,0,70" TextWrapping="Wrap" VerticalAlignment="Center" Width="300"/>
             <ComboBox x:Name="category_nb" HorizontalAlignment="Center" CornerRadius="4" Header="Nombre de jouteurs" Height="60" Margin="0,70,0,0" VerticalAlignment="Center" Width="300"></ComboBox>
-            <Button x:Name="add_save" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Save_category">
+            <Button x:Name="add_cancel" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,153,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="add_cancel_Click">
+                <StackPanel>
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE711;" FontSize="24" HorizontalAlignment="Center"/>
+                    <TextBlock>Annuler</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="add_save" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="153,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Save_category">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" FontSize="24" HorizontalAlignment="Center"/>
                     <TextBlock>Valider</TextBlock>

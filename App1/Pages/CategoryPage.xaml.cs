@@ -85,6 +85,7 @@ namespace App1
             if (!page.Children.Contains(add_ui))
             {
                 page.Children.Add(add_ui);
+                list_of_categories.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -102,6 +103,7 @@ namespace App1
             }
             categorylist.Add(new Category(category_name.Text, category_nb.SelectedIndex - 1));
             category_name.Text = "";
+            list_of_categories.Visibility = Visibility.Visible;
             page.Children.Remove(add_ui);
             Save_to_file();
         }
@@ -122,16 +124,34 @@ namespace App1
             }
         }
 
-        private void Delete_category(object sender, RoutedEventArgs e) 
+        private async void Delete_category(object sender, RoutedEventArgs e) 
         {
-            categorylist.Remove((Category) list_of_categories.SelectedItem);
-            Save_to_file();
+            ContentDialog deleteFileDialog = new ContentDialog
+            {
+                Title = "Attention",
+                Content = "Voulez-vous vraiment supprimer cette catégorie ?",
+                PrimaryButtonText = "Supprimer",
+                CloseButtonText = "Annuler"
+            };
+            ContentDialogResult result = await deleteFileDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                categorylist.Remove((Category)list_of_categories.SelectedItem);
+                Save_to_file();
+            }
         }
 
         private async void Save_to_file() 
         {
             StorageFile file = await store.Folder.CreateFileAsync("Categories.catei", CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(file, string.Join("\n", categorylist.Select(x => x.ToString())));
+        }
+
+        private void add_cancel_Click(object sender, RoutedEventArgs e)
+        {
+            category_name.Text = "";
+            list_of_categories.Visibility = Visibility.Visible;
+            page.Children.Remove(add_ui);
         }
     }
 }
