@@ -8,8 +8,8 @@ namespace App1
 {
     public class Category
     {
-        public string Name { get; private set; }
-        public int PlayerCount { get; private set; }
+        public string Name { get; private set; }//nom catégorie
+        public int PlayerCount { get; private set; }//nombre de jouteur pour la catégorie
 
         public Category(string name, int playerCount) {
             if (playerCount < -1)
