@@ -70,9 +70,36 @@ namespace App1
             }
         }
 
-        private void Open_match(object sender, RoutedEventArgs e)
+        private async void Open_match(object sender, RoutedEventArgs e)
         {
-            MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage));
+            MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
+            if (mainFrame.navigationView.MenuItems.Count == 4)
+            {
+                ContentDialog deleteFileDialog = new ContentDialog
+                {
+                    Title = "Attention",
+                    Content = "Vous avez un match en cours. Voulez vous en lancer un nouveau ?",
+                    PrimaryButtonText = "Continuer",
+                    CloseButtonText = "Annuler"
+                };
+                ContentDialogResult result = await deleteFileDialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    mainFrame.navigationView.MenuItems.RemoveAt(0);
+                    mainFrame.navigationView.MenuItems.Insert(0, new NavigationViewItem
+                    {
+                        Name = "CURRENT",
+                        IsSelected = true,
+                        Content = "Match en cours",
+                        Icon = new SymbolIcon((Symbol)0xE945),
+                        Tag = "currentNav"
+                    });
+                }
+                }
+            else
+            {
+                MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage));
+            }                
         }
 
         private void Create_Match(object sender, RoutedEventArgs e)
