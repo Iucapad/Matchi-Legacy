@@ -59,7 +59,7 @@ namespace App1
         {
             if (((Frame)).ActualWidth < 750)
             {
-                ui_scroll.Margin = new Thickness(0, 60, 0, 60);
+                ui_scroll.Margin = new Thickness(0, 60, 0, 160);
                 ui_container.Orientation = Orientation.Vertical;
                 ui_container.HorizontalAlignment = HorizontalAlignment.Stretch;
                 ui_container.CornerRadius = new CornerRadius(0);
@@ -78,7 +78,7 @@ namespace App1
             }
             else
             {
-                ui_scroll.Margin = new Thickness(0, 100, 0, 60);
+                ui_scroll.Margin = new Thickness(0, 100, 0, 160);
                 ui_container.Orientation = Orientation.Horizontal;
                 ui_container.HorizontalAlignment = HorizontalAlignment.Center;
                 ui_container.CornerRadius = new CornerRadius(10);
