@@ -89,7 +89,7 @@
 
 
 
-        <Grid x:Name="new_round" Visibility="Collapsed" Padding="0,60,0,0">
+        <Grid x:Name="new_round" Visibility="Visible" Padding="0,60,0,0">
             <Grid.Transitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Bottom"/>

@@ -27,6 +27,7 @@ namespace App1
     {
 
         private Matchimpro matchimpro;
+        private int round_value = 1;
 
         public CurrentMatchPage()
         {
@@ -51,7 +52,8 @@ namespace App1
         {
             if (!page.Children.Contains(new_round))
             {
-                page.Children.Add(new_round);   
+                page.Children.Add(new_round);
+                round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();
             }
         }
         public static void HideNav(MainPage page)
@@ -122,9 +124,10 @@ namespace App1
         }
 
         private void Update_Match()
-        {
+        {            
             ui_leftname.Text = matchimpro.Team1;
-            ui_rightname.Text = matchimpro.Team2;    
+            ui_rightname.Text = matchimpro.Team2;
+            round_nb.Text = "Manche "+round_value.ToString()+"/"+matchimpro.Rounds.ToString();
         }
     }
 }
