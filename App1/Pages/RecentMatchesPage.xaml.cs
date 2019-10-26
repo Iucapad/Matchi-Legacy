@@ -40,13 +40,9 @@ namespace App1
             Read_storage();                      
         }
 
-        private void Read_storage()//lis le contenu du dossier de stockage
+        private async void Read_storage()//lis le contenu du dossier de stockage
         {
-
-            matchlist = new Matchimpro(store.Folder, "read").Matches;
-          
-            //Ancien code mais contient des trucs utiles
-            /*StorageFolder storageFolder = store.Folder;
+            StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
 
             info_messages.Visibility = Visibility.Collapsed;//messages par défaut si pas de fichiers ou mauvais format
@@ -59,21 +55,20 @@ namespace App1
                 header_title.Text = "Matchs récents";
                 foreach (StorageFile match_file in match_files)
                 {
-                    if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")//existence de fichiers match
+                    error_message.Visibility = Visibility.Collapsed;
+                    info_messages.Visibility = Visibility.Visible;
+                    list_of_matches.Visibility = Visibility.Visible;
+                    try
                     {
-                        error_message.Visibility = Visibility.Collapsed;
-                        info_messages.Visibility = Visibility.Visible;
-                        list_of_matches.Visibility = Visibility.Visible;
-
-                        IList<string> infos = await FileIO.ReadLinesAsync(match_file);
-
-                        if (Int32.TryParse(infos[2], out int testnumber) && testnumber > 0)
-                        {
-                            matchlist.Add(new Matchimpro(infos[0], infos[1], testnumber));
-                        }
+                        matchlist.Add(await Matchimpro.Read_Match(match_file));
                     }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+                    
                 }
-            }*/
+            }
         }
 
         private async void Open_match(object sender, RoutedEventArgs e)
