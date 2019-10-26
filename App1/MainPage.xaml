@@ -93,9 +93,9 @@
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition></NavigationThemeTransition>
-                    </TransitionCollection>                    
-                </Frame.ContentTransitions>                
-            </Frame>            
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
         </NavigationView>
-        </Grid>    
+    </Grid>    
 </Page>

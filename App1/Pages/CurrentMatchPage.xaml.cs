@@ -28,6 +28,7 @@ namespace App1
         public CurrentMatchPage()
         {
             this.InitializeComponent();
+            SharedShadow.Receivers.Add(Receiver);
             page.Children.Remove(new_round);
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
             if (mainFrame.navigationView.MenuItems.Count < 4)
@@ -75,6 +76,10 @@ namespace App1
                 ui_rightcard.Width = double.NaN;
                 ui_leftname.TextAlignment = TextAlignment.Left;
                 ui_rightname.TextAlignment = TextAlignment.Left;
+                ui_catname.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_catname.Margin = new Thickness(0, 10, 0, 60);
+                ui_nbjouteurs.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_nbjouteurs.Margin = new Thickness(0, 60, 0, 20);
             }
             else
             {
@@ -94,6 +99,10 @@ namespace App1
                 ui_rightcard.Width = 300;
                 ui_leftname.TextAlignment = TextAlignment.Center;
                 ui_rightname.TextAlignment = TextAlignment.Center;
+                ui_catname.HorizontalAlignment = HorizontalAlignment.Left;
+                ui_catname.Margin = new Thickness(120, 30, 0, 60);
+                ui_nbjouteurs.HorizontalAlignment = HorizontalAlignment.Right;
+                ui_nbjouteurs.Margin = new Thickness(0, 30, 150, 120);
             }
         }
 
