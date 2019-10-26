@@ -17,6 +17,8 @@ using Windows.UI.Popups;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.ObjectModel;
+using System.Threading;
+using System.Threading.Tasks;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,21 +30,23 @@ namespace App1
     public sealed partial class RecentMatchesPage : Page
     {
         private ObservableCollection<Matchimpro> matchlist = new ObservableCollection<Matchimpro>();//liste des impros
-        private MatchStorage store;//magasin de gestion des fichiers
+        private MatchStorage store = new MatchStorage();//magasin de gestion des fichiers
 
         public RecentMatchesPage()
         {
             this.InitializeComponent();
-            store = new MatchStorage();
             list_of_matches.ItemsSource = matchlist;
             list_of_matches.DisplayMemberPath = "Name";
             Read_storage();                      
         }
 
-        private async void Read_storage()//lis le contenu du dossier de stockage
+        private void Read_storage()//lis le contenu du dossier de stockage
         {
-            StorageFolder storageFolder = store.Folder;
-            
+
+            matchlist = new Matchimpro(store.Folder, "read").Matches;
+          
+            //Ancien code mais contient des trucs utiles
+            /*StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
 
             info_messages.Visibility = Visibility.Collapsed;//messages par défaut si pas de fichiers ou mauvais format
@@ -69,7 +73,7 @@ namespace App1
                         }
                     }
                 }
-            }
+            }*/
         }
 
         private async void Open_match(object sender, RoutedEventArgs e)

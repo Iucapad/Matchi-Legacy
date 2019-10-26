@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.ObjectModel;
 
 namespace App1
 {
@@ -30,6 +31,7 @@ namespace App1
         public string Name {
             get => $"{Team1} vs {Team2}";
         }
+        public ObservableCollection<Matchimpro> Matches { get; set; } = new ObservableCollection<Matchimpro>();
 
         public Matchimpro() { }
 
@@ -38,6 +40,21 @@ namespace App1
             Team1 = t1;
             Team2 = t2;
             Rounds = r;
+        }
+
+        public Matchimpro(StorageFolder pathfolder, string choix)
+        {
+            switch (choix)
+            {
+                case "read":
+                    Read_Match(pathfolder);
+                    break;
+                case "save":
+                    Save_Match(pathfolder);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void AddCate(Category cate)//Ajoute une catégorie à la liste de celles du match
@@ -56,6 +73,30 @@ namespace App1
         public override string ToString()
         {
             return $"{Team1} vs {Team2} ({Rounds} round{(Rounds > 1 ? "s" : "")})";
+        }
+
+        public async void Read_Match(StorageFolder pathfolder)
+        {
+            IReadOnlyList<StorageFile> match_files = await pathfolder.GetFilesAsync();
+            if (match_files.Count > 0)
+            {
+                foreach (StorageFile match_file in match_files)
+                {
+                    if (match_file.FileType == ".matchi" || match_file.FileType == ".MATCHI")//existence de fichiers match
+                    {
+                        IList<string> infos = await FileIO.ReadLinesAsync(match_file);
+                        if (Int32.TryParse(infos[2], out int testnumber) && testnumber > 0)
+                        {                     
+                            Matches.Add(new Matchimpro(infos[0], infos[1], testnumber));
+                        }
+                    }
+                }
+            }
+        }
+
+        public void Save_Match(StorageFolder pathfolder)
+        {
+
         }
     }
 }

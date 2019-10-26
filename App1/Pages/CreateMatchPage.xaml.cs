@@ -26,21 +26,14 @@ namespace App1
     /// </summary>
     public sealed partial class CreateMatchPage : Page
     {
-        private List<int> number;//liste du nombre de jouteur
-        private Matchimpro match;
-        private MatchStorage store;
+        private List<int> number = new List<int>(Enumerable.Range(1, 30));//liste du nombre de jouteur
+        private Matchimpro match = new Matchimpro();
+        private MatchStorage store = new MatchStorage();
         public CreateMatchPage()
         {
             this.InitializeComponent();
-            number = new List<int>();
-            for(int i=1; i<=30; i++)
-            {
-                number.Add(i);
-            }
             numberofround.ItemsSource = number;
             numberofround.SelectedIndex = 0;
-            store = new MatchStorage();
-            match = new Matchimpro();
         }
 
         private async void Create_match(object sender, RoutedEventArgs e)
