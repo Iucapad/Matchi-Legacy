@@ -27,8 +27,7 @@ namespace App1
     {
 
         private Matchimpro matchimpro;
-        private int round_value = 1;
-
+        int round_value = 1;
         public CurrentMatchPage()
         {
             this.InitializeComponent();
@@ -124,7 +123,8 @@ namespace App1
         }
 
         private void Update_Match()
-        {            
+        {
+            int round_value = 1;
             ui_leftname.Text = matchimpro.Team1;
             ui_rightname.Text = matchimpro.Team2;
             round_nb.Text = "Manche "+round_value.ToString()+"/"+matchimpro.Rounds.ToString();
