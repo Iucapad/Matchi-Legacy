@@ -63,7 +63,6 @@ namespace App1
                 ui_scroll.Margin = new Thickness(0, 60, 0, 100);
                 ui_container.Orientation = Orientation.Vertical;
                 ui_container.HorizontalAlignment = HorizontalAlignment.Stretch;
-                ui_container.CornerRadius = new CornerRadius(0);
                 ui_container.Padding = new Thickness(30,5,30,5);
                 ui_vs.Height = 25;
                 ui_vs.CornerRadius = new CornerRadius(15);
@@ -86,7 +85,6 @@ namespace App1
                 ui_scroll.Margin = new Thickness(0, 100, 0, 0);
                 ui_container.Orientation = Orientation.Horizontal;
                 ui_container.HorizontalAlignment = HorizontalAlignment.Center;
-                ui_container.CornerRadius = new CornerRadius(10);
                 ui_container.Padding = new Thickness(20);
                 ui_vs.Height = 50;
                 ui_vs.CornerRadius = new CornerRadius(25);
