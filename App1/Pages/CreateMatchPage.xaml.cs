@@ -93,6 +93,19 @@ namespace App1
                 //on écrit le contenu des champs à l'intérieur du fichier contenu dans l'objet newFile
                 await FileIO.WriteLinesAsync(newFile, new List<string>{match.Team1, match.Team2, match.Rounds.ToString()});
 
+                MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
+                if (mainFrame.navigationView.MenuItems.Count == 4)
+                {
+                    mainFrame.navigationView.MenuItems.RemoveAt(0);
+                    mainFrame.navigationView.MenuItems.Insert(0, new NavigationViewItem
+                    {
+                        Name = "CURRENT",
+                        IsSelected = true,
+                        Content = "Match en cours",
+                        Icon = new SymbolIcon((Symbol)0xE945),
+                        Tag = "currentNav"
+                    });
+                }
                 MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage), match); //renvoie à la page de match
 
             }

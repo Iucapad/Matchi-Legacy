@@ -96,6 +96,8 @@ namespace App1
                         Icon = new SymbolIcon((Symbol)0xE945),
                         Tag = "currentNav"
                     });
+                    MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage), list_of_matches.SelectedItem);
+
                 }
             }
             else
