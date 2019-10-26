@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +25,9 @@ namespace App1
     /// </summary>
     public sealed partial class CurrentMatchPage : Page
     {
+
+        private Matchimpro matchimpro;
+
         public CurrentMatchPage()
         {
             this.InitializeComponent();
@@ -35,8 +38,8 @@ namespace App1
             {
                 mainFrame.navigationView.MenuItems.Insert(0, new NavigationViewItem
                 {
-                    Name="CURRENT",
-                    IsSelected=true,
+                    Name = "CURRENT",
+                    IsSelected = true,
                     Content = "Match en cours",
                     Icon = new SymbolIcon((Symbol)0xE945),
                     Tag = "currentNav"                    
@@ -107,6 +110,21 @@ namespace App1
         private void Start_click(object sender, RoutedEventArgs e)
         {
             page.Children.Remove(new_round);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is Matchimpro)
+            {
+                matchimpro = (Matchimpro)e.Parameter;
+                Update_Match();
+            }
+        }
+
+        private void Update_Match()
+        {
+            ui_leftname.Text = matchimpro.Team1;
+            ui_rightname.Text = matchimpro.Team2;    
         }
     }
 }

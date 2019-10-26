@@ -61,14 +61,10 @@ namespace App1
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
             int num_matches = match_files.Count-1;
             if (num_matches > 0) {
-                nb_matches.Text = num_matches + " matchs récents";
-                if (num_matches < 2)
-                {
-                    nb_matches.Text = num_matches + " match récent";
-                }
+                nb_matches.Text = $"{num_matches} {(num_matches > 1 ? "matchs récents" : "match récent")}";
                 recent_matches.Visibility = Visibility.Visible;
             }
-            var mr_time = new DateTime(2019, 1,1, 1, 0, 1);
+            var mr_time = new DateTime(2019, 1, 1, 1, 0, 1);
             string mr_file = "";
             foreach (StorageFile match_file in match_files)
             {

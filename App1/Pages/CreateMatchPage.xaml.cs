@@ -93,7 +93,7 @@ namespace App1
                 //on écrit le contenu des champs à l'intérieur du fichier contenu dans l'objet newFile
                 await FileIO.WriteLinesAsync(newFile, new List<string>{match.Team1, match.Team2, match.Rounds.ToString()});
 
-                MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage)); //renvoie à la page de match
+                MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage), match); //renvoie à la page de match
 
             }
 

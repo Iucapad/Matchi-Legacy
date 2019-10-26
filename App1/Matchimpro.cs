@@ -27,6 +27,9 @@ namespace App1
         public string Team2 { get; set; } = "Equipe 2";
         public int Rounds { get; set; } = 5;
         internal List<Category> Categories { get; set; }
+        public string Name {
+            get => $"{Team1} vs {Team2}";
+        }
 
         public Matchimpro() { }
 
@@ -48,6 +51,11 @@ namespace App1
         public void RemoveCate(Category cate)//Retire une catégorie
         {
             Categories.Remove(cate);
+        }
+
+        public override string ToString()
+        {
+            return $"{Team1} vs {Team2} ({Rounds} round{(Rounds > 1 ? "s" : "")})";
         }
     }
 }

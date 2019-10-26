@@ -16,6 +16,7 @@ using Windows.Storage;
 using Windows.UI.Popups;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.ObjectModel;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,13 +27,15 @@ namespace App1
     /// </summary>
     public sealed partial class RecentMatchesPage : Page
     {
-        private List<Matchimpro> matchlist = new List<Matchimpro>();//liste des impros
+        private ObservableCollection<Matchimpro> matchlist = new ObservableCollection<Matchimpro>();//liste des impros
         private MatchStorage store;//magasin de gestion des fichiers
 
         public RecentMatchesPage()
         {
             this.InitializeComponent();
             store = new MatchStorage();
+            list_of_matches.ItemsSource = matchlist;
+            list_of_matches.DisplayMemberPath = "Name";
             Read_storage();                      
         }
 
@@ -62,7 +65,6 @@ namespace App1
 
                         if (Int32.TryParse(infos[2], out int testnumber) && testnumber > 0)
                         {
-                            list_of_matches.Items.Add(match_file.DisplayName);
                             matchlist.Add(new Matchimpro(infos[0], infos[1], testnumber));
                         }
                     }
@@ -95,10 +97,10 @@ namespace App1
                         Tag = "currentNav"
                     });
                 }
-                }
+            }
             else
             {
-                MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage));
+                MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage), list_of_matches.SelectedItem);
             }                
         }
 
@@ -109,7 +111,14 @@ namespace App1
 
         private void Selection(object sender, SelectionChangedEventArgs e)
         {
-            if (list_of_matches.Items.Count > 0)
+            if (list_of_matches.SelectedItem == null) 
+            {
+                choose_message.Visibility = Visibility.Visible;
+                deletebtn.Visibility = Visibility.Collapsed;
+                details_card.Visibility = Visibility.Collapsed;
+                image_message.Visibility = Visibility.Visible;
+            }
+            else if (list_of_matches.Items.Count > 0)
             {
                 choose_message.Visibility = Visibility.Collapsed;
                 deletebtn.Visibility = Visibility.Visible;
@@ -122,7 +131,7 @@ namespace App1
                 {
                     list_of_matches.Margin = new Thickness(30, 200, 30, 160);
                 }
-            }         
+            }    
         }
 
         private void Resize_page(object sender, SizeChangedEventArgs e)
@@ -189,7 +198,7 @@ namespace App1
                         await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
                     }
                 }
-                list_of_matches.Items.Clear();
+                matchlist.Remove((Matchimpro)list_of_matches.SelectedItem);
                 details_card.Visibility = Visibility.Collapsed;
                 deletebtn.Visibility = Visibility.Collapsed;
                 addbtn.Margin = new Thickness(0, 0, 0, 60);
@@ -197,7 +206,6 @@ namespace App1
                 {
                     list_of_matches.Margin = new Thickness(30, 130, 30, 160);
                 }
-                Read_storage();
             }            
         }
     }
