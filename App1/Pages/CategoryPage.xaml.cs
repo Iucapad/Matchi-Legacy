@@ -26,14 +26,10 @@ namespace App1
     public sealed partial class CategoryPage : Page
     {
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
-        private ObservableCollection<Category> categorylist = new ObservableCollection<Category>();//liste de catégories courante
         public CategoryPage()
         {
             this.InitializeComponent();
             page.Children.Remove(add_ui);
-            category_nb.ItemsSource = new List<string> {"Tous", "Illimité"}.Concat(Enumerable.Range(1, 5).Select(x => x.ToString())); 
-            list_of_categories.ItemsSource = categorylist;
-            list_of_categories.DisplayMemberPath = "Name";
             Read_storage();
         }
 
@@ -46,32 +42,10 @@ namespace App1
                 return; //TODO : Erreur ?
 
             StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
-            IList<string> infos = await FileIO.ReadLinesAsync(cate_file);
+            list_of_categories.Items.Append(await FileIO.ReadLinesAsync(cate_file));
 
-            List<string> categoryNames = infos.Where((x, i) => i % 2 == 0).ToList();
-            if (categoryNames.Count != categoryNames.Distinct().Count())
+            if (list_of_categories.Items.Count != list_of_categories.Items.Distinct().Count())
                 return; //TODO : Erreur ?
-
-            for (int n = 1; n <= infos.Count; n += 2)
-            {
-                if (int.TryParse(infos[n], out int playerCount)) 
-                {
-                    try 
-                    {
-                        categorylist.Add(new Category(infos[n - 1], playerCount));
-                    } 
-                    catch (ArgumentOutOfRangeException) 
-                    {
-                        categorylist.Clear();
-                        break;
-                    }
-                } 
-                else 
-                {
-                    categorylist.Clear();
-                    break;
-                }
-            }
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)
@@ -96,12 +70,12 @@ namespace App1
                 await new MessageDialog("Veuillez saisir un nom entre 1 et 30 caractères.").ShowAsync();
                 return;
             }
-            if (categorylist.Contains(new Category(category_name.Text, category_nb.SelectedIndex - 1)))
+            if (list_of_categories.Items.Contains(category_name.Text))
             {
                 await new MessageDialog("Ce nom de catégorie existe déjà.").ShowAsync();
                 return;
             }
-            categorylist.Add(new Category(category_name.Text, category_nb.SelectedIndex - 1));
+            list_of_categories.Items.Add(category_name.Text);
             category_name.Text = "";
             list_of_categories.Visibility = Visibility.Visible;
             page.Children.Remove(add_ui);
@@ -136,7 +110,7 @@ namespace App1
             ContentDialogResult result = await deleteFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                categorylist.Remove((Category)list_of_categories.SelectedItem);
+                list_of_categories.Items.RemoveAt(list_of_categories.SelectedIndex);
                 Save_to_file();
             }
         }
@@ -144,7 +118,7 @@ namespace App1
         private async void Save_to_file() 
         {
             StorageFile file = await store.Folder.CreateFileAsync("Categories.catei", CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, string.Join("\n", categorylist.Select(x => x.ToString())));
+            await FileIO.WriteTextAsync(file, string.Join("\n", list_of_categories));
         }
 
         private void add_cancel_Click(object sender, RoutedEventArgs e)

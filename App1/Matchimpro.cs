@@ -27,7 +27,7 @@ namespace App1
         public string Team1 { get; set; } = "Equipe 1";
         public string Team2 { get; set; } = "Equipe 2";
         public int Rounds { get; set; } = 5;
-        internal List<Category> Categories { get; set; }
+        internal List<string> Categories { get; set; }
         public string Name {
             get => $"{Team1} vs {Team2}";
         }
@@ -57,7 +57,7 @@ namespace App1
             }
         }
 
-        public void AddCate(Category cate)//Ajoute une catégorie à la liste de celles du match
+        public void AddCate(string cate)//Ajoute une catégorie à la liste de celles du match
         {
             if (!Categories.Contains(cate))
             {
@@ -65,7 +65,7 @@ namespace App1
             }
         }
 
-        public void RemoveCate(Category cate)//Retire une catégorie
+        public void RemoveCate(string cate)//Retire une catégorie
         {
             Categories.Remove(cate);
         }
