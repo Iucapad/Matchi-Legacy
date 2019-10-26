@@ -42,7 +42,9 @@ namespace App1
                 return; //TODO : Erreur ?
 
             StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
-            list_of_categories.Items.Append(await FileIO.ReadLinesAsync(cate_file));
+            foreach (string category in await FileIO.ReadLinesAsync(cate_file))
+                list_of_categories.Items.Add(category);
+
 
             if (list_of_categories.Items.Count != list_of_categories.Items.Distinct().Count())
                 return; //TODO : Erreur ?
@@ -118,7 +120,7 @@ namespace App1
         private async void Save_to_file() 
         {
             StorageFile file = await store.Folder.CreateFileAsync("Categories.catei", CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, string.Join("\n", list_of_categories));
+            await FileIO.WriteTextAsync(file, string.Join("\n", list_of_categories.Items));
         }
 
         private void add_cancel_Click(object sender, RoutedEventArgs e)
