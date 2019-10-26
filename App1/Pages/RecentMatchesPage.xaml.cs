@@ -200,14 +200,7 @@ namespace App1
                         await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
                     }
                 }
-                matchlist.Remove((Matchimpro)list_of_matches.SelectedItem);
-                details_card.Visibility = Visibility.Collapsed;
-                deletebtn.Visibility = Visibility.Collapsed;
-                addbtn.Margin = new Thickness(0, 0, 0, 60);
-                if (((Frame)).ActualWidth < 750)
-                {
-                    list_of_matches.Margin = new Thickness(30, 130, 30, 160);
-                }
+                matchlist.Remove((Matchimpro)list_of_matches.SelectedItem);                
             }            
         }
     }
