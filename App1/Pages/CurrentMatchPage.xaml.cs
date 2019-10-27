@@ -33,6 +33,7 @@ namespace App1
         public CurrentMatchPage()
         {
             this.InitializeComponent();
+            ListInitialization();
             SharedShadow.Receivers.Add(Receiver);
             page.Children.Remove(new_round);
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
@@ -48,16 +49,10 @@ namespace App1
                 });
             }
         }
-
-        private async void show(object sender, RoutedEventArgs e)
+        private async void ListInitialization()
         {
-            if (!page.Children.Contains(new_round))
-            {
-                page.Children.Add(new_round);
-                round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();
-
-                StorageFolder storageFolder = store.Folder;
-                IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
+            StorageFolder storageFolder = store.Folder;
+            IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
 
                 if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
                     return; //TODO : Erreur ?
@@ -69,6 +64,13 @@ namespace App1
 
                 if (list_of_categories.Items.Count != list_of_categories.Items.Distinct().Count())
                     return; //TODO : Erreur ?
+        }
+        private void show(object sender, RoutedEventArgs e)
+        {
+            if (!page.Children.Contains(new_round))
+            {
+                page.Children.Add(new_round);
+                round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();                
             }
         }
         public static void HideNav(MainPage page)
