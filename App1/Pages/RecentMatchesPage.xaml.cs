@@ -44,12 +44,7 @@ namespace App1
         {
             StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
-
-            info_messages.Visibility = Visibility.Collapsed;//messages par défaut si pas de fichiers ou mauvais format
-            error_message.Visibility = Visibility.Visible;
-            list_of_matches.Visibility = Visibility.Collapsed;
-            header_title.Text = "Match";
-
+            
             if (match_files.Count > 0)
             {
                 header_title.Text = "Matchs récents";
@@ -68,6 +63,13 @@ namespace App1
                     }
                     
                 }
+            }
+            else
+            {
+                info_messages.Visibility = Visibility.Collapsed;//messages par défaut si pas de fichiers ou mauvais format
+                error_message.Visibility = Visibility.Visible;
+                list_of_matches.Visibility = Visibility.Collapsed;
+                header_title.Text = "Match";
             }
         }
 
@@ -112,26 +114,34 @@ namespace App1
 
         private void Selection(object sender, SelectionChangedEventArgs e)
         {
-            if (list_of_matches.SelectedItem == null) 
+            if (list_of_matches.Items.Count == 0)
             {
-                choose_message.Visibility = Visibility.Visible;
+                info_messages.Visibility = Visibility.Collapsed;
+                error_message.Visibility = Visibility.Visible;
+                list_of_matches.Visibility = Visibility.Collapsed;
                 deletebtn.Visibility = Visibility.Collapsed;
                 details_card.Visibility = Visibility.Collapsed;
-                image_message.Visibility = Visibility.Visible;
+                addbtn.Margin = new Thickness(0, 0, 0, 60);
             }
-            else if (list_of_matches.Items.Count > 0)
+            else if (list_of_matches.SelectedItem == null) 
             {
-                choose_message.Visibility = Visibility.Collapsed;
+                info_messages.Visibility = Visibility.Visible;
+                deletebtn.Visibility = Visibility.Collapsed;
+                details_card.Visibility = Visibility.Collapsed;
+                addbtn.Margin = new Thickness(0, 0, 0, 60);
+            }
+            else
+            {
+                info_messages.Visibility = Visibility.Collapsed;
                 deletebtn.Visibility = Visibility.Visible;
                 details_card.Visibility = Visibility.Visible;
-                image_message.Visibility = Visibility.Collapsed;
                 addbtn.Margin = new Thickness(153, 0, 0, 60);
                 match_name.Text = ((Matchimpro)list_of_matches.SelectedItem).Name.ToUpper();
                 if (((Frame)).ActualWidth < 750)
                 {
                     list_of_matches.Margin = new Thickness(30, 200, 30, 160);
                 }
-            }    
+            }            
         }
 
         private void Resize_page(object sender, SizeChangedEventArgs e)
