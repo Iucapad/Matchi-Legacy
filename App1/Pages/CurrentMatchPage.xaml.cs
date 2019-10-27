@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -27,6 +28,7 @@ namespace App1
     {
 
         private Matchimpro matchimpro;
+        private MatchStorage store = new MatchStorage();//objet relatif au stockage
         int round_value = 1;
         public CurrentMatchPage()
         {
@@ -47,12 +49,26 @@ namespace App1
             }
         }
 
-        private void show(object sender, RoutedEventArgs e)
+        private async void show(object sender, RoutedEventArgs e)
         {
             if (!page.Children.Contains(new_round))
             {
                 page.Children.Add(new_round);
                 round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();
+
+                StorageFolder storageFolder = store.Folder;
+                IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
+
+                if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
+                    return; //TODO : Erreur ?
+
+                StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
+                foreach (string category in await FileIO.ReadLinesAsync(cate_file))
+                    list_of_categories.Items.Add(category);
+
+
+                if (list_of_categories.Items.Count != list_of_categories.Items.Distinct().Count())
+                    return; //TODO : Erreur ?
             }
         }
         public static void HideNav(MainPage page)

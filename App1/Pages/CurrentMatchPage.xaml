@@ -107,7 +107,7 @@
                             <TextBlock>Aléatoire</TextBlock>
                         </StackPanel>
                     </Button>
-                        <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="0,20,0,0" Height="35" Width="300" Name="category_type"/>
+                        <ComboBox x:Name="list_of_categories" HorizontalAlignment="Center" CornerRadius="4" Margin="0,20,0,0" Height="35" Width="300"/>
                     </Grid>
                     <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Height="60" Header="Durée" Width="300" Name="timer_selection"/>
                 </StackPanel>

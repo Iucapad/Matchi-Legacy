@@ -43,7 +43,7 @@ namespace App1
         private async void Read_storage()//lis le contenu du dossier de stockage
         {
             StorageFolder storageFolder = store.Folder;
-            IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
+            IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();            
             if (match_files.Count > 1)
             {
                 header_title.Text = "Matchs récents";
