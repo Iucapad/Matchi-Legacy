@@ -44,8 +44,7 @@ namespace App1
         {
             StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
-            
-            if (match_files.Count > 0)
+            if (match_files.Count > 1)
             {
                 header_title.Text = "Matchs récents";
                 foreach (StorageFile match_file in match_files)
@@ -60,8 +59,7 @@ namespace App1
                     catch (Exception)
                     {
                         continue;
-                    }
-                    
+                    }                    
                 }
             }
             else
