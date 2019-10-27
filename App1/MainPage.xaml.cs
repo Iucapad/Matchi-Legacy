@@ -31,6 +31,7 @@ namespace App1
         public static Frame MainPageFrame;
         private List<Matchimpro> matchlist = new List<Matchimpro>();//liste des impros
         private MatchStorage store;//magasin de gestion des fichiers
+        private StorageFile mr_file;
         public MainPage()
         {
             this.InitializeComponent();
@@ -65,16 +66,15 @@ namespace App1
                 recent_matches.Visibility = Visibility.Visible;
             }
             var mr_time = new DateTime(2019, 1, 1, 1, 0, 1);
-            string mr_file = "";
             foreach (StorageFile match_file in match_files)
             {
                 if (match_file.DateCreated > mr_time)
                 {
                     mr_time = match_file.DateCreated.DateTime;
-                    mr_file = match_file.DisplayName;
+                    mr_file = match_file;
                 }                
             }
-            most_recent_match.Text = mr_file;
+            most_recent_match.Text = mr_file.DisplayName;
         }
         private void Date_display()
         {
@@ -144,10 +144,18 @@ namespace App1
             }
         }
 
-        private void MostRecent_click(object sender, RoutedEventArgs e)
+        private async void MostRecent_click(object sender, RoutedEventArgs e)
         {
-            navigationView.SelectedItem = MATCH;
-            contentFrame.Navigate(typeof(CurrentMatchPage));
+            try 
+            {
+                Matchimpro match = await Matchimpro.Read_Match(mr_file);
+                navigationView.SelectedItem = MATCH;
+                contentFrame.Navigate(typeof(CurrentMatchPage), match);
+            }
+            catch (Exception)
+            {
+                return; //TODO : Message d'erreur
+            }
         }
     }
 }
