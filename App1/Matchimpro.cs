@@ -20,7 +20,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.ObjectModel;
 
-namespace App1
+namespace MatchiApp
 {
     class Matchimpro
     {

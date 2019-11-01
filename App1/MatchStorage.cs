@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace App1
+namespace MatchiApp
 {
     class MatchStorage
     {
