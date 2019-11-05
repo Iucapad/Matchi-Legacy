@@ -60,13 +60,22 @@ namespace MatchiApp
         {
             StorageFolder storageFolder = store.Folder;            
             IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
-            int num_matches = match_files.Count-1;
+            List<StorageFile> good_match_files = new List<StorageFile>();
+            int num_matches=0;
+            foreach(StorageFile match_file in match_files)
+            {
+                if (match_file.Name.Contains(".matchi"))
+                {
+                    num_matches++;
+                    good_match_files.Add(match_file);
+                }
+            }
+            recent_matches.Visibility = Visibility.Visible;
             if (num_matches > 0) {
                 nb_matches.Text = $"{num_matches} {(num_matches > 1 ? "matchs récents" : "match récent")}";
-                recent_matches.Visibility = Visibility.Visible;
             }
-            var mr_time = new DateTime(2019, 1, 1, 1, 0, 1);
-            foreach (StorageFile match_file in match_files)
+            DateTime mr_time = new DateTime(2019, 1, 1, 1, 0, 1);
+            foreach (StorageFile match_file in good_match_files)
             {
                 if (match_file.DateCreated > mr_time)
                 {
@@ -74,7 +83,15 @@ namespace MatchiApp
                     mr_file = match_file;
                 }                
             }
-            most_recent_match.Text = mr_file.DisplayName;
+            if (mr_file is null)
+            {
+                resume_button.Visibility = Visibility.Collapsed;
+                most_recent_match.Text = "Rien à afficher ici";
+            }
+            else
+            {
+                most_recent_match.Text = mr_file.DisplayName;
+            }
         }
         private void Date_display()
         {
