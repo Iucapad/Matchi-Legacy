@@ -85,8 +85,7 @@ namespace MatchiApp
             }
             if (mr_file is null)
             {
-                resume_button.Visibility = Visibility.Collapsed;
-                most_recent_match.Text = "Rien à afficher ici";
+                recent_matches.Visibility = Visibility.Collapsed;
             }
             else
             {
