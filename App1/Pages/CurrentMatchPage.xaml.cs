@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
@@ -33,6 +34,7 @@ namespace MatchiApp
         public CurrentMatchPage()
         {
             this.InitializeComponent();
+            new_round.Visibility = Visibility.Visible;
             ListInitialization();
             SharedShadow.Receivers.Add(Receiver);
             page.Children.Remove(new_round);
@@ -47,7 +49,7 @@ namespace MatchiApp
                     Icon = new SymbolIcon((Symbol)0xE945),
                     Tag = "currentNav"                    
                 });
-            }
+            }            
         }
         private async void ListInitialization()
         {
@@ -70,7 +72,7 @@ namespace MatchiApp
             if (!page.Children.Contains(new_round))
             {
                 page.Children.Add(new_round);
-                round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();                
+                round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();
             }
         }
         public static void HideNav(MainPage page)
@@ -146,6 +148,18 @@ namespace MatchiApp
             ui_leftname.Text = matchimpro.Team1;
             ui_rightname.Text = matchimpro.Team2;
             round_nb.Text = "Manche "+round_value.ToString()+"/"+matchimpro.Rounds.ToString();
+        }
+
+        private void LeftCardClick(object sender, PointerRoutedEventArgs e)
+        {
+            ui_trans1.Opacity = 1;
+            ui_trans2.Opacity = 0.4;
+        }
+
+        private void RightCardClick(object sender, PointerRoutedEventArgs e)
+        {
+            ui_trans1.Opacity = 0.4;
+            ui_trans2.Opacity = 1;
         }
     }
 }

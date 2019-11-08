@@ -89,7 +89,7 @@
                 <Image x:Name="saison_logo" Width="40" Source="/Assets/app_saison_logo.png"/>
 
             </NavigationView.PaneFooter>
-            <Frame x:Name="contentFrame" Margin="0,33,0,0" MinHeight="200">
+            <Frame x:Name="contentFrame" Margin="0" MinHeight="200">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition></NavigationThemeTransition>
