@@ -35,9 +35,11 @@ namespace MatchiApp
         {
             this.InitializeComponent();
             new_round.Visibility = Visibility.Visible;
+            ui_infocard.Visibility = Visibility.Visible;
             ListInitialization();
             SharedShadow.Receivers.Add(Receiver);
             page.Children.Remove(new_round);
+            page.Children.Remove(ui_infocard);
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
             if (mainFrame.navigationView.MenuItems.Count < 4)
             {
@@ -152,13 +154,36 @@ namespace MatchiApp
 
         private void LeftCardClick(object sender, PointerRoutedEventArgs e)
         {
-            ui_trans1.Opacity = 1;
-            ui_trans2.Opacity = 0.4;
+            if (page.Children.Contains(ui_infocard))
+            {
+                ui_trans1.Opacity = 1;
+                ui_trans2.Opacity = 0.4;
+            }
         }
 
         private void RightCardClick(object sender, PointerRoutedEventArgs e)
         {
-            ui_trans1.Opacity = 0.4;
+            if (page.Children.Contains(ui_infocard))
+            {
+                ui_trans1.Opacity = 0.4;
+                ui_trans2.Opacity = 1;
+            }
+        }
+
+        private void ShowInfo(object sender, PointerRoutedEventArgs e)
+        {
+            if (!page.Children.Contains(ui_infocard))
+            {
+                page.Children.Add(ui_infocard);
+            }
+            ui_trans1.Opacity = 1;
+            ui_trans2.Opacity = 0.4;
+        }
+
+        private void HideInfo(object sender, RoutedEventArgs e)
+        {
+            page.Children.Remove(ui_infocard);
+            ui_trans1.Opacity = 1;
             ui_trans2.Opacity = 1;
         }
     }
