@@ -37,9 +37,8 @@ namespace MatchiApp
             new_round.Visibility = Visibility.Visible;
             ui_infocard.Visibility = Visibility.Visible;
             ListInitialization();
-            SharedShadow.Receivers.Add(Receiver);
-            page.Children.Remove(new_round);
-            page.Children.Remove(ui_infocard);
+            page.Children.Remove(new_round);            
+            SharedShadow.Receivers.Add(Receiver);            
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
             if (mainFrame.navigationView.MenuItems.Count < 4)
             {
@@ -71,10 +70,14 @@ namespace MatchiApp
         }
         private void show(object sender, RoutedEventArgs e)
         {
-            if (!page.Children.Contains(new_round))
+            if (!page.Children.Contains(ui_endround))
             {
-                page.Children.Add(new_round);
-                round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();
+                page.Children.Remove(ui_infocard);
+                page.Children.Add(ui_endround);
+                ui_trans1.Opacity = 0.4;
+                ui_trans2.Opacity = 0.4;                
+                //page.Children.Add(new_round);
+                //round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();
             }
         }
         public static void HideNav(MainPage page)
@@ -149,24 +152,37 @@ namespace MatchiApp
             int round_value = 1;
             ui_leftname.Text = matchimpro.Team1;
             ui_rightname.Text = matchimpro.Team2;
+            page.Children.Remove(ui_endround);
+            notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, $"Notes du match {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);
             round_nb.Text = "Manche "+round_value.ToString()+"/"+matchimpro.Rounds.ToString();
         }
 
         private void LeftCardClick(object sender, PointerRoutedEventArgs e)
         {
-            if (page.Children.Contains(ui_infocard))
+            if (page.Children.Contains(ui_endround))
             {
-                ui_trans1.Opacity = 1;
-                ui_trans2.Opacity = 0.4;
+                if (ui_trans1.Opacity == 1)
+                {
+                    ui_trans1.Opacity = 0.4;
+                }
+                else
+                {
+                    ui_trans1.Opacity = 1;
+                }
             }
         }
 
         private void RightCardClick(object sender, PointerRoutedEventArgs e)
         {
-            if (page.Children.Contains(ui_infocard))
+            if (page.Children.Contains(ui_endround))
             {
-                ui_trans1.Opacity = 0.4;
-                ui_trans2.Opacity = 1;
+                if (ui_trans2.Opacity == 1) {
+                    ui_trans2.Opacity = 0.4;
+                }
+                else
+                {
+                    ui_trans2.Opacity = 1;
+                }                
             }
         }
 
@@ -176,12 +192,25 @@ namespace MatchiApp
             {
                 page.Children.Add(ui_infocard);
             }
-            ui_trans1.Opacity = 1;
-            ui_trans2.Opacity = 0.4;
+            if (!page.Children.Contains(ui_endround))
+            {
+                ui_trans1.Opacity = 0.4;
+                ui_trans2.Opacity = 0.4;
+            }
         }
 
         private void HideInfo(object sender, RoutedEventArgs e)
         {
+            page.Children.Remove(ui_infocard);
+            if (!page.Children.Contains(ui_endround))
+            {
+                ui_trans1.Opacity = 1;
+                ui_trans2.Opacity = 1;
+            }
+        }
+
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {            
             page.Children.Remove(ui_infocard);
             ui_trans1.Opacity = 1;
             ui_trans2.Opacity = 1;

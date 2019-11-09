@@ -150,13 +150,13 @@ namespace MatchiApp
                 list_of_matches.Width = double.NaN;
                 list_of_matches.HorizontalAlignment = HorizontalAlignment.Stretch;
                 choose_message.VerticalAlignment = VerticalAlignment.Top;
-                choose_message.Margin = new Thickness(0, 90, 0, 0);
+                choose_message.Margin = new Thickness(0, 100, 0, 0);
                 details_card.Height = 125;
                 details_card.CornerRadius = new CornerRadius(0);
                 details_card.Width = double.NaN;
                 details_card.HorizontalAlignment = HorizontalAlignment.Stretch;
                 details_card.VerticalAlignment = VerticalAlignment.Top;
-                details_card.Margin = new Thickness(0, 60, 0, 0);
+                details_card.Margin = new Thickness(0, 70, 0, 0);
                 match_name.TextWrapping = TextWrapping.NoWrap;
                 if (details_card.Visibility == Visibility.Visible)
                 {

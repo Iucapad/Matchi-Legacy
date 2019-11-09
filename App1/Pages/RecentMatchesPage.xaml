@@ -58,7 +58,7 @@
                         <EdgeUIThemeTransition Edge="Bottom"/>
                     </TransitionCollection>
                 </Grid.Transitions>
-                <TextBlock x:Name="match_name" TextWrapping="Wrap" Margin="15" FontWeight="Black" FontSize="18" Text="Nom du match"></TextBlock>
+                <TextBlock x:Name="match_name" TextWrapping="Wrap" Margin="15" FontFamily="Bahnschrift" FontWeight="Bold" FontSize="20" Text="Nom du match"></TextBlock>
                 <Button CornerRadius="4"  Click="Open_match" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock>Ouvrir</TextBlock>

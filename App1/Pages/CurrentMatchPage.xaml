@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     NavigationCacheMode="Required"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="Resize">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="Resize" Loaded="PageLoaded">
     <Page.Resources>
         <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
@@ -161,7 +161,8 @@
                                     <ScalarTransition />
                                 </Rectangle.OpacityTransition>
                             </Rectangle>
-                            <TextBlock x:Name="ui_leftname" Text="EQUIPE A" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20" ></TextBlock>
+                            <TextBlock x:Name="ui_leftname" Text="EQUIPE A" Foreground="Black" FontFamily="Bahnschrift" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20" ></TextBlock>
+                            <TextBlock Text="3" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="56" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
                 </Grid>
                 <Grid x:Name="ui_vs" Width="50" Height="25" HorizontalAlignment="Center" Margin="5,1,5,0" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="15" Padding="2">
                     <TextBlock Text="VS" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
@@ -178,8 +179,9 @@
                             </LinearGradientBrush>
                         </Rectangle.Fill>
                     </Rectangle>
-                    <TextBlock x:Name="ui_rightname" Text="EQUIPE B" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20" ></TextBlock>
-                </Grid>                
+                            <TextBlock x:Name="ui_rightname" FontFamily="Bahnschrift" Text="EQUIPE B" Foreground="Black" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20" ></TextBlock>
+                            <TextBlock Text="1" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="56" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
+                        </Grid>                
             </StackPanel>
             </Grid>
             <Grid x:Name="ui_roundinfos">
@@ -191,10 +193,18 @@
             </Grid>
             </StackPanel>
         </ScrollViewer>
+        <Grid x:Name="ui_endround" BorderBrush="#303030" BorderThickness="1" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,60">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Bottom"/>
+                </TransitionCollection>
+            </Grid.Transitions>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Choisissez l'équipe qui remporte un point" FontSize="18"></TextBlock>
+        </Grid>
         <Grid x:Name="ui_showinfo" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10,10,0,0" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,0" PointerPressed="ShowInfo">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Text="&#xEE56;"></TextBlock>
-            <TextBlock Text="Notes" Margin="10,0,0,0" FontSize="18"></TextBlock>
+                <TextBlock FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Text="&#xEE56;"></TextBlock>
+                <TextBlock Text="Notes" Margin="10,0,0,0" FontSize="18"></TextBlock>
             </StackPanel>
         </Grid>
         <Grid x:Name="ui_infocard" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10,10,0,0"  Visibility="Visible" VerticalAlignment="Bottom" Height="250" Margin="30,0,30,0">
@@ -203,7 +213,7 @@
                     <EdgeUIThemeTransition Edge="Bottom"/>
                 </TransitionCollection>
             </Grid.Transitions>
-            <RichEditBox Style="{StaticResource RichEditBoxStyle1}" FontSize="20" Padding="30,10,30,30" Margin="0" BorderThickness="0" CornerRadius="4"></RichEditBox>
+            <RichEditBox x:Name="notes_text" IsSpellCheckEnabled="False" Style="{StaticResource RichEditBoxStyle1}" FontSize="20" Padding="30,10,30,30" Margin="0" BorderThickness="0" CornerRadius="4"></RichEditBox>
             <Button CornerRadius="4" Margin="5" Height="40" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Masquer" Click="HideInfo"></Button>
         </Grid>
 
