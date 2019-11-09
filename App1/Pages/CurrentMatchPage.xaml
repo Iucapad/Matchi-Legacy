@@ -150,12 +150,12 @@
                                     <ScalarTransition />
                                 </Rectangle.OpacityTransition>
                                 <Rectangle.Fill>
-                            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
+                                    <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
                                         <GradientStop Color="#DD6528" Offset="0.2" />
                                         <GradientStop Color="#F46B7E" Offset="0.9" />
-                            </LinearGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
                             <Rectangle  Width="auto" Fill="Black" Height="auto" Opacity="0">
                                 <Rectangle.OpacityTransition>
                                     <ScalarTransition />
@@ -163,34 +163,34 @@
                             </Rectangle>
                             <TextBlock x:Name="ui_leftname" Text="EQUIPE A" Foreground="Black" FontFamily="Bahnschrift" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20" ></TextBlock>
                             <TextBlock Text="3" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="56" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
-                </Grid>
-                <Grid x:Name="ui_vs" Width="50" Height="25" HorizontalAlignment="Center" Margin="5,1,5,0" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="15" Padding="2">
-                    <TextBlock Text="VS" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                </Grid>
+                        </Grid>
+                        <Grid x:Name="ui_vs" Width="50" Height="25" HorizontalAlignment="Center" Margin="5,1,5,0" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="15" Padding="2">
+                            <TextBlock Text="VS" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                        </Grid>
                         <Grid x:Name="ui_rightcard" CornerRadius="10" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="300" Height="250" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Top" PointerReleased="RightCardClick">
                             <Rectangle x:Name="ui_trans2" Opacity="1">
                                 <Rectangle.OpacityTransition>
                                     <ScalarTransition />
                                 </Rectangle.OpacityTransition>
                                 <Rectangle.Fill>
-                            <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
+                                    <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
                                         <GradientStop Color="#2A65D4" Offset="0.2" />
                                         <GradientStop Color="#8250C0" Offset="0.9" />
-                            </LinearGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
                             <TextBlock x:Name="ui_rightname" FontFamily="Bahnschrift" Text="EQUIPE B" Foreground="Black" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20" ></TextBlock>
                             <TextBlock Text="1" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="56" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
-                        </Grid>                
-            </StackPanel>
-            </Grid>
-            <Grid x:Name="ui_roundinfos">
-                <TextBlock x:Name="ui_catname" Text="Catégorie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,60" FontSize="22"></TextBlock>
-                <StackPanel x:Name="ui_nbjouteurs" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,30,150,120">
-                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="32" Padding="0,0,10,0" Text="&#xE902;"></TextBlock>
-                    <TextBlock Text="x" FontSize="24"></TextBlock>
-                </StackPanel>
-            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="ui_roundinfos">
+                    <TextBlock x:Name="ui_catname" Text="Catégorie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,60" FontSize="22"></TextBlock>
+                    <StackPanel x:Name="ui_nbjouteurs" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,30,150,120">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="32" Padding="0,0,10,0" Text="&#xE902;"></TextBlock>
+                        <TextBlock Text="x" FontSize="24"></TextBlock>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </ScrollViewer>
         <Grid x:Name="ui_endround" BorderBrush="#303030" BorderThickness="1" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,60">
@@ -199,7 +199,16 @@
                     <EdgeUIThemeTransition Edge="Bottom"/>
                 </TransitionCollection>
             </Grid.Transitions>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Choisissez l'équipe qui remporte un point" FontSize="18"></TextBlock>
+            <TextBlock x:Name="ui_votemessage" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Choisissez une équipe pour donner un point" FontSize="18"></TextBlock>
+            <Grid x:Name="ui_votebox" Visibility="Collapsed">
+                <TextBlock x:Name="ui_votecomment" HorizontalAlignment="Center" Margin="30,0,150,0" VerticalAlignment="Center" FontWeight="Bold" Text="Égalité" FontSize="18"></TextBlock>
+                <Button CornerRadius="4" Background="Transparent" HorizontalAlignment="Right" Margin="5"  VerticalAlignment="Stretch" FontSize="16" FontFamily="Segoe UI" Click="NextRound">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Continuer</TextBlock>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="20" Margin="15,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
         </Grid>
         <Grid x:Name="ui_showinfo" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10,10,0,0" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,0" PointerPressed="ShowInfo">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -207,7 +216,7 @@
                 <TextBlock Text="Notes" Margin="10,0,0,0" FontSize="18"></TextBlock>
             </StackPanel>
         </Grid>
-        <Grid x:Name="ui_infocard" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10,10,0,0"  Visibility="Visible" VerticalAlignment="Bottom" Height="250" Margin="30,0,30,0">
+        <Grid x:Name="ui_infocard" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10,10,0,0"  Visibility="Collapsed" VerticalAlignment="Bottom" Height="250" Margin="30,0,30,0">
             <Grid.Transitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Bottom"/>
@@ -221,7 +230,7 @@
 
 
 
-
+        <Button Content="Next" Width="100" Height="40" Margin="30,60,0,0" VerticalAlignment="Top" Click="show"></Button>
         <Grid x:Name="new_round" Visibility="Collapsed" Padding="0,60,0,0">
             <Grid.Transitions>
                 <TransitionCollection>
@@ -234,12 +243,12 @@
                 <StackPanel>
                     <Grid Height="120" Width="320" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="4">
                         <TextBlock Margin="10,0,0,0" Text="Catégorie"></TextBlock>
-                    <Button CornerRadius="4" Margin="0,0,0,10" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="50" Width="300" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xF133;" FontSize="24" Padding="0,0,15,0" HorizontalAlignment="Center"/>
-                            <TextBlock>Aléatoire</TextBlock>
-                        </StackPanel>
-                    </Button>
+                        <Button CornerRadius="4" Margin="0,0,0,10" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="50" Width="300" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xF133;" FontSize="24" Padding="0,0,15,0" HorizontalAlignment="Center"/>
+                                <TextBlock>Aléatoire</TextBlock>
+                            </StackPanel>
+                        </Button>
                         <ComboBox x:Name="list_of_categories" HorizontalAlignment="Center" CornerRadius="4" Margin="0,20,0,0" Height="35" Width="300"/>
                     </Grid>
                     <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Height="60" Header="Durée" Width="300" Name="timer_selection"/>
@@ -256,6 +265,5 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <Button Content="show" Width="100" Height="40" Margin="134,10,0,0" VerticalAlignment="Top" Click="show"></Button>
     </Grid>
 </Page>

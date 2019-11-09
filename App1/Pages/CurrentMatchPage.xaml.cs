@@ -36,8 +36,7 @@ namespace MatchiApp
             this.InitializeComponent();
             new_round.Visibility = Visibility.Visible;
             ui_infocard.Visibility = Visibility.Visible;
-            ListInitialization();
-            page.Children.Remove(new_round);            
+            ListInitialization();         
             SharedShadow.Receivers.Add(Receiver);            
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
             if (mainFrame.navigationView.MenuItems.Count < 4)
@@ -169,6 +168,7 @@ namespace MatchiApp
                 {
                     ui_trans1.Opacity = 1;
                 }
+                VoteSelection();
             }
         }
 
@@ -182,7 +182,8 @@ namespace MatchiApp
                 else
                 {
                     ui_trans2.Opacity = 1;
-                }                
+                }
+                VoteSelection();
             }
         }
 
@@ -209,11 +210,58 @@ namespace MatchiApp
             }
         }
 
+        private void VoteSelection()
+        {
+            if (ui_trans1.Opacity == 1 || ui_trans2.Opacity == 1)
+            {
+                ui_votemessage.Visibility = Visibility.Collapsed;
+                ui_votebox.Visibility = Visibility.Visible;
+                if (ui_trans1.Opacity == 1 && ui_trans2.Opacity == 1)
+                {
+                    ui_votecomment.Text = "Égalité";
+                }
+                else
+                {
+                    ui_votecomment.Text = "";
+                }
+            }
+            else
+            {
+                ui_votemessage.Visibility = Visibility.Visible;
+                ui_votebox.Visibility = Visibility.Collapsed;
+            }
+        }
         private void PageLoaded(object sender, RoutedEventArgs e)
         {            
             page.Children.Remove(ui_infocard);
-            ui_trans1.Opacity = 1;
-            ui_trans2.Opacity = 1;
+            if (!page.Children.Contains(ui_endround))
+            {
+                ui_trans1.Opacity = 1;
+                ui_trans2.Opacity = 1;
+            }
+        }
+
+        private void NextRound(object sender, RoutedEventArgs e)
+        {
+            if (!page.Children.Contains(new_round))
+            {
+                ui_votemessage.Visibility = Visibility.Visible;
+                ui_votebox.Visibility = Visibility.Collapsed;
+                page.Children.Remove(ui_endround);
+                round_value++;
+                page.Children.Add(new_round);
+                round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();                
+                if (ui_trans1.Opacity == 1)
+                {
+                    //add point to 1
+                }
+                if (ui_trans2.Opacity == 1)
+                {
+                    //add point to 2
+                }
+                ui_trans1.Opacity = 1;
+                ui_trans2.Opacity = 1;
+            }
         }
     }
 }
