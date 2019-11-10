@@ -138,13 +138,13 @@ namespace MatchiApp
         {
             if (((Frame)Window.Current.Content).ActualHeight < 500)
             {
-                date_of_day.Margin = new Thickness(40, 50, 0, 0);
-                recent_matches.Margin=new Thickness(40, 0, 0, 50);
+                date_of_day.Margin = new Thickness(0, 50, 0, 0);
+                recent_matches.Margin=new Thickness(0, 0, 0, 50);
             }
             else
             {
-                date_of_day.Margin = new Thickness(40, 110, 0, 0);
-                recent_matches.Margin = new Thickness(40, 0, 0, 0);
+                date_of_day.Margin = new Thickness(0, 110, 0, 0);
+                recent_matches.Margin = new Thickness(0, 0, 0, 0);
             }
                 if (((Frame)Window.Current.Content).ActualWidth < 500)
             {

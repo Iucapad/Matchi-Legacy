@@ -16,7 +16,7 @@
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
                           TintColor="Black"
-                          TintOpacity="0.8"
+                          TintOpacity="0.9"
                           FallbackColor="#151515"/>
                 </ResourceDictionary>
 
@@ -29,8 +29,8 @@
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
                           TintColor="White"
-                          TintOpacity="0.6"
-                          FallbackColor="White"/>
+                          TintOpacity="0.8"
+                          FallbackColor="#DDDDDD"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>

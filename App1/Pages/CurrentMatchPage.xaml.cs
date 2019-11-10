@@ -150,6 +150,7 @@ namespace MatchiApp
             ui_leftname.Text = matchimpro.Team1;
             ui_rightname.Text = matchimpro.Team2;
             page.Children.Remove(ui_endround);
+            page.Children.Remove(new_round);
             notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, $"Notes du match {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);
             round_nb.Text = "Manche "+round_value.ToString()+"/"+matchimpro.Rounds.ToString();
         }

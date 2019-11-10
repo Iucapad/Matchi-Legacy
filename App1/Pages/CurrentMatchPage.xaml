@@ -17,7 +17,7 @@
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
                           TintColor="Black"
-                          TintOpacity="0.8"
+                          TintOpacity="0.9"
                           FallbackColor="#151515"/>
                 </ResourceDictionary>
 
@@ -30,8 +30,8 @@
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
                           TintColor="White"
-                          TintOpacity="0.6"
-                          FallbackColor="White"/>
+                          TintOpacity="0.8"
+                          FallbackColor="#DDDDDD"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <Style x:Key="RichEditBoxStyle1" TargetType="RichEditBox">
@@ -231,6 +231,39 @@
 
 
         <Button Content="Next" Width="100" Height="40" Margin="30,60,0,0" VerticalAlignment="Top" Click="show"></Button>
+        <Grid x:Name="ui_start" Background="{ThemeResource CustomAcrylicBrush}" Visibility="Visible" Margin="0,60,0,0">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition/>
+                </TransitionCollection>
+            </Grid.Transitions>
+            <Grid Width="250" Height="150" CornerRadius="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,175,275">
+                <Rectangle>
+                    <Rectangle.OpacityTransition>
+                        <ScalarTransition />
+                    </Rectangle.OpacityTransition>
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
+                            <GradientStop Color="#DD6528" Offset="0.2" />
+                            <GradientStop Color="#F46B7E" Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            <Grid Width="250" Height="150" CornerRadius="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="175,175,0,100">
+                <Rectangle>
+                    <Rectangle.OpacityTransition>
+                        <ScalarTransition />
+                    </Rectangle.OpacityTransition>
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
+                            <GradientStop Color="#2A65D4" Offset="0.2" />
+                            <GradientStop Color="#8250C0" Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </Grid>
         <Grid x:Name="new_round" Visibility="Collapsed" Padding="0,60,0,0">
             <Grid.Transitions>
                 <TransitionCollection>

@@ -16,7 +16,7 @@
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
                           TintColor="Black"
-                          TintOpacity="0.8"
+                          TintOpacity="0.9"
                           FallbackColor="#151515"/>
                 </ResourceDictionary>
 
@@ -29,8 +29,8 @@
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
                           TintColor="White"
-                          TintOpacity="0.6"
-                          FallbackColor="White"/>
+                          TintOpacity="0.8"
+                          FallbackColor="#DDDDDD"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
@@ -59,13 +59,13 @@
                     </TransitionCollection>
                 </Grid.Transitions>
                 <TextBlock x:Name="match_name" TextWrapping="Wrap" Margin="15" FontFamily="Bahnschrift" FontWeight="Bold" FontSize="20" Text="Nom du match"></TextBlock>
-                <Button CornerRadius="25"  Click="Open_match" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
+                <Button CornerRadius="25"  Click="Open_match" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock>Ouvrir</TextBlock>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="24" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Button>
-                <Button CornerRadius="25" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Left" Height="50" Width="50" Margin="15,0,0,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
+                <Button CornerRadius="25" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Left" Height="50" Width="50" Margin="15,0,0,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                     <StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE712;" FontWeight="Normal" FontSize="24"/>
                     </StackPanel>
