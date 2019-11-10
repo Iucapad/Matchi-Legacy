@@ -52,23 +52,29 @@
                 <ListView x:Name="list_of_matches" CornerRadius="4" Margin="0,60,350,160" BorderBrush="#454545" BorderThickness="1" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Collapsed" Width="300" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center" SelectionChanged="Selection">
                 </ListView>
             </Grid>
-            <Grid x:Name="details_card" CornerRadius="4" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" Margin="0,450,0,0" BorderBrush="#454545" BorderThickness="1"  Visibility="Collapsed" Width="300" Height="260" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid x:Name="details_card" CornerRadius="4" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" Margin="0" BorderBrush="#454545" BorderThickness="1"  Visibility="Visible" Width="300" Height="260" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid.Transitions>
                     <TransitionCollection>
-                        <EdgeUIThemeTransition Edge="Bottom"/>
+                        <AddDeleteThemeTransition/>
                     </TransitionCollection>
                 </Grid.Transitions>
                 <TextBlock x:Name="match_name" TextWrapping="Wrap" Margin="15" FontFamily="Bahnschrift" FontWeight="Bold" FontSize="20" Text="Nom du match"></TextBlock>
-                <Button CornerRadius="4"  Click="Open_match" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
+                <Button CornerRadius="25"  Click="Open_match" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock>Ouvrir</TextBlock>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="24" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Button>
-                <Button CornerRadius="4" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Left" Height="50" Width="100" Margin="15,0,0,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
+                <Button CornerRadius="25" Foreground="White" Style="{ThemeResource ButtonRevealStyle}" Background="{ThemeResource SystemAccentColor}" HorizontalAlignment="Left" Height="50" Width="50" Margin="15,0,0,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                     <StackPanel>
-                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE78C;" FontWeight="Normal" FontSize="24"/>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE712;" FontWeight="Normal" FontSize="24"/>
                     </StackPanel>
+                    <Button.Flyout>
+                        <MenuFlyout Placement="BottomEdgeAlignedLeft" >
+                            <MenuFlyoutItem Icon="AlignLeft" Text = "Notes" />
+                            <MenuFlyoutItem Icon="Save" Text = "Enregistrer" />
+                        </MenuFlyout>
+                    </Button.Flyout>
                 </Button>
             </Grid>
             <Button x:Name="addbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Create_Match">

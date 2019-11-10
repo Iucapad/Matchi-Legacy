@@ -36,7 +36,7 @@ namespace MatchiApp
             this.InitializeComponent();
             new_round.Visibility = Visibility.Visible;
             ui_infocard.Visibility = Visibility.Visible;
-            ListInitialization();         
+            ListInitialization();
             SharedShadow.Receivers.Add(Receiver);            
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
             if (mainFrame.navigationView.MenuItems.Count < 4)
@@ -74,9 +74,7 @@ namespace MatchiApp
                 page.Children.Remove(ui_infocard);
                 page.Children.Add(ui_endround);
                 ui_trans1.Opacity = 0.4;
-                ui_trans2.Opacity = 0.4;                
-                //page.Children.Add(new_round);
-                //round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();
+                ui_trans2.Opacity = 0.4;
             }
         }
         public static void HideNav(MainPage page)

@@ -37,7 +37,8 @@ namespace MatchiApp
             this.InitializeComponent();
             list_of_matches.ItemsSource = matchlist;
             list_of_matches.DisplayMemberPath = "Name";
-            Read_storage();                      
+            Read_storage();
+            home_match.Children.Remove(details_card);
         }
 
         private async void Read_storage()//lis le contenu du dossier de stockage
@@ -118,21 +119,27 @@ namespace MatchiApp
                 error_message.Visibility = Visibility.Visible;
                 list_of_matches.Visibility = Visibility.Collapsed;
                 deletebtn.Visibility = Visibility.Collapsed;
-                details_card.Visibility = Visibility.Collapsed;
+                home_match.Children.Remove(details_card);
                 addbtn.Margin = new Thickness(0, 0, 0, 60);
             }
             else if (list_of_matches.SelectedItem == null) 
             {
                 info_messages.Visibility = Visibility.Visible;
                 deletebtn.Visibility = Visibility.Collapsed;
-                details_card.Visibility = Visibility.Collapsed;
+                home_match.Children.Remove(details_card);
                 addbtn.Margin = new Thickness(0, 0, 0, 60);
+                if (((Frame)).ActualWidth < 750)
+                {
+                    list_of_matches.Margin = new Thickness(30, 130, 30, 160);
+                }
             }
             else
             {
                 info_messages.Visibility = Visibility.Collapsed;
                 deletebtn.Visibility = Visibility.Visible;
-                details_card.Visibility = Visibility.Visible;
+                if (!home_match.Children.Contains(details_card)) {
+                    home_match.Children.Add(details_card);
+                }
                 addbtn.Margin = new Thickness(153, 0, 0, 60);
                 match_name.Text = ((Matchimpro)list_of_matches.SelectedItem).Name.ToUpper();
                 if (((Frame)).ActualWidth < 750)
@@ -158,7 +165,7 @@ namespace MatchiApp
                 details_card.VerticalAlignment = VerticalAlignment.Top;
                 details_card.Margin = new Thickness(0, 70, 0, 0);
                 match_name.TextWrapping = TextWrapping.NoWrap;
-                if (details_card.Visibility == Visibility.Visible)
+                if (home_match.Children.Contains(details_card))
                 {
                     list_of_matches.Margin = new Thickness(30, 200, 30, 160);                    
                 }
@@ -178,7 +185,7 @@ namespace MatchiApp
                 details_card.VerticalAlignment = VerticalAlignment.Center;
                 details_card.Margin = new Thickness(370, 60, 0, 160);
                 match_name.TextWrapping = TextWrapping.Wrap;
-                if (details_card.Visibility == Visibility.Collapsed)
+                if (!home_match.Children.Contains(details_card))
                 {
                     image_message.Visibility = Visibility.Visible;
                 }
