@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -30,8 +31,7 @@ namespace MatchiApp
     {
 
         private Matchimpro matchimpro;
-        private List<string> already_seen_categories = new List<string>();
-        private List<string> copied_list_of_categories = new List<string>();
+        private ObservableCollection<string> source_list_of_categories = new ObservableCollection<string>();
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
         int round_value = 1;
         int scoreleft = 0;
@@ -67,17 +67,13 @@ namespace MatchiApp
 
                 StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
                 foreach (string category in await FileIO.ReadLinesAsync(cate_file))
-                    list_of_categories.Items.Add(category);
+                    source_list_of_categories.Add(category);
 
 
-                if (list_of_categories.Items.Count != list_of_categories.Items.Distinct().Count())
+                if (source_list_of_categories.Count != source_list_of_categories.Distinct().Count())
                     return; //TODO : Erreur ?
 
-
-            foreach (string cat in list_of_categories.Items)
-            {
-                copied_list_of_categories.Add(cat);
-            }
+            list_of_categories.ItemsSource = source_list_of_categories;
         }
         private void show(object sender, RoutedEventArgs e)
         {
@@ -142,9 +138,23 @@ namespace MatchiApp
             }
         }
 
-        private void Start_click(object sender, RoutedEventArgs e)
+        private async void Start_click(object sender, RoutedEventArgs e)
         {
-            page.Children.Remove(new_round);
+            if(list_of_categories.SelectedItem is null)
+            {
+                ContentDialog someNullValuesDialog = new ContentDialog
+                {
+                    Title = "Attention",
+                    Content = "Vous devez remplir les champs vides avant de lancer une manche.",
+                    CloseButtonText = "Annuler"
+                };
+                await someNullValuesDialog.ShowAsync();
+            }
+            else
+            {
+                page.Children.Remove(new_round);
+                source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -287,6 +297,11 @@ namespace MatchiApp
                 ui_trans1.Opacity = 1;
                 ui_trans2.Opacity = 1;
             }
+            if(source_list_of_categories.Count() == 0)
+            {
+                source_list_of_categories.Add("Libre");
+                list_of_categories.SelectedIndex = 0;
+            }
         }
 
         private void Start(object sender, RoutedEventArgs e)
@@ -300,10 +315,11 @@ namespace MatchiApp
         private void random_category(object sender, RoutedEventArgs e)
         {
             Random rand_index = new Random();
-            int rnb = rand_index.Next(0, copied_list_of_categories.Count());
+            if (source_list_of_categories.Count() == 0)
+                source_list_of_categories.Add("Libre");
 
-            list_of_categories.SelectedValue = copied_list_of_categories[rnb];
-            copied_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
+            list_of_categories.SelectedIndex = rand_index.Next(0, source_list_of_categories.Count() - 1);
+            
         }
     }
 }

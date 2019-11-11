@@ -66,15 +66,23 @@ namespace MatchiApp
         }
 
         private async void Save_category(object sender, RoutedEventArgs e)
-        {          
-            if(category_name.Text.Length == 0 || category_name.Text.Length > 30)
+        {
+            ContentDialog valuesErrorDialog = new ContentDialog
             {
-                await new MessageDialog("Veuillez saisir un nom entre 1 et 30 caractères.").ShowAsync();
+                Title = "Attention",
+                Content = "",
+                CloseButtonText = "Ok"
+            };
+            if (category_name.Text.Length == 0 || category_name.Text.Length > 30)
+            {
+                valuesErrorDialog.Content = "Veuillez saisir un nom entre 1 et 30 caractères.";
+                await valuesErrorDialog.ShowAsync();
                 return;
             }
             if (list_of_categories.Items.Contains(category_name.Text))
             {
-                await new MessageDialog("Ce nom de catégorie existe déjà.").ShowAsync();
+                valuesErrorDialog.Content = "Ce nom de catégorie existe déjà.";
+                await valuesErrorDialog.ShowAsync();
                 return;
             }
             list_of_categories.Items.Add(category_name.Text);
