@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -29,6 +30,8 @@ namespace MatchiApp
     {
 
         private Matchimpro matchimpro;
+        private List<string> already_seen_categories = new List<string>();
+        private List<string> copied_list_of_categories = new List<string>();
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
         int round_value = 1;
         int scoreleft = 0;
@@ -69,6 +72,12 @@ namespace MatchiApp
 
                 if (list_of_categories.Items.Count != list_of_categories.Items.Distinct().Count())
                     return; //TODO : Erreur ?
+
+
+            foreach (string cat in list_of_categories.Items)
+            {
+                copied_list_of_categories.Add(cat);
+            }
         }
         private void show(object sender, RoutedEventArgs e)
         {
@@ -286,6 +295,15 @@ namespace MatchiApp
             ui_showinfo.Visibility = Visibility.Visible;
             page.Children.Remove(ui_start);
             page.Children.Add(new_round);
+        }
+
+        private void random_category(object sender, RoutedEventArgs e)
+        {
+            Random rand_index = new Random();
+            int rnb = rand_index.Next(0, copied_list_of_categories.Count());
+
+            list_of_categories.SelectedValue = copied_list_of_categories[rnb];
+            copied_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
         }
     }
 }
