@@ -49,7 +49,7 @@
             
             <Grid x:Name="recent_matches" Visibility="Collapsed">
             <Grid Width="175" HorizontalAlignment="Center" Margin="0,0,0,125" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="4" Padding="10">
-                <TextBlock x:Name="nb_matches" HorizontalAlignment="Center" FontSize="18" Padding="0,0,0,2" FontWeight="Bold" Text="4 matchs récents">
+                <TextBlock x:Name="nb_matches" HorizontalAlignment="Center" FontSize="18" Padding="0,0,0,2" FontWeight="Bold" Text="0 matchs récents">
                 </TextBlock>                
             </Grid>
             <Grid Width="175" Height="90" HorizontalAlignment="Center" Margin="0,75,0,50" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="4" Padding="10">
