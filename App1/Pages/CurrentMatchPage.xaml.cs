@@ -31,6 +31,9 @@ namespace MatchiApp
         private Matchimpro matchimpro;
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
         int round_value = 1;
+        int scoreleft = 0;
+        int scoreright = 0;
+
         public CurrentMatchPage()
         {
             this.InitializeComponent();
@@ -146,13 +149,23 @@ namespace MatchiApp
 
         private void Update_Match()
         {
-            int round_value = 1;
+            round_value = 1;
+            scoreleft = 0;
+            scoreright = 0;
             ui_leftname.Text = matchimpro.Team1;
             ui_rightname.Text = matchimpro.Team2;
             ui_startname1.Text = matchimpro.Team1;
             ui_startname2.Text = matchimpro.Team2;
+            ui_scoreleft.Text = scoreleft.ToString();
+            ui_scoreright.Text = scoreright.ToString();
             page.Children.Remove(ui_endround);
             page.Children.Remove(new_round);
+            ui_scroll.Visibility = Visibility.Collapsed;
+            ui_showinfo.Visibility = Visibility.Collapsed;
+            if (!page.Children.Contains(ui_start))
+            {
+                page.Children.Add(ui_start);
+            }
             notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, $"Notes du match {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);
             round_nb.Text = "Manche "+round_value.ToString()+"/"+matchimpro.Rounds.ToString();
         }
@@ -167,7 +180,7 @@ namespace MatchiApp
                 }
                 else
                 {
-                    ui_trans1.Opacity = 1;
+                    ui_trans1.Opacity = 1;                    
                 }
                 VoteSelection();
             }
@@ -245,7 +258,7 @@ namespace MatchiApp
         private void NextRound(object sender, RoutedEventArgs e)
         {
             if (!page.Children.Contains(new_round))
-            {
+            {                
                 ui_votemessage.Visibility = Visibility.Visible;
                 ui_votebox.Visibility = Visibility.Collapsed;
                 page.Children.Remove(ui_endround);
@@ -254,12 +267,14 @@ namespace MatchiApp
                 round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();                
                 if (ui_trans1.Opacity == 1)
                 {
-                    //add point to 1
+                    scoreleft++;
                 }
                 if (ui_trans2.Opacity == 1)
                 {
-                    //add point to 2
+                    scoreright++;
                 }
+                ui_scoreleft.Text = scoreleft.ToString();
+                ui_scoreright.Text = scoreright.ToString();
                 ui_trans1.Opacity = 1;
                 ui_trans2.Opacity = 1;
             }

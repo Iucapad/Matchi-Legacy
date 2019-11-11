@@ -138,6 +138,7 @@
         <TextBlock x:Name="match_name" Text="Match"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <ScrollViewer x:Name="ui_scroll" Visibility="Collapsed" VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,100,0,160">
             <StackPanel>
+                <Button Content="Next" Width="50" Height="25" Padding="0" Margin="30,60,0,0" VerticalAlignment="Top" Click="show"></Button>
                 <Grid>
                     <Grid.Resources>
                         <ThemeShadow x:Name="SharedShadow" />
@@ -162,7 +163,7 @@
                                 </Rectangle.OpacityTransition>
                             </Rectangle>
                             <TextBlock x:Name="ui_leftname" Text="EQUIPE A" Foreground="Black" FontFamily="Bahnschrift" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20" ></TextBlock>
-                            <TextBlock Text="3" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="56" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
+                            <TextBlock x:Name="ui_scoreleft" Text="0" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="56" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
                         </Grid>
                         <Grid x:Name="ui_vs" Width="50" Height="25" HorizontalAlignment="Center" Margin="5,1,5,0" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="15" Padding="2">
                             <TextBlock Text="VS" VerticalAlignment="Top" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
@@ -180,7 +181,7 @@
                                 </Rectangle.Fill>
                             </Rectangle>
                             <TextBlock x:Name="ui_rightname" FontFamily="Bahnschrift" Text="EQUIPE B" Foreground="Black" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20" ></TextBlock>
-                            <TextBlock Text="1" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="56" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
+                            <TextBlock x:Name="ui_scoreright" Text="0" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="56" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -229,8 +230,7 @@
 
 
 
-
-        <Button Content="Next" Width="100" Height="40" Margin="30,60,0,0" VerticalAlignment="Top" Click="show"></Button>        
+     
         <Grid x:Name="new_round" Visibility="Collapsed" Padding="0,60,0,0">
             <Grid.Transitions>
                 <TransitionCollection>

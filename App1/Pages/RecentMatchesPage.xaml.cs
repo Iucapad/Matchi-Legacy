@@ -132,6 +132,10 @@ namespace MatchiApp
                 {
                     list_of_matches.Margin = new Thickness(30, 130, 30, 160);
                 }
+                else
+                {
+                    image_message.Visibility = Visibility.Visible;
+                }
             }
             else
             {
@@ -150,7 +154,7 @@ namespace MatchiApp
         }
 
         private void Resize_page(object sender, SizeChangedEventArgs e)
-        {
+        {            
             if (((Frame)).ActualWidth < 750)
             {
                 list_of_matches.Margin = new Thickness(30, 130, 30, 160);
