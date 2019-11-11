@@ -26,8 +26,7 @@ namespace MatchiApp
     /// </summary>
     public sealed partial class CreateMatchPage : Page
     {
-        private List<int> number = new List<int>(Enumerable.Range(1, 30));//liste du nombre de jouteur
-        private Matchimpro match = new Matchimpro();
+        private List<int> number = new List<int>(Enumerable.Range(1, 30));//liste du nombre de jouteurs
         private MatchStorage store = new MatchStorage();
         public CreateMatchPage()
         {
@@ -74,17 +73,8 @@ namespace MatchiApp
             }
             else//dossier sélectionné
             {
-                match.Team1 = nomeq1.Text;
-                match.Team2 = nomeq2.Text;
-                match.Rounds = numberofround.SelectedIndex + 1;
-                string filename = match.Team1 + "_vs_" + match.Team2 + ".matchi";
-
-                //le ficher est créé dans le dossier sélectionné et si un autre fichier a 
-                //un nom identique, le nouveau fichier aura un chiffre en plus dans son nom.
-                StorageFile newFile = await store.Folder.CreateFileAsync(filename, CreationCollisionOption.GenerateUniqueName);
-
-                //on écrit le contenu des champs à l'intérieur du fichier contenu dans l'objet newFile
-                await FileIO.WriteLinesAsync(newFile, new List<string>{match.Team1, match.Team2, match.Rounds.ToString()});
+                Matchimpro match = new Matchimpro(nomeq1.Text, nomeq2.Text, numberofround.SelectedIndex + 1);
+                match.Save(store.Folder);
 
                 MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
                 if (mainFrame.navigationView.MenuItems.Count == 4)
