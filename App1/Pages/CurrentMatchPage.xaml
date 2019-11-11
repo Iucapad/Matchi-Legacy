@@ -71,7 +71,7 @@
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlHeaderForegroundDisabled}"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SystemChromeLowColor}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundChromeMediumBrush}"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushDisabled}"/>
@@ -91,7 +91,7 @@
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushPointerOver}"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SystemChromeLowColor}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundChromeMediumBrush}"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextContentPresenter" Storyboard.TargetProperty="Foreground">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundPointerOver}"/>
@@ -107,7 +107,7 @@
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlPlaceholderForegroundFocused}"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SystemChromeLowColor}"/>
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundChromeMediumBrush}"/>
                                                 </ObjectAnimationUsingKeyFrames>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushFocused}"/>
@@ -123,7 +123,7 @@
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
                                 <ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" FontWeight="Normal" Foreground="{ThemeResource TextControlHeaderForeground}" Margin="{ThemeResource RichEditBoxTopHeaderMargin}" Grid.Row="0" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Collapsed" x:DeferLoadStrategy="Lazy"/>
-                                <Border x:Name="BorderElement" Background="{StaticResource SystemChromeLowColor}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}" MinHeight="{ThemeResource TextControlThemeMinHeight}" MinWidth="{ThemeResource TextControlThemeMinWidth}" Grid.RowSpan="1" Grid.Row="1"/>
+                                <Border x:Name="BorderElement" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}" MinHeight="{ThemeResource TextControlThemeMinHeight}" MinWidth="{ThemeResource TextControlThemeMinWidth}" Grid.RowSpan="1" Grid.Row="1"/>
                                 <ScrollViewer x:Name="ContentElement" AutomationProperties.AccessibilityView="Raw" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsTabStop="False" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Grid.Row="1" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" ZoomMode="Disabled"/>
                                 <TextBlock x:Name="PlaceholderTextContentPresenter" Foreground="{ThemeResource TextControlPlaceholderForeground}" IsHitTestVisible="False" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Grid.Row="1" Text="{TemplateBinding PlaceholderText}" TextWrapping="{TemplateBinding TextWrapping}" TextAlignment="{TemplateBinding TextAlignment}"/>
                                 <ContentPresenter x:Name="DescriptionPresenter" AutomationProperties.AccessibilityView="Raw" Content="{TemplateBinding Description}" Foreground="{ThemeResource SystemControlDescriptionTextForegroundBrush}" Grid.Row="2" x:Load="False"/>
@@ -136,7 +136,7 @@
     </Page.Resources>
     <Grid x:Name="page" Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock x:Name="match_name" Text="Match"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
-        <ScrollViewer x:Name="ui_scroll" VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,100,0,160">
+        <ScrollViewer x:Name="ui_scroll" Visibility="Collapsed" VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,100,0,160">
             <StackPanel>
                 <Grid>
                     <Grid.Resources>
@@ -193,7 +193,7 @@
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-        <Grid x:Name="ui_endround" BorderBrush="#303030" BorderThickness="1" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,60">
+        <Grid x:Name="ui_endround" BorderBrush="#303030" BorderThickness="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="10" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,60">
             <Grid.Transitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Bottom"/>
@@ -210,13 +210,13 @@
                 </Button>
             </Grid>
         </Grid>
-        <Grid x:Name="ui_showinfo" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10,10,0,0" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,0" PointerPressed="ShowInfo">
+        <Grid x:Name="ui_showinfo" Visibility="Collapsed" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="10,10,0,0" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,0" PointerPressed="ShowInfo">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Text="&#xEE56;"></TextBlock>
                 <TextBlock Text="Notes" Margin="10,0,0,0" FontSize="18"></TextBlock>
             </StackPanel>
         </Grid>
-        <Grid x:Name="ui_infocard" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{StaticResource SystemChromeLowColor}" CornerRadius="10,10,0,0"  Visibility="Collapsed" VerticalAlignment="Bottom" Height="250" Margin="30,0,30,0">
+        <Grid x:Name="ui_infocard" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="10,10,0,0"  Visibility="Collapsed" VerticalAlignment="Bottom" Height="250" Margin="30,0,30,0">
             <Grid.Transitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Bottom"/>
@@ -230,47 +230,14 @@
 
 
 
-        <Button Content="Next" Width="100" Height="40" Margin="30,60,0,0" VerticalAlignment="Top" Click="show"></Button>
-        <Grid x:Name="ui_start" Background="{ThemeResource CustomAcrylicBrush}" Visibility="Visible" Margin="0,60,0,0">
-            <Grid.Transitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition/>
-                </TransitionCollection>
-            </Grid.Transitions>
-            <Grid Width="250" Height="150" CornerRadius="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,175,275">
-                <Rectangle>
-                    <Rectangle.OpacityTransition>
-                        <ScalarTransition />
-                    </Rectangle.OpacityTransition>
-                    <Rectangle.Fill>
-                        <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
-                            <GradientStop Color="#DD6528" Offset="0.2" />
-                            <GradientStop Color="#F46B7E" Offset="0.9" />
-                        </LinearGradientBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
-            </Grid>
-            <Grid Width="250" Height="150" CornerRadius="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="175,175,0,100">
-                <Rectangle>
-                    <Rectangle.OpacityTransition>
-                        <ScalarTransition />
-                    </Rectangle.OpacityTransition>
-                    <Rectangle.Fill>
-                        <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
-                            <GradientStop Color="#2A65D4" Offset="0.2" />
-                            <GradientStop Color="#8250C0" Offset="0.9" />
-                        </LinearGradientBrush>
-                    </Rectangle.Fill>
-                </Rectangle>
-            </Grid>
-        </Grid>
+        <Button Content="Next" Width="100" Height="40" Margin="30,60,0,0" VerticalAlignment="Top" Click="show"></Button>        
         <Grid x:Name="new_round" Visibility="Collapsed" Padding="0,60,0,0">
             <Grid.Transitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Bottom"/>
                 </TransitionCollection>
             </Grid.Transitions>
-            <Rectangle Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"></Rectangle>
+            <Rectangle Fill="{ThemeResource SystemControlBackgroundChromeMediumBrush}"></Rectangle>
             <TextBlock x:Name="round_nb" Text="Manche 1/x"  FontFamily="Segoe UI" HorizontalAlignment="Center" FontWeight="Black" Margin="0,25,0,0" FontSize="24"></TextBlock>
             <ScrollViewer VerticalAlignment="Center" VerticalScrollMode="Enabled"  Margin="0,100,0,200">
                 <StackPanel>
@@ -296,6 +263,46 @@
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE768;" FontSize="24" HorizontalAlignment="Center"/>
                     <TextBlock>Lancer</TextBlock>
                 </StackPanel>
+            </Button>
+        </Grid>
+        <Grid x:Name="ui_start" Background="{ThemeResource CustomAcrylicBrush}" Visibility="Visible" Margin="0,60,0,0">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition/>
+                </TransitionCollection>
+            </Grid.Transitions>
+            <Grid Width="250" Height="150" CornerRadius="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,175,275">
+                <Rectangle>
+                    <Rectangle.OpacityTransition>
+                        <ScalarTransition />
+                    </Rectangle.OpacityTransition>
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
+                            <GradientStop Color="#DD6528" Offset="0.2" />
+                            <GradientStop Color="#F46B7E" Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock x:Name="ui_startname1" Text="EQUIPE A" Foreground="Black" FontFamily="Bahnschrift" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="30" ></TextBlock>
+            </Grid>
+            <Grid Width="250" Height="150" CornerRadius="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="175,75,0,0">
+                <Rectangle>
+                    <Rectangle.OpacityTransition>
+                        <ScalarTransition />
+                    </Rectangle.OpacityTransition>
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.25,1">
+                            <GradientStop Color="#2A65D4" Offset="0.2" />
+                            <GradientStop Color="#8250C0" Offset="0.9" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock x:Name="ui_startname2" Text="EQUIPE B" Foreground="Black" FontFamily="Bahnschrift" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="30" ></TextBlock>
+            </Grid>
+            <Grid Width="50" Height="50" HorizontalAlignment="Center" Margin="0,0,0,100" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="25" Padding="12">
+                <TextBlock Text="VS" VerticalAlignment="Top" FontSize="18" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+            </Grid>
+            <Button CornerRadius="25" Content="Commencer" FontSize="18" FontWeight="SemiBold" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="50" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start">
             </Button>
         </Grid>
     </Grid>

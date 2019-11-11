@@ -64,7 +64,7 @@
                     <EdgeUIThemeTransition Edge="Bottom"/>
                 </TransitionCollection>
             </Grid.Transitions>
-            <Rectangle Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"></Rectangle>
+            <Rectangle Fill="{ThemeResource SystemControlBackgroundChromeMediumBrush}"></Rectangle>
             <TextBlock Text="Ajouter une catégorie"  FontFamily="Segoe UI" HorizontalAlignment="Center" FontWeight="Black" Margin="0,25,0,0" FontSize="24"></TextBlock>
             <TextBox x:Name="category_name" HorizontalAlignment="Center" CornerRadius="4" Header="Nom" Height="60" Margin="0,0,0,70" TextWrapping="Wrap" VerticalAlignment="Center" Width="300"/>
             <Button x:Name="add_cancel" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,153,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="add_cancel_Click">

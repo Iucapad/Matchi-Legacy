@@ -149,6 +149,8 @@ namespace MatchiApp
             int round_value = 1;
             ui_leftname.Text = matchimpro.Team1;
             ui_rightname.Text = matchimpro.Team2;
+            ui_startname1.Text = matchimpro.Team1;
+            ui_startname2.Text = matchimpro.Team2;
             page.Children.Remove(ui_endround);
             page.Children.Remove(new_round);
             notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, $"Notes du match {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);
@@ -261,6 +263,14 @@ namespace MatchiApp
                 ui_trans1.Opacity = 1;
                 ui_trans2.Opacity = 1;
             }
+        }
+
+        private void Start(object sender, RoutedEventArgs e)
+        {
+            ui_scroll.Visibility = Visibility.Visible;
+            ui_showinfo.Visibility = Visibility.Visible;
+            page.Children.Remove(ui_start);
+            page.Children.Add(new_round);
         }
     }
 }
