@@ -27,10 +27,11 @@ namespace MatchiApp
         public string Team1 { get; set; } = "Equipe 1";
         public string Team2 { get; set; } = "Equipe 2";
         public int Rounds { get; set; } = 5;
-        internal List<string> Categories { get; set; }
+        public List<string> Categories { get; set; }
         public string Name {
             get => $"{Team1} vs {Team2}";
         }
+        private StorageFile file;
         public Matchimpro() { }
 
         public Matchimpro(string t1, string t2, int r)
@@ -38,6 +39,14 @@ namespace MatchiApp
             Team1 = t1;
             Team2 = t2;
             Rounds = r;
+        }
+
+        private Matchimpro(string t1, string t2, int r, StorageFile f) 
+        {
+            Team1 = t1;
+            Team2 = t2;
+            Rounds = r;
+            file = f;
         }
 
         public void AddCate(string cate)//Ajoute une catégorie à la liste de celles du match
@@ -68,12 +77,23 @@ namespace MatchiApp
             if (!int.TryParse(infos[2], out int testnumber) || testnumber <= 0)
                 throw new FormatException();
 
-            return new Matchimpro(infos[0], infos[1], testnumber);
+            return new Matchimpro(infos[0], infos[1], testnumber, file);
         }
 
-        public void Save_Match(StorageFolder pathfolder)
+        public async void Save(StorageFolder folder)
         {
+            string filename = $"{Team1}_vs_{Team2}.matchi";
+            StorageFile f = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
+            if (f != file) DeleteFile();
+            await FileIO.WriteTextAsync(f, $"{Team1}\n{Team2}\n{Rounds}");
+            file = f;
+        }
 
+        public async void DeleteFile()
+        {
+            if (file is null) return;
+            await file.DeleteAsync();
+            file = null;
         }
     }
 }

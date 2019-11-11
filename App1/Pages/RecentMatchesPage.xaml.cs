@@ -208,16 +208,9 @@ namespace MatchiApp
             ContentDialogResult result = await deleteFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                StorageFolder storageFolder = store.Folder;
-                IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
-                foreach (var file in files)
-                {
-                    if (file.DisplayName == list_of_matches.SelectedItem.ToString())
-                    {
-                        await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
-                    }
-                }
-                matchlist.Remove((Matchimpro)list_of_matches.SelectedItem);                
+                Matchimpro match = (Matchimpro)list_of_matches.SelectedItem;
+                match.DeleteFile();
+                matchlist.Remove(match);
             }            
         }
     }
