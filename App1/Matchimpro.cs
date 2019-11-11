@@ -28,11 +28,8 @@ namespace MatchiApp
         public string Team2 { get; set; } = "Equipe 2";
         public int Rounds { get; set; } = 5;
         public List<string> Categories { get; set; }
-        public string Name {
-            get => $"{Team1} vs {Team2}";
-        }
+        public string Name { get => $"{Team1} vs {Team2}"; }
         private StorageFile file;
-        public Matchimpro() { }
 
         public Matchimpro(string t1, string t2, int r)
         {
@@ -67,7 +64,7 @@ namespace MatchiApp
             return $"{Team1} vs {Team2} ({Rounds} round{(Rounds > 1 ? "s" : "")})";
         }
 
-        public static async Task<Matchimpro> Read_Match(StorageFile file)
+        public static async Task<Matchimpro> ReadFile(StorageFile file)
         {
             if (file.FileType.ToLower() != ".matchi")
                 throw new ArgumentOutOfRangeException();

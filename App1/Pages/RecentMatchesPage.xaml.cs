@@ -55,7 +55,7 @@ namespace MatchiApp
                     list_of_matches.Visibility = Visibility.Visible;
                     try
                     {
-                        matchlist.Add(await Matchimpro.Read_Match(match_file));
+                        matchlist.Add(await Matchimpro.ReadFile(match_file));
                     }
                     catch (Exception)
                     {

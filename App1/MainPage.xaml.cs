@@ -164,7 +164,7 @@ namespace MatchiApp
         {
             try 
             {
-                Matchimpro match = await Matchimpro.Read_Match(mr_file);
+                Matchimpro match = await Matchimpro.ReadFile(mr_file);
                 navigationView.SelectedItem = MATCH;
                 contentFrame.Navigate(typeof(CurrentMatchPage), match);
             }
