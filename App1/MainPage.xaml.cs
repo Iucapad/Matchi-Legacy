@@ -141,7 +141,6 @@ namespace MatchiApp
         {
             try 
             {
-                navigationView.SelectedItem = MATCH;
                 contentFrame.Navigate(typeof(CurrentMatchPage), mostRecentMatch);
             }
             catch (Exception)
