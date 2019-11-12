@@ -186,21 +186,14 @@ namespace MatchiApp
                 page.Children.Add(ui_start);
             }
             notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, $"Notes du match {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);
-            round_nb.Text = "Manche "+round_value.ToString()+"/"+matchimpro.Rounds.ToString();
+            round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";
         }
 
         private void LeftCardClick(object sender, PointerRoutedEventArgs e)
         {
             if (page.Children.Contains(ui_endround))
             {
-                if (ui_trans1.Opacity == 1)
-                {
-                    ui_trans1.Opacity = 0.4;
-                }
-                else
-                {
-                    ui_trans1.Opacity = 1;                    
-                }
+                ui_trans1.Opacity = (ui_trans1.Opacity == 1) ? 0.4 : 1;
                 VoteSelection();
             }
         }
@@ -209,13 +202,7 @@ namespace MatchiApp
         {
             if (page.Children.Contains(ui_endround))
             {
-                if (ui_trans2.Opacity == 1) {
-                    ui_trans2.Opacity = 0.4;
-                }
-                else
-                {
-                    ui_trans2.Opacity = 1;
-                }
+                ui_trans2.Opacity = (ui_trans2.Opacity == 1) ? 0.4 : 1;
                 VoteSelection();
             }
         }
@@ -249,14 +236,7 @@ namespace MatchiApp
             {
                 ui_votemessage.Visibility = Visibility.Collapsed;
                 ui_votebox.Visibility = Visibility.Visible;
-                if (ui_trans1.Opacity == 1 && ui_trans2.Opacity == 1)
-                {
-                    ui_votecomment.Text = "Égalité";
-                }
-                else
-                {
-                    ui_votecomment.Text = "";
-                }
+                ui_votecomment.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? "Égalité" : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
             }
             else
             {
@@ -283,7 +263,7 @@ namespace MatchiApp
                 page.Children.Remove(ui_endround);
                 round_value++;
                 page.Children.Add(new_round);
-                round_nb.Text = "Manche " + round_value.ToString() + "/" + matchimpro.Rounds.ToString();                
+                round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";                
                 if (ui_trans1.Opacity == 1)
                 {
                     scoreleft++;
