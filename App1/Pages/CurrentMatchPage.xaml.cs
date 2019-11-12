@@ -152,6 +152,7 @@ namespace MatchiApp
             }
             else
             {
+                ui_catname.Text = list_of_categories.SelectedItem.ToString();
                 page.Children.Remove(new_round);
                 source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
             }

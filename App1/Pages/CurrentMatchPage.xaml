@@ -186,10 +186,10 @@
                     </StackPanel>
                 </Grid>
                 <Grid x:Name="ui_roundinfos">
-                    <TextBlock x:Name="ui_catname" Text="Catégorie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,60" FontSize="22"></TextBlock>
+                    <TextBlock x:Name="ui_catname" Text="Catégorie" FontSize="24" FontWeight="SemiBold" FontFamily="Bahnschrift" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,60"></TextBlock>
                     <StackPanel x:Name="ui_nbjouteurs" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,30,150,120">
-                        <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="32" Padding="0,0,10,0" Text="&#xE902;"></TextBlock>
-                        <TextBlock Text="x" FontSize="24"></TextBlock>
+                        <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="32" Padding="0,0,10,0" Text="&#xE916;"></TextBlock>
+                        <TextBlock Text="2:00" FontWeight="SemiBold" FontFamily="Bahnschrift" Padding="0,6" FontSize="24"></TextBlock>
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -254,10 +254,6 @@
                     <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Height="60" Header="Durée" Width="300" Name="timer_selection"/>
                 </StackPanel>
             </ScrollViewer>
-            <StackPanel x:Name="ui_add_nbjouteurs" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="160">
-                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="24" Padding="0,0,10,0" Text="&#xE902;"></TextBlock>
-                <TextBlock Text="Pour x jouteurs" FontSize="18"></TextBlock>
-            </StackPanel>
             <Button x:Name="startbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start_click">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE768;" FontSize="24" HorizontalAlignment="Center"/>
