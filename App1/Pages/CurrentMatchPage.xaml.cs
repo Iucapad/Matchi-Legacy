@@ -297,9 +297,7 @@ namespace MatchiApp
             Random rand_index = new Random();
             if (source_list_of_categories.Count() == 0)
                 source_list_of_categories.Add("Libre");
-
-            list_of_categories.SelectedIndex = rand_index.Next(0, source_list_of_categories.Count() - 1);
-            
+            list_of_categories.SelectedIndex = rand_index.Next(0, source_list_of_categories.Count() - 1);    
         }
     }
 }
