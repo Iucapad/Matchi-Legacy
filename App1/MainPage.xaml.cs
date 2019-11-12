@@ -29,9 +29,8 @@ namespace MatchiApp
     public sealed partial class MainPage : Page
     {
         public static Frame MainPageFrame;
-        private List<Matchimpro> matchlist = new List<Matchimpro>();//liste des impros
         private MatchStorage store;//magasin de gestion des fichiers
-        private StorageFile mr_file;
+        private Matchimpro mostRecentMatch;
         public MainPage()
         {
             this.InitializeComponent();
@@ -56,40 +55,18 @@ namespace MatchiApp
             store = new MatchStorage();
             Read_storage();
         }
-        private async void Read_storage()//lis le contenu du dossier de stockage
+        private async void Read_storage()//lit le contenu du dossier de stockage
         {
-            StorageFolder storageFolder = store.Folder;            
-            IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();
-            List<StorageFile> good_match_files = new List<StorageFile>();
-            int num_matches=0;
-            foreach(StorageFile match_file in match_files)
-            {
-                if (match_file.Name.Contains(".matchi"))
-                {
-                    num_matches++;
-                    good_match_files.Add(match_file);
-                }
-            }
-            recent_matches.Visibility = Visibility.Visible;
-            if (num_matches > 0) {
-                nb_matches.Text = $"{num_matches} {(num_matches > 1 ? "matchs récents" : "match récent")}";
-            }
-            DateTime mr_time = new DateTime(2019, 1, 1, 1, 0, 1);
-            foreach (StorageFile match_file in good_match_files)
-            {
-                if (match_file.DateCreated > mr_time)
-                {
-                    mr_time = match_file.DateCreated.DateTime;
-                    mr_file = match_file;
-                }                
-            }
-            if (mr_file is null)
-            {
-                recent_matches.Visibility = Visibility.Collapsed;
+            List<Matchimpro> matchlist = await Matchimpro.ReadFolder(store.Folder);
+            if (matchlist.Count > 0) {
+                recent_matches.Visibility = Visibility.Visible;
+                nb_matches.Text = $"{matchlist.Count} {(matchlist.Count > 1 ? "matchs récents" : "match récent")}";
+                mostRecentMatch = matchlist[0];
+                most_recent_match.Text = mostRecentMatch.Name;
             }
             else
             {
-                most_recent_match.Text = mr_file.DisplayName;
+                recent_matches.Visibility = Visibility.Collapsed;
             }
         }
         private void Date_display()
@@ -160,13 +137,12 @@ namespace MatchiApp
             }
         }
 
-        private async void MostRecent_click(object sender, RoutedEventArgs e)
+        private void MostRecent_click(object sender, RoutedEventArgs e)
         {
             try 
             {
-                Matchimpro match = await Matchimpro.ReadFile(mr_file);
                 navigationView.SelectedItem = MATCH;
-                contentFrame.Navigate(typeof(CurrentMatchPage), match);
+                contentFrame.Navigate(typeof(CurrentMatchPage), mostRecentMatch);
             }
             catch (Exception)
             {

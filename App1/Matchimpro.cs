@@ -19,6 +19,7 @@ using Windows.UI.Popups;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.ObjectModel;
+using Windows.Storage.Search;
 
 namespace MatchiApp
 {
@@ -75,6 +76,23 @@ namespace MatchiApp
                 throw new FormatException();
 
             return new Matchimpro(infos[0], infos[1], testnumber, file);
+        }
+
+        public static async Task<List<Matchimpro>> ReadFolder(StorageFolder folder)
+        {
+            QueryOptions options = new QueryOptions(CommonFileQuery.DefaultQuery, new List<string>(){".matchi"});
+            SortEntry se = new SortEntry();
+            se.PropertyName = "System.DateModified";
+            se.AscendingOrder = false;
+            options.SortOrder.Clear();
+            options.SortOrder.Add(se);
+            IReadOnlyList<StorageFile> files = await folder.CreateFileQueryWithOptions(options).GetFilesAsync();
+            List<Matchimpro> output = new List<Matchimpro>();
+            foreach (StorageFile file in files)
+            {
+                output.Add(await ReadFile(file));
+            }
+            return output;
         }
 
         public async void Save(StorageFolder folder)

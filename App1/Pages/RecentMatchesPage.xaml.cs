@@ -19,6 +19,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -41,27 +42,17 @@ namespace MatchiApp
             home_match.Children.Remove(details_card);
         }
 
-        private async void Read_storage()//lis le contenu du dossier de stockage
+        private async void Read_storage()//lit le contenu du dossier de stockage
         {
-            StorageFolder storageFolder = store.Folder;
-            IReadOnlyList<StorageFile> match_files = await storageFolder.GetFilesAsync();            
-            if (match_files.Count > 1)
+            List<Matchimpro> matchlist = await Matchimpro.ReadFolder(store.Folder);
+            foreach (Matchimpro match in matchlist)
+                this.matchlist.Add(match);
+            if (matchlist.Count > 0)
             {
+                error_message.Visibility = Visibility.Collapsed;
+                info_messages.Visibility = Visibility.Visible;
+                list_of_matches.Visibility = Visibility.Visible;
                 header_title.Text = "Matchs récents";
-                foreach (StorageFile match_file in match_files)
-                {
-                    error_message.Visibility = Visibility.Collapsed;
-                    info_messages.Visibility = Visibility.Visible;
-                    list_of_matches.Visibility = Visibility.Visible;
-                    try
-                    {
-                        matchlist.Add(await Matchimpro.ReadFile(match_file));
-                    }
-                    catch (Exception)
-                    {
-                        continue;
-                    }                    
-                }
             }
             else
             {
