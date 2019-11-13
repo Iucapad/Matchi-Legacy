@@ -26,8 +26,14 @@ namespace MatchiApp
     /// </summary>
     public sealed partial class CategoryPage : Page
     {
-        private MatchStorage store = new MatchStorage();//objet relatif au stockage
+        private MatchStorage store = new MatchStorage();
         private ObservableCollection<string> source_category_list = new ObservableCollection<string>();
+        private ContentDialog ErrorDialog = new ContentDialog
+        {
+            Title = "Attention",
+            Content = "",
+            CloseButtonText = "Ok"
+        };
         public CategoryPage()
         {
             this.InitializeComponent();
@@ -35,7 +41,7 @@ namespace MatchiApp
             Read_storage();            
         }
 
-        private async void Read_storage()//lit le contenu du dossier de stockage
+        private async void Read_storage()
         {
             StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
@@ -49,20 +55,8 @@ namespace MatchiApp
             StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
             foreach (string category in await FileIO.ReadLinesAsync(cate_file))
                 source_category_list.Add(category);
-
-
-            if (source_category_list.Count != source_category_list.Distinct().Count())
-                return; //TODO : Erreur ?
-
-            list_of_categories.ItemsSource = source_category_list;
-            if (list_of_categories.Items.Count == 0)
-            {
-                list_of_categories.Visibility = Visibility.Collapsed;                
-            }
-            else
-            {
-                empty_message.Visibility = Visibility.Collapsed;
-            }
+     
+            Refresh_Page();
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)
@@ -86,41 +80,53 @@ namespace MatchiApp
             }
         }
 
-        private void Show_addui(object sender, RoutedEventArgs e)
+        private async void Show_addui(object sender, RoutedEventArgs e)
         {
-            if (!page.Children.Contains(add_ui))
+            if(source_category_list.Count != source_category_list.Distinct().Count())
             {
-                page.Children.Add(add_ui);                
-            }            
+                ErrorDialog.Content = "Des doublons sont présents dans le fichier de catégorie, lecture impossible.";
+                ErrorDialog.PrimaryButtonText = "Réparer";
+                ErrorDialog.CloseButtonText = "Fermer";
+                ContentDialogResult result = await ErrorDialog.ShowAsync();
+                
+                if (result == ContentDialogResult.Primary)
+                {
+                    ObservableCollection<string> copy = new ObservableCollection<string>();
+                    
+                    foreach(string cat in source_category_list.Distinct())
+                        copy.Add(cat);
+
+                    source_category_list = copy;
+                    
+                    Save_to_file();
+                    Refresh_Page();
+                }
+                return;
+            }
+
+            if (!page.Children.Contains(add_ui))
+                page.Children.Add(add_ui);                 
         }
 
         private async void Save_category(object sender, RoutedEventArgs e)
         {
-            ContentDialog valuesErrorDialog = new ContentDialog
-            {
-                Title = "Attention",
-                Content = "",
-                CloseButtonText = "Ok"
-            };
             if (category_name.Text.Length == 0 || category_name.Text.Length > 30)
             {
-                valuesErrorDialog.Content = "Veuillez saisir un nom entre 1 et 30 caractères.";
-                await valuesErrorDialog.ShowAsync();
+                ErrorDialog.Content = "Veuillez saisir un nom entre 1 et 30 caractères.";
+                await ErrorDialog.ShowAsync();
                 return;
             }
             if (source_category_list.Contains(category_name.Text))
             {
-                valuesErrorDialog.Content = "Ce nom de catégorie existe déjà.";
-                await valuesErrorDialog.ShowAsync();
+                ErrorDialog.Content = "Ce nom de catégorie existe déjà.";
+                await ErrorDialog.ShowAsync();
                 return;
             }
             source_category_list.Add(category_name.Text);            
             category_name.Text = "";
             page.Children.Remove(add_ui);
-            Save_to_file();
-            list_of_categories.ItemsSource = source_category_list;
-            list_of_categories.Visibility = Visibility.Visible;
-            empty_message.Visibility = Visibility.Collapsed;
+            Save_to_file();   
+            Refresh_Page();           
         }
 
         private void Resize(object sender, SizeChangedEventArgs e)
@@ -152,7 +158,7 @@ namespace MatchiApp
             if (result == ContentDialogResult.Primary)
             {
                 source_category_list.RemoveAt(list_of_categories.SelectedIndex);
-                //TODO: faire en sorte que la listview disparaisse lorsqu'elle est vide car cela engeandre un crash
+                //TODO: faire en sorte que la listview disparaisse lorsqu'elle est vide car cela engendre un crash
                 Save_to_file();
             }
         }
@@ -167,6 +173,21 @@ namespace MatchiApp
         {
             category_name.Text = "";
             page.Children.Remove(add_ui);
+        }
+
+        private void Refresh_Page()
+        {
+            list_of_categories.ItemsSource = source_category_list;
+            if (source_category_list.Count == 0 || (source_category_list.Count != source_category_list.Distinct().Count()))
+            {
+                list_of_categories.Visibility = Visibility.Collapsed;
+                empty_message.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                list_of_categories.Visibility = Visibility.Visible;
+                empty_message.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
