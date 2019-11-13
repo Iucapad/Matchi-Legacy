@@ -88,7 +88,7 @@ namespace MatchiApp
             if (!page.Children.Contains(add_ui))
             {
                 page.Children.Add(add_ui);                
-            }
+            }            
         }
 
         private async void Save_category(object sender, RoutedEventArgs e)

@@ -21,6 +21,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Windows.Storage.Pickers;
+using Windows.UI.Notifications;
+using Windows.Data.Xml.Dom;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -213,6 +215,16 @@ namespace MatchiApp
             folderPicker.FileTypeFilter.Add("*");
             StorageFolder folder = await folderPicker.PickSingleFolderAsync();
             ((Matchimpro)list_of_matches.SelectedItem).Save(folder);
+
+            ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
+            Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+            Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
+            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode("Le match a été enregistré avec succès"));
+            Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+
+            ToastNotification toast = new ToastNotification(toastXml);
+            toast.ExpirationTime = DateTime.Now.AddSeconds(1);
+            ToastNotifier.Show(toast);
         }
     }
 }

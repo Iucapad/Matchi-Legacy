@@ -19,6 +19,8 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI;
 using Windows.Storage;
 using Windows.UI.Popups;
+using Windows.UI.Notifications;
+using Windows.Data.Xml.Dom;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -157,6 +159,15 @@ namespace MatchiApp
                 Matchimpro match = (Matchimpro)e.Parameter;
                 match.Save(store.Folder);
                 contentFrame.Navigate(typeof(CurrentMatchPage), match);
+                ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
+                XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
+                XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
+                toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode("Une copie du match a été importée dans Matchi"));
+                IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
+
+                ToastNotification toast = new ToastNotification(toastXml);
+                toast.ExpirationTime = DateTime.Now.AddSeconds(1);
+                ToastNotifier.Show(toast);
             }
         }
     }
