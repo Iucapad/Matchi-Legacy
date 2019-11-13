@@ -72,7 +72,7 @@
                     <Button.Flyout>
                         <MenuFlyout Placement="BottomEdgeAlignedLeft" >
                             <MenuFlyoutItem Icon="AlignLeft" Text = "Notes" />
-                            <MenuFlyoutItem Icon="Save" Text = "Enregistrer" />
+                            <MenuFlyoutItem Icon="Save" Text = "Enregistrer" Click="SaveMatch" />
                         </MenuFlyout>
                     </Button.Flyout>
                 </Button>

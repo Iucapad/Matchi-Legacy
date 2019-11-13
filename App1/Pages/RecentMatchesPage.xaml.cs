@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Windows.Storage.Pickers;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -203,6 +204,15 @@ namespace MatchiApp
                 match.DeleteFile();
                 matchlist.Remove(match);
             }            
+        }
+
+        private async void SaveMatch(object sender, RoutedEventArgs e)
+        {
+            FolderPicker folderPicker = new FolderPicker();
+            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            folderPicker.FileTypeFilter.Add("*");
+            StorageFolder folder = await folderPicker.PickSingleFolderAsync();
+            ((Matchimpro)list_of_matches.SelectedItem).Save(folder);
         }
     }
 }

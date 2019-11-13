@@ -154,7 +154,9 @@ namespace MatchiApp
         {
             if (e.Parameter is Matchimpro)
             {
-                contentFrame.Navigate(typeof(CurrentMatchPage), e.Parameter);
+                Matchimpro match = (Matchimpro)e.Parameter;
+                match.Save(store.Folder);
+                contentFrame.Navigate(typeof(CurrentMatchPage), match);
             }
         }
     }
