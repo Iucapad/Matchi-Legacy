@@ -109,7 +109,6 @@ namespace MatchiApp
             try
             {
                 Matchimpro match = await Matchimpro.ReadFile(file);
-                base.OnFileActivated(args);
                 var rootFrame = new Frame();
                 Window.Current.Content = rootFrame;
                 Window.Current.Activate();
