@@ -106,7 +106,7 @@ namespace MatchiApp
         {
             string filename = $"{Team1}_vs_{Team2}.matchi";
             StorageFile f = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-            if (f != file) DeleteFile();
+            //if (f != file) DeleteFile();
             await FileIO.WriteTextAsync(f, $"{Team1}\n{Team2}\n{Rounds}");
             file = f;
         }
