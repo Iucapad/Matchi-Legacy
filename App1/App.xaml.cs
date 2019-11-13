@@ -7,6 +7,8 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -97,6 +99,28 @@ namespace MatchiApp
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: enregistrez l'état de l'application et arrêtez toute activité en arrière-plan
             deferral.Complete();
+        }
+
+        protected async override void OnFileActivated(FileActivatedEventArgs args)
+        {
+            base.OnFileActivated(args);
+            StorageFile file = (StorageFile) args.Files[0];
+       
+            try
+            {
+                Matchimpro match = await Matchimpro.ReadFile(file);
+                base.OnFileActivated(args);
+                var rootFrame = new Frame();
+                Window.Current.Content = rootFrame;
+                Window.Current.Activate();
+                rootFrame.Navigate(typeof(MainPage), match);
+            }
+            catch (Exception)
+            {
+                MessageDialog error = new MessageDialog("Le fichier sélectionné n'a pas pu être lu.");
+                await error.ShowAsync();
+                this.Exit();
+            }
         }
     }
 }

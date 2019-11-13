@@ -18,6 +18,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI;
 using Windows.Storage;
+using Windows.UI.Popups;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -147,6 +148,14 @@ namespace MatchiApp
             catch (Exception)
             {
                 return; //TODO : Message d'erreur
+            }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is Matchimpro)
+            {
+                contentFrame.Navigate(typeof(CurrentMatchPage), e.Parameter);
             }
         }
     }

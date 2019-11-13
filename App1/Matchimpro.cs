@@ -90,7 +90,14 @@ namespace MatchiApp
             List<Matchimpro> output = new List<Matchimpro>();
             foreach (StorageFile file in files)
             {
-                output.Add(await ReadFile(file));
+                try
+                {
+                    output.Add(await ReadFile(file));
+                }
+                catch (Exception e)
+                {
+                    continue;
+                }
             }
             return output;
         }

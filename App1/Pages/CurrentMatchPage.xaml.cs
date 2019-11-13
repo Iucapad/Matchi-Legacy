@@ -277,7 +277,7 @@ namespace MatchiApp
                 ui_trans1.Opacity = 1;
                 ui_trans2.Opacity = 1;
             }
-            if(source_list_of_categories.Count() == 0)
+            if (source_list_of_categories.Count() == 0)
             {
                 source_list_of_categories.Add("Libre");
                 list_of_categories.SelectedIndex = 0;
