@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using System.Collections.ObjectModel;
 using Windows.UI.Popups;
+using System.Diagnostics;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,6 +27,7 @@ namespace MatchiApp
     public sealed partial class CategoryPage : Page
     {
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
+        private ObservableCollection<string> source_category_list = new ObservableCollection<string>();
         public CategoryPage()
         {
             this.InitializeComponent();
@@ -43,11 +45,13 @@ namespace MatchiApp
 
             StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
             foreach (string category in await FileIO.ReadLinesAsync(cate_file))
-                list_of_categories.Items.Add(category);
+                source_category_list.Add(category);
 
 
-            if (list_of_categories.Items.Count != list_of_categories.Items.Distinct().Count())
+            if (source_category_list.Count != source_category_list.Distinct().Count())
                 return; //TODO : Erreur ?
+
+            list_of_categories.ItemsSource = source_category_list;
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)
@@ -79,13 +83,13 @@ namespace MatchiApp
                 await valuesErrorDialog.ShowAsync();
                 return;
             }
-            if (list_of_categories.Items.Contains(category_name.Text))
+            if (source_category_list.Contains(category_name.Text))
             {
                 valuesErrorDialog.Content = "Ce nom de catégorie existe déjà.";
                 await valuesErrorDialog.ShowAsync();
                 return;
             }
-            list_of_categories.Items.Add(category_name.Text);
+            source_category_list.Add(category_name.Text);
             category_name.Text = "";
             list_of_categories.Visibility = Visibility.Visible;
             page.Children.Remove(add_ui);
@@ -120,7 +124,8 @@ namespace MatchiApp
             ContentDialogResult result = await deleteFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                list_of_categories.Items.RemoveAt(list_of_categories.SelectedIndex);
+                source_category_list.RemoveAt(list_of_categories.SelectedIndex);
+                //TODO: faire en sorte que la listview disparaisse lorsqu'elle est vide car cela engeandre un crash
                 Save_to_file();
             }
         }
@@ -128,7 +133,7 @@ namespace MatchiApp
         private async void Save_to_file() 
         {
             StorageFile file = await store.Folder.CreateFileAsync("Categories.catei", CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(file, string.Join("\n", list_of_categories.Items));
+            await FileIO.WriteTextAsync(file, string.Join("\n", source_category_list));
         }
 
         private void add_cancel_Click(object sender, RoutedEventArgs e)
