@@ -162,7 +162,8 @@ namespace MatchiApp
                 ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
                 XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
                 XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
-                toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode("Une copie du match a été importée dans Matchi"));
+                toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode("Importation du match"));
+                toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode("Le fichier a été copié dans l'application"));
                 IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
 
                 ToastNotification toast = new ToastNotification(toastXml);

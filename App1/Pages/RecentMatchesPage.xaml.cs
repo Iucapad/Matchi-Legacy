@@ -219,7 +219,8 @@ namespace MatchiApp
             ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
             Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
             Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
-            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode("Le match a été enregistré avec succès"));
+            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode("Exportation du match"));
+            toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode("Le fichier de match a été créé avec succès"));
             Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
 
             ToastNotification toast = new ToastNotification(toastXml);

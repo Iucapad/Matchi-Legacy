@@ -42,7 +42,6 @@ namespace MatchiApp
             this.InitializeComponent();
             new_round.Visibility = Visibility.Visible;
             ui_infocard.Visibility = Visibility.Visible;
-            ListInitialization();
             SharedShadow.Receivers.Add(Receiver);            
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
             if (mainFrame.navigationView.MenuItems.Count < 4)
@@ -178,6 +177,8 @@ namespace MatchiApp
             ui_startname2.Text = matchimpro.Team2;
             ui_scoreleft.Text = scoreleft.ToString();
             ui_scoreright.Text = scoreright.ToString();
+            source_list_of_categories.Clear();
+            ListInitialization();
             page.Children.Remove(ui_endround);
             page.Children.Remove(new_round);
             ui_scroll.Visibility = Visibility.Collapsed;
@@ -257,31 +258,37 @@ namespace MatchiApp
 
         private void NextRound(object sender, RoutedEventArgs e)
         {
-            if (!page.Children.Contains(new_round))
-            {                
-                ui_votemessage.Visibility = Visibility.Visible;
-                ui_votebox.Visibility = Visibility.Collapsed;
-                page.Children.Remove(ui_endround);
-                round_value++;
-                page.Children.Add(new_round);
-                round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";                
-                if (ui_trans1.Opacity == 1)
+            if (round_value< matchimpro.Rounds) {
+                if (!page.Children.Contains(new_round))
                 {
-                    scoreleft++;
+                    ui_votemessage.Visibility = Visibility.Visible;
+                    ui_votebox.Visibility = Visibility.Collapsed;
+                    page.Children.Remove(ui_endround);
+                    round_value++;
+                    page.Children.Add(new_round);
+                    round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";
+                    if (ui_trans1.Opacity == 1)
+                    {
+                        scoreleft++;
+                    }
+                    if (ui_trans2.Opacity == 1)
+                    {
+                        scoreright++;
+                    }
+                    ui_scoreleft.Text = scoreleft.ToString();
+                    ui_scoreright.Text = scoreright.ToString();
+                    ui_trans1.Opacity = 1;
+                    ui_trans2.Opacity = 1;
                 }
-                if (ui_trans2.Opacity == 1)
+                if (source_list_of_categories.Count() == 0)
                 {
-                    scoreright++;
+                    source_list_of_categories.Add("Libre");
+                    list_of_categories.SelectedIndex = 0;
                 }
-                ui_scoreleft.Text = scoreleft.ToString();
-                ui_scoreright.Text = scoreright.ToString();
-                ui_trans1.Opacity = 1;
-                ui_trans2.Opacity = 1;
             }
-            if (source_list_of_categories.Count() == 0)
+            else
             {
-                source_list_of_categories.Add("Libre");
-                list_of_categories.SelectedIndex = 0;
+                //TODO Afficher un écran de fin de match avec score final
             }
         }
 
@@ -298,7 +305,7 @@ namespace MatchiApp
             Random rand_index = new Random();
             if (source_list_of_categories.Count() == 0)
                 source_list_of_categories.Add("Libre");
-            list_of_categories.SelectedIndex = rand_index.Next(0, source_list_of_categories.Count() - 1);    
+            list_of_categories.SelectedIndex = rand_index.Next(0, source_list_of_categories.Count());    
         }
     }
 }
