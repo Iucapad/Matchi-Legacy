@@ -53,8 +53,17 @@
               <uap:FileType ContentType="text/plain">.matchi</uap:FileType>
             </uap:SupportedFileTypes>
             <uap:DisplayName>Fichier Matchi</uap:DisplayName>
-            <uap:Logo>matchi_icon.png</uap:Logo>
+            <uap:Logo>matchi_file.png</uap:Logo>
             <uap:EditFlags OpenIsSafe="true"/>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="catei">
+            <uap:SupportedFileTypes>
+              <uap:FileType ContentType="text/plain">.catei</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>Fichier Catei</uap:DisplayName>
+            <uap:Logo>catei_file.png</uap:Logo>
           </uap:FileTypeAssociation>
         </uap:Extension>
       </Extensions>

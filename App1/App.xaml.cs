@@ -105,7 +105,7 @@ namespace MatchiApp
         {
             base.OnFileActivated(args);
             StorageFile file = (StorageFile) args.Files[0];
-       
+            //TODO Prendre en charge l'import de fichier Catei également
             try
             {
                 Matchimpro match = await Matchimpro.ReadFile(file);

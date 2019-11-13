@@ -41,7 +41,10 @@ namespace MatchiApp
             IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
 
             if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
-                return; //TODO : Erreur ?
+            {
+                list_of_categories.Visibility = Visibility.Collapsed;
+                return;
+            }
 
             StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
             foreach (string category in await FileIO.ReadLinesAsync(cate_file))
@@ -115,6 +118,7 @@ namespace MatchiApp
             category_name.Text = "";
             page.Children.Remove(add_ui);
             Save_to_file();
+            list_of_categories.ItemsSource = source_category_list;
             list_of_categories.Visibility = Visibility.Visible;
             empty_message.Visibility = Visibility.Collapsed;
         }
