@@ -32,7 +32,7 @@ namespace MatchiApp
         {
             this.InitializeComponent();
             page.Children.Remove(add_ui);
-            Read_storage();
+            Read_storage();            
         }
 
         private async void Read_storage()//lit le contenu du dossier de stockage
@@ -52,20 +52,42 @@ namespace MatchiApp
                 return; //TODO : Erreur ?
 
             list_of_categories.ItemsSource = source_category_list;
+            if (list_of_categories.Items.Count == 0)
+            {
+                list_of_categories.Visibility = Visibility.Collapsed;                
+            }
+            else
+            {
+                empty_message.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)
         {
-            deletebtn.Visibility = Visibility.Visible;
-            addbtn.Margin = new Thickness(153, 0, 0, 60);
+            if (list_of_categories.Items.Count == 0)
+            {
+                list_of_categories.Visibility = Visibility.Collapsed;
+                empty_message.Visibility = Visibility.Visible;
+                deletebtn.Visibility = Visibility.Collapsed;
+                addbtn.Margin = new Thickness(0, 0, 0, 60);
+            }
+            else if (list_of_categories.SelectedItem == null)
+            {
+                deletebtn.Visibility = Visibility.Collapsed;
+                addbtn.Margin = new Thickness(0, 0, 0, 60);
+            }
+            else
+            {
+                deletebtn.Visibility = Visibility.Visible;
+                addbtn.Margin = new Thickness(153, 0, 0, 60);
+            }
         }
 
         private void Show_addui(object sender, RoutedEventArgs e)
         {
             if (!page.Children.Contains(add_ui))
             {
-                page.Children.Add(add_ui);
-                list_of_categories.Visibility = Visibility.Collapsed;
+                page.Children.Add(add_ui);                
             }
         }
 
@@ -89,11 +111,12 @@ namespace MatchiApp
                 await valuesErrorDialog.ShowAsync();
                 return;
             }
-            source_category_list.Add(category_name.Text);
+            source_category_list.Add(category_name.Text);            
             category_name.Text = "";
-            list_of_categories.Visibility = Visibility.Visible;
             page.Children.Remove(add_ui);
             Save_to_file();
+            list_of_categories.Visibility = Visibility.Visible;
+            empty_message.Visibility = Visibility.Collapsed;
         }
 
         private void Resize(object sender, SizeChangedEventArgs e)
@@ -139,7 +162,6 @@ namespace MatchiApp
         private void add_cancel_Click(object sender, RoutedEventArgs e)
         {
             category_name.Text = "";
-            list_of_categories.Visibility = Visibility.Visible;
             page.Children.Remove(add_ui);
         }
     }

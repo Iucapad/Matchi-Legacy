@@ -58,6 +58,7 @@
                 <TextBlock>Supprimer</TextBlock>
             </StackPanel>
         </Button>
+        <TextBox x:Name="empty_message" Visibility="Visible" TextWrapping="Wrap" IsReadOnly="True" Background="Transparent" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Aucune catégorie enregistrée. Veuillez en créer une pour commencer."></TextBox>
         <Grid x:Name="add_ui" Padding="0,60,0,0">
             <Grid.Transitions>
                 <TransitionCollection>
