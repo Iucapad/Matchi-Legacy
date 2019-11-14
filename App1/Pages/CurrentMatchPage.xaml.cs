@@ -61,17 +61,11 @@ namespace MatchiApp
             StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
 
-                if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
-                    return; //TODO : Erreur ?
+            if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
+                return; //TODO : Erreur ?
 
-                StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
-                foreach (string category in await FileIO.ReadLinesAsync(cate_file))
-                    source_list_of_categories.Add(category);
-
-
-                if (source_list_of_categories.Count != source_list_of_categories.Distinct().Count())
-                    return; //TODO : Erreur ?
-
+            StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
+            source_list_of_categories = new ObservableCollection<string>((await FileIO.ReadLinesAsync(cate_file)).Distinct());
             list_of_categories.ItemsSource = source_list_of_categories;
         }
         private void show(object sender, RoutedEventArgs e)

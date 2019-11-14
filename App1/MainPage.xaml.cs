@@ -164,7 +164,6 @@ namespace MatchiApp
                 XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
                 toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode("Importation du match"));
                 toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode("Le fichier a été copié dans l'application"));
-                IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
 
                 ToastNotification toast = new ToastNotification(toastXml);
                 toast.ExpirationTime = DateTime.Now.AddSeconds(1);
