@@ -75,6 +75,7 @@ namespace MatchiApp
                     source_category_list = new ObservableCollection<string>(source_category_list.Distinct());
                     addbtn.Visibility = Visibility.Visible;
                 }
+                else { return; }
             }
             Save_to_file();
             Refresh_Page();

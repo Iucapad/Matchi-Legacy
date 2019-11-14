@@ -37,31 +37,12 @@ namespace MatchiApp
 
         private async void Create_match(object sender, RoutedEventArgs e)
         {
-            if (nomeq1.Text.Length>30 || nomeq2.Text.Length>30)//les noms dépassent 30 caractères
-            {
-                await new MessageDialog("Les noms d'équipe ne peuvent pas dépasser 30 caractères.").ShowAsync();
-                Clean();
-            }
-            else if(nomeq1.Text.Length == 0 || nomeq2.Text.Length == 0)//les noms n'ont pas été inscrits
-            {
+            if(string.IsNullOrWhiteSpace(nomeq1.Text) || string.IsNullOrWhiteSpace(nomeq2.Text))//les noms n'ont pas été inscrits
                 await new MessageDialog("Vous devez nommer les équipes.").ShowAsync();
-                Clean();
-            }
             else if(nomeq1.Text == nomeq2.Text)//les noms sont identiques
-            {
                 await new MessageDialog("Les équipes doivent porter des noms différents.").ShowAsync();
-                Clean();
-            }
             else//tout est correct
-            {
                 Save();
-            }
-        }
-
-        private void Clean()// vide les champs de sélection
-        {
-            nomeq1.Text = "";
-            nomeq2.Text = "";        
         }
 
         public async void Save()//Sauvegarde les données entrées dans un fichier
@@ -69,30 +50,24 @@ namespace MatchiApp
             if(store.Folder == null)//pas de dossier sélectionné
             {
                 await new MessageDialog("Veuillez sélectionner un emplacement.").ShowAsync();
-                Clean();
+                return;
             }
-            else//dossier sélectionné
+            Matchimpro match = new Matchimpro(nomeq1.Text.Trim(), nomeq2.Text.Trim(), numberofround.SelectedIndex + 1);
+            match.Save(store.Folder);
+
+            MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
+            if (mainFrame.navigationView.MenuItems.Count == 4)
             {
-                Matchimpro match = new Matchimpro(nomeq1.Text, nomeq2.Text, numberofround.SelectedIndex + 1);
-                match.Save(store.Folder);
-
-                MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
-                if (mainFrame.navigationView.MenuItems.Count == 4)
+                mainFrame.navigationView.MenuItems[0] = new NavigationViewItem
                 {
-                    mainFrame.navigationView.MenuItems.RemoveAt(0);
-                    mainFrame.navigationView.MenuItems.Insert(0, new NavigationViewItem
-                    {
-                        Name = "CURRENT",
-                        IsSelected = true,
-                        Content = "Match en cours",
-                        Icon = new SymbolIcon((Symbol)0xE945),
-                        Tag = "currentNav"
-                    });
-                }
-                MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage), match); //renvoie à la page de match
-
+                    Name = "CURRENT",
+                    IsSelected = true,
+                    Content = "Match en cours",
+                    Icon = new SymbolIcon((Symbol)0xE945),
+                    Tag = "currentNav"
+                };
             }
-
+            MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage), match); //renvoie à la page de match
         }
 
         /* CODE NON UTILISE
