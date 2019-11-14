@@ -172,7 +172,7 @@ namespace MatchiApp
             }
             else if (e.Parameter is "catei")
             {
-                contentFrame.Navigate(typeof(CategoryPage));
+                contentFrame.Navigate(typeof(ImportCatei));
             }
         }
     }

@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ImportCateiPage.xaml.cs">
+      <DependentUpon>ImportCateiPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MatchStorage.cs" />
     <Compile Include="Pages\CurrentMatchPage.xaml.cs">
       <DependentUpon>CurrentMatchPage.xaml</DependentUpon>
@@ -216,6 +219,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\ImportCateiPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\CurrentMatchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
