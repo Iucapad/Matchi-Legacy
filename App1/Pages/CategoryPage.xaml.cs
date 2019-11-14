@@ -71,6 +71,27 @@ namespace MatchiApp
                 ErrorDialog.Content = "Des noms de catégorie possédaient plus de 30 caractères dans le fichier, ces dernières ont été supprimées.";
                 await ErrorDialog.ShowAsync();
             }   
+            if (source_category_list.Count != source_category_list.Distinct().Count())
+            {
+                ErrorDialog.Content = "Des doublons sont présents dans le fichier de catégorie, lecture impossible.";
+                ErrorDialog.PrimaryButtonText = "Réparer";
+                ErrorDialog.CloseButtonText = "Fermer";
+                ContentDialogResult result = await ErrorDialog.ShowAsync();
+
+                if (result == ContentDialogResult.Primary)
+                {
+                    ObservableCollection<string> copy = new ObservableCollection<string>();
+
+                    foreach (string cat in source_category_list.Distinct())
+                        copy.Add(cat);
+
+                    source_category_list = copy;
+
+                    Save_to_file();
+                    Refresh_Page();
+                }
+                return;
+            }
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)
@@ -94,30 +115,8 @@ namespace MatchiApp
             }
         }
 
-        private async void Show_addui(object sender, RoutedEventArgs e)
+        private void Show_addui(object sender, RoutedEventArgs e)
         {
-            if(source_category_list.Count != source_category_list.Distinct().Count())
-            {
-                ErrorDialog.Content = "Des doublons sont présents dans le fichier de catégorie, lecture impossible.";
-                ErrorDialog.PrimaryButtonText = "Réparer";
-                ErrorDialog.CloseButtonText = "Fermer";
-                ContentDialogResult result = await ErrorDialog.ShowAsync();
-                
-                if (result == ContentDialogResult.Primary)
-                {
-                    ObservableCollection<string> copy = new ObservableCollection<string>();
-                    
-                    foreach(string cat in source_category_list.Distinct())
-                        copy.Add(cat);
-
-                    source_category_list = copy;
-                    
-                    Save_to_file();
-                    Refresh_Page();
-                }
-                return;
-            }
-
             if (!page.Children.Contains(add_ui))
                 page.Children.Add(add_ui);                 
         }
