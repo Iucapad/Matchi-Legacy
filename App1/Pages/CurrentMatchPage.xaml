@@ -29,7 +29,7 @@
                 <ResourceDictionary x:Key="Light">
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
-                          TintColor="White"
+                          TintColor="#EEEEEE"
                           TintOpacity="0.8"
                           FallbackColor="#DDDDDD"/>
                 </ResourceDictionary>
