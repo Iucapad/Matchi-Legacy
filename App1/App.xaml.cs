@@ -121,7 +121,7 @@ namespace MatchiApp
                     var rootFrame = new Frame();
                     Window.Current.Content = rootFrame;
                     Window.Current.Activate();
-                    rootFrame.Navigate(typeof(CategoryPage));
+                    rootFrame.Navigate(typeof(MainPage), "catei");
                 }
             }
             catch (Exception)

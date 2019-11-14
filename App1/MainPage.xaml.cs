@@ -170,6 +170,10 @@ namespace MatchiApp
                 toast.ExpirationTime = DateTime.Now.AddSeconds(1);
                 ToastNotifier.Show(toast);
             }
+            else if (e.Parameter is "catei")
+            {
+                contentFrame.Navigate(typeof(CategoryPage));
+            }
         }
     }
 }
