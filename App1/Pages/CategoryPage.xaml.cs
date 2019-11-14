@@ -26,9 +26,9 @@ namespace MatchiApp
     /// </summary>
     public sealed partial class CategoryPage : Page
     {
-        private MatchStorage store = new MatchStorage();
-        private ObservableCollection<string> source_category_list = new ObservableCollection<string>();
-        private ContentDialog ErrorDialog = new ContentDialog
+        private MatchStorage store = new MatchStorage(); //lieu de stockage des fichier
+        private ObservableCollection<string> source_category_list = new ObservableCollection<string>(); //liste des catégories bind à la listview
+        private ContentDialog ErrorDialog = new ContentDialog //Squelette de base d'un message d'erreur, à compléter en cas d'erreur
         {
             Title = "Attention",
             Content = "",
@@ -43,42 +43,43 @@ namespace MatchiApp
 
         private async void Read_storage()
         {
-            StorageFolder storageFolder = store.Folder;
-            IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
+            StorageFolder storageFolder = store.Folder; //le dossier courant est le dossier de stockage donné
+            IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync(); //les fichiers dans le dossier courant sont pris
 
-            if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
+            if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))//si le fichier de catégorie n'existe pas, on masque la listview
             {
                 list_of_categories.Visibility = Visibility.Collapsed;
                 return;
             }
 
-            StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
+            StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei"); //on prend le fichier de catégorie
 
             bool verif = false;
             foreach (string category in await FileIO.ReadLinesAsync(cate_file))
             {
-                if (category.Length > 0 && category.Length <= 30)
+                if (category.Length > 0 && category.Length <= 30)//si un ligne est bien écrite, on l'ajoute à la liste
                    source_category_list.Add(category);
 
-                verif = (category.Length < 0 || category.Length > 30) ? true : false;
+                verif = (category.Length < 0 || category.Length > 30) ? true : false; //contrôle de la longueur des lignes
             }
 
             Refresh_Page();
 
-            if (verif)
+            if (verif) //si une ligne possède plus de caractères que prévu
             {
                 Save_to_file();
                 ErrorDialog.Content = "Des noms de catégorie possédaient plus de 30 caractères dans le fichier, ces dernières ont été supprimées.";
                 await ErrorDialog.ShowAsync();
             }   
-            if (source_category_list.Count != source_category_list.Distinct().Count())
+
+            if (source_category_list.Count != source_category_list.Distinct().Count())// si une même catégorie est plusieurs fois dans le fichier
             {
                 ErrorDialog.Content = "Des doublons sont présents dans le fichier de catégorie, lecture impossible.";
                 ErrorDialog.PrimaryButtonText = "Réparer";
                 ErrorDialog.CloseButtonText = "Fermer";
                 ContentDialogResult result = await ErrorDialog.ShowAsync();
 
-                if (result == ContentDialogResult.Primary)
+                if (result == ContentDialogResult.Primary)//réparer le fichier
                 {
                     ObservableCollection<string> copy = new ObservableCollection<string>();
 
@@ -171,7 +172,6 @@ namespace MatchiApp
             if (result == ContentDialogResult.Primary)
             {
                 source_category_list.RemoveAt(list_of_categories.SelectedIndex);
-                //TODO: faire en sorte que la listview disparaisse lorsqu'elle est vide car cela engendre un crash
                 Save_to_file();
             }
         }
