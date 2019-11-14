@@ -108,11 +108,21 @@ namespace MatchiApp
             //TODO Prendre en charge l'import de fichier Catei également
             try
             {
-                Matchimpro match = await Matchimpro.ReadFile(file);
-                var rootFrame = new Frame();
-                Window.Current.Content = rootFrame;
-                Window.Current.Activate();
-                rootFrame.Navigate(typeof(MainPage), match);
+                if (file.Name.Contains(".matchi"))
+                {
+                    Matchimpro match = await Matchimpro.ReadFile(file);
+                    var rootFrame = new Frame();
+                    Window.Current.Content = rootFrame;
+                    Window.Current.Activate();
+                    rootFrame.Navigate(typeof(MainPage), match);
+                }
+                else if (file.Name.Contains(".catei"))
+                {
+                    var rootFrame = new Frame();
+                    Window.Current.Content = rootFrame;
+                    Window.Current.Activate();
+                    rootFrame.Navigate(typeof(CategoryPage));
+                }
             }
             catch (Exception)
             {

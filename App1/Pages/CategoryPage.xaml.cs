@@ -53,10 +53,24 @@ namespace MatchiApp
             }
 
             StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
+
+            bool verif = false;
             foreach (string category in await FileIO.ReadLinesAsync(cate_file))
-                source_category_list.Add(category);
-     
+            {
+                if (category.Length > 0 && category.Length <= 30)
+                   source_category_list.Add(category);
+
+                verif = (category.Length < 0 || category.Length > 30) ? true : false;
+            }
+
             Refresh_Page();
+
+            if (verif)
+            {
+                Save_to_file();
+                ErrorDialog.Content = "Des noms de catégorie possédaient plus de 30 caractères dans le fichier, ces dernières ont été supprimées.";
+                await ErrorDialog.ShowAsync();
+            }   
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)
