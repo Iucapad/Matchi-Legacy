@@ -74,6 +74,7 @@ namespace MatchiApp
 
             if (source_category_list.Count != source_category_list.Distinct().Count())// si une même catégorie est plusieurs fois dans le fichier
             {
+                addbtn.Visibility = Visibility.Collapsed;
                 ErrorDialog.Content = "Des doublons sont présents dans le fichier de catégorie, lecture impossible.";
                 ErrorDialog.PrimaryButtonText = "Réparer";
                 ErrorDialog.CloseButtonText = "Fermer";
@@ -90,6 +91,7 @@ namespace MatchiApp
 
                     Save_to_file();
                     Refresh_Page();
+                    addbtn.Visibility = Visibility.Visible;
                 }
                 return;
             }
