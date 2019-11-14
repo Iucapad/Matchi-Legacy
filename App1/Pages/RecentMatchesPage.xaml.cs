@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -47,9 +47,8 @@ namespace MatchiApp
 
         private async void Read_storage()//lit le contenu du dossier de stockage
         {
-            List<Matchimpro> matchlist = await Matchimpro.ReadFolder(store.Folder);
-            foreach (Matchimpro match in matchlist)
-                this.matchlist.Add(match);
+            matchlist = new ObservableCollection<Matchimpro>(await Matchimpro.ReadFolder(store.Folder));
+            list_of_matches.ItemsSource = matchlist;
             if (matchlist.Count > 0)
             {
                 error_message.Visibility = Visibility.Collapsed;

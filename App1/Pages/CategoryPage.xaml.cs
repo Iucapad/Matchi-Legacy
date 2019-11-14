@@ -53,21 +53,11 @@ namespace MatchiApp
             }
 
             StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei"); //on prend le fichier de catégorie
+            IList<string> data = await FileIO.ReadLinesAsync(cate_file);
+            source_category_list = new ObservableCollection<string>(data.Where(x => !string.IsNullOrEmpty(x) && x.Length <= 30));
 
-            bool verif = false;
-            foreach (string category in await FileIO.ReadLinesAsync(cate_file))
+            if (data.Count != source_category_list.Count) //si une ligne possède plus de caractères que prévu
             {
-                if (category.Length > 0 && category.Length <= 30)//si un ligne est bien écrite, on l'ajoute à la liste
-                   source_category_list.Add(category);
-
-                verif = (category.Length < 0 || category.Length > 30) ? true : false; //contrôle de la longueur des lignes
-            }
-
-            Refresh_Page();
-
-            if (verif) //si une ligne possède plus de caractères que prévu
-            {
-                Save_to_file();
                 ErrorDialog.Content = "Des noms de catégorie possédaient plus de 30 caractères dans le fichier, ces dernières ont été supprimées.";
                 await ErrorDialog.ShowAsync();
             }   
@@ -82,19 +72,12 @@ namespace MatchiApp
 
                 if (result == ContentDialogResult.Primary)//réparer le fichier
                 {
-                    ObservableCollection<string> copy = new ObservableCollection<string>();
-
-                    foreach (string cat in source_category_list.Distinct())
-                        copy.Add(cat);
-
-                    source_category_list = copy;
-
-                    Save_to_file();
-                    Refresh_Page();
+                    source_category_list = new ObservableCollection<string>(source_category_list.Distinct());
                     addbtn.Visibility = Visibility.Visible;
                 }
-                return;
             }
+            Save_to_file();
+            Refresh_Page();
         }
 
         private void Selection(object sender, SelectionChangedEventArgs e)
