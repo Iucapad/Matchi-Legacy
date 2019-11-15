@@ -33,6 +33,10 @@ namespace MatchiApp
         private Matchimpro matchimpro;
         private ObservableCollection<string> source_list_of_categories = new ObservableCollection<string>();
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
+        private DispatcherTimer timer = new DispatcherTimer();
+        private ObservableCollection<string> source_time_choice = new ObservableCollection<string>();
+        private int min;
+        private int sec;
         int round_value = 1;
         int scoreleft = 0;
         int scoreright = 0;
@@ -54,7 +58,12 @@ namespace MatchiApp
                     Icon = new SymbolIcon((Symbol)0xE945),
                     Tag = "currentNav"                    
                 });
-            }            
+            }
+            for (int i = 1; i <= 10; i++)
+                source_time_choice.Add(i+" min");
+            timer_selection.ItemsSource = source_time_choice;
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timerdown;
         }
         private async void ListInitialization()
         {
@@ -68,7 +77,7 @@ namespace MatchiApp
             source_list_of_categories = new ObservableCollection<string>((await FileIO.ReadLinesAsync(cate_file)).Distinct());
             list_of_categories.ItemsSource = source_list_of_categories;
         }
-        private void show(object sender, RoutedEventArgs e)
+        private void show()
         {
             if (!page.Children.Contains(ui_endround))
             {
@@ -133,7 +142,7 @@ namespace MatchiApp
 
         private async void Start_click(object sender, RoutedEventArgs e)
         {
-            if(list_of_categories.SelectedItem is null)
+            if(list_of_categories.SelectedItem is null || timer_selection.SelectedItem is null)
             {
                 ContentDialog someNullValuesDialog = new ContentDialog
                 {
@@ -148,6 +157,9 @@ namespace MatchiApp
                 ui_catname.Text = list_of_categories.SelectedItem.ToString();
                 page.Children.Remove(new_round);
                 source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
+                sec = 0;
+                min = timer_selection.SelectedIndex+1;
+                timer.Start();
             }
         }
 
@@ -300,6 +312,24 @@ namespace MatchiApp
             if (source_list_of_categories.Count() == 0)
                 source_list_of_categories.Add("Libre");
             list_of_categories.SelectedIndex = rand_index.Next(0, source_list_of_categories.Count());    
+        }
+
+        private void timerdown(object sender, object e)
+        {
+            if (min == 0 && sec == 0)
+            {
+                timer.Stop();
+                show();
+                return;
+            }
+        
+            if (sec == 0)
+            {
+                min--;
+                sec = 60;
+            }
+            sec--;
+            time_left.Text = min + "min et " + sec + "s";
         }
     }
 }

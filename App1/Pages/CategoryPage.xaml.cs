@@ -60,7 +60,7 @@ namespace MatchiApp
             {
                 ErrorDialog.Content = "Des noms de catégorie possédaient plus de 30 caractères dans le fichier, ces dernières ont été supprimées.";
                 await ErrorDialog.ShowAsync();
-            }   
+            }
 
             if (source_category_list.Count != source_category_list.Distinct().Count())// si une même catégorie est plusieurs fois dans le fichier
             {

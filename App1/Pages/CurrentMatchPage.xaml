@@ -138,7 +138,6 @@
         <TextBlock x:Name="match_name" Text="Match"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <ScrollViewer x:Name="ui_scroll" Visibility="Collapsed" VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,100,0,160">
             <StackPanel>
-                <Button Content="Next" Width="50" Height="25" Padding="0" Margin="30,60,0,0" VerticalAlignment="Top" Click="show"></Button>
                 <Grid>
                     <Grid.Resources>
                         <ThemeShadow x:Name="SharedShadow" />
@@ -189,7 +188,7 @@
                     <TextBlock x:Name="ui_catname" Text="Catégorie" FontSize="24" FontWeight="SemiBold" FontFamily="Bahnschrift" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,60"></TextBlock>
                     <StackPanel x:Name="ui_nbjouteurs" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,30,150,120">
                         <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="32" Padding="0,0,10,0" Text="&#xE916;"></TextBlock>
-                        <TextBlock Text="2:00" FontWeight="SemiBold" FontFamily="Bahnschrift" Padding="0,6" FontSize="24"></TextBlock>
+                        <TextBlock Text="" FontWeight="SemiBold" FontFamily="Bahnschrift" Padding="0,6" FontSize="24" Name="time_left"></TextBlock>
                     </StackPanel>
                 </Grid>
             </StackPanel>
