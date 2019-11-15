@@ -36,11 +36,18 @@ namespace MatchiApp
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
         private DispatcherTimer timer = new DispatcherTimer();
         private ObservableCollection<string> source_time_choice = new ObservableCollection<string>();
+        private ContentDialog ErrorDialog = new ContentDialog //Squelette de base d'un message d'erreur, à compléter en cas d'erreur
+        {
+            Title = "Attention",
+            Content = "",
+            CloseButtonText = "Ok"
+        };
         private int min;
         private int sec;
         int maxtime;
         int curtime=0;
         float comptime=0;
+        bool in_pause = false;
         int round_value = 1;
         int scoreleft = 0;
         int scoreright = 0;
@@ -68,6 +75,7 @@ namespace MatchiApp
             timer_selection.ItemsSource = source_time_choice;
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timerdown;
+            ui_progressbar.Foreground = new SolidColorBrush(Colors.White);
         }
         private async void ListInitialization()
         {
@@ -358,7 +366,44 @@ namespace MatchiApp
             time_left.Text = min + "min " + sec + "s";
             if (min == 0 && sec == 10)
             {
-                ui_progressbar.Foreground = new SolidColorBrush (Colors.DarkOliveGreen);
+                ui_progressbar.Foreground = new SolidColorBrush (Colors.Red);
+            }
+        }
+
+        private void pause_timer(object sender, RoutedEventArgs e)
+        {
+            if (!in_pause)
+            {
+                timer.Stop();
+                ui_progressbar.Foreground = new SolidColorBrush(Colors.LimeGreen);
+                in_pause = true;
+            }
+            else
+            {
+                timer.Start();
+                ui_progressbar.Foreground = new SolidColorBrush(Colors.White);
+                in_pause = false;
+            }
+        }
+
+        private async void stop_timer(object sender, RoutedEventArgs e)
+        {
+            ErrorDialog.Content = "Êtes-vous sûr(e) de vouloir mettre fin à cette manche ?";
+            ErrorDialog.PrimaryButtonText = "Oui";
+            ErrorDialog.CloseButtonText = "Annuler";
+            ui_progressbar.Foreground = new SolidColorBrush(Colors.LimeGreen);
+            timer.Stop();
+            ContentDialogResult result = await ErrorDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                ui_progressbar.Foreground = new SolidColorBrush(Colors.Yellow);
+                ui_progressbar.Value = 100;
+                show();
+            }
+            else
+            {
+                ui_progressbar.Foreground = new SolidColorBrush(Colors.White);
+                timer.Start();
             }
         }
     }
