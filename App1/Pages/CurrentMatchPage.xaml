@@ -136,7 +136,7 @@
     </Page.Resources>
     <Grid x:Name="page" Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock x:Name="match_name" Text="Match"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
-        <ScrollViewer x:Name="ui_scroll" Visibility="Visible" VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,100,0,190">
+        <ScrollViewer x:Name="ui_scroll" Visibility="Visible" VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0, 80, 0, 60">
             <StackPanel>
                 <Grid>
                     <Grid.Resources>
@@ -190,14 +190,14 @@
                         <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="32" Padding="0,0,10,0" Text="&#xE916;"></TextBlock>
                         <TextBlock x:Name="ui_matchlength" Text="2:00" FontWeight="SemiBold" FontFamily="Bahnschrift" Padding="0,6" FontSize="24"></TextBlock>
                     </StackPanel>
-                    <Grid HorizontalAlignment="Center" Margin="0,80,0,0">
-                        <Button x:Name="ui_pausetimer"  FontFamily="Segoe MDL2 Assets" FontSize="20" Content="&#xE769;" HorizontalAlignment="Left" Margin="0,0,60,0" Width="50" Height="50" CornerRadius="25"></Button>
-                        <Button x:Name="ui_stoptimer" FontFamily="Segoe MDL2 Assets" FontSize="18" Content="&#xE71A;" HorizontalAlignment="Right" Margin="60,0,0,0" Width="50" Height="50" CornerRadius="25"></Button>
+                    <Grid x:Name="ui_controlstimer" HorizontalAlignment="Center" Margin="0,100,0,0">
+                        <Button x:Name="ui_pausetimer" FontWeight="Bold" FontFamily="Segoe MDL2 Assets" FontSize="20" Content="&#xE769;" HorizontalAlignment="Left" Margin="0,0,60,-30" Width="50" Height="50" CornerRadius="25"></Button>
+                        <Button x:Name="ui_stoptimer" FontWeight="Bold" FontFamily="Segoe MDL2 Assets" FontSize="18" Content="&#xE71A;" HorizontalAlignment="Right" Margin="60,0,0,-30" Width="50" Height="50" CornerRadius="25"></Button>
                     </Grid>
-                </Grid>                
-                <Grid x:Name="ui_progressinfo" HorizontalAlignment="Left" Margin="150,0,0,60">
+                </Grid>
+                <Grid x:Name="ui_progressinfo" HorizontalAlignment="Center" Margin="0, 30, 0, 60">
                     <TextBlock Text="" Padding="0,8,0,0" FontWeight="SemiBold" HorizontalAlignment="Center" FontFamily="Bahnschrift" FontSize="24" x:Name="time_left"></TextBlock>
-                    <ProgressBar x:Name="ui_progressbar" Foreground="#5C723B" Opacity="0.5" Height="20" Width="300" CornerRadius="10" Value="0" />
+                    <ProgressBar x:Name="ui_progressbar" Foreground="RoyalBlue" Opacity="0.4" Height="20" Width="300" CornerRadius="10" Value="0" />
                 </Grid>                
             </StackPanel>
         </ScrollViewer>

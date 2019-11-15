@@ -10,6 +10,7 @@ using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -168,11 +169,14 @@ namespace MatchiApp
                 page.Children.Remove(new_round);
                 source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
                 ui_matchlength.Text = $"{timer_selection.SelectedIndex + 1}:00";
+                ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);                
                 sec = 0;
                 min = timer_selection.SelectedIndex+1;
                 maxtime = 60 * min;
                 curtime = 0;
                 timer.Start();
+                ui_progressinfo.Visibility = Visibility.Visible;
+                ui_controlstimer.Visibility = Visibility.Visible;
             }
         }
 
@@ -331,8 +335,11 @@ namespace MatchiApp
         {
             if (min == 0 && sec == 0)
             {
+                ui_progressbar.Value = 0;
                 timer.Stop();
                 show();
+                ui_controlstimer.Visibility = Visibility.Collapsed;
+                ui_progressinfo.Visibility = Visibility.Collapsed;
                 return;
             }
             else
@@ -349,6 +356,10 @@ namespace MatchiApp
             }
             sec--;            
             time_left.Text = min + "min " + sec + "s";
+            if (min == 0 && sec == 10)
+            {
+                ui_progressbar.Foreground = new SolidColorBrush (Colors.DarkOliveGreen);
+            }
         }
     }
 }
