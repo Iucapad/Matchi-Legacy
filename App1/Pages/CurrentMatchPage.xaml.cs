@@ -37,6 +37,9 @@ namespace MatchiApp
         private ObservableCollection<string> source_time_choice = new ObservableCollection<string>();
         private int min;
         private int sec;
+        int maxtime;
+        int curtime=0;
+        float comptime=0;
         int round_value = 1;
         int scoreleft = 0;
         int scoreright = 0;
@@ -96,29 +99,34 @@ namespace MatchiApp
         {
             if (((Frame)).ActualWidth < 750)
             {
-                ui_scroll.Margin = new Thickness(0, 60, 0, 100);
-                ui_container.Orientation = Orientation.Vertical;
-                ui_container.HorizontalAlignment = HorizontalAlignment.Stretch;
-                ui_container.Padding = new Thickness(30,5,30,5);
-                ui_vs.Height = 25;
-                ui_vs.CornerRadius = new CornerRadius(15);
-                ui_vs.Padding = new Thickness(2);
-                ui_leftcard.Height = 125;
-                ui_leftcard.HorizontalAlignment = HorizontalAlignment.Stretch;
-                ui_leftcard.Width = double.NaN;
-                ui_rightcard.Height = 125;
-                ui_rightcard.HorizontalAlignment = HorizontalAlignment.Stretch;
-                ui_rightcard.Width = double.NaN;
-                ui_leftname.TextAlignment = TextAlignment.Left;
-                ui_rightname.TextAlignment = TextAlignment.Left;
-                ui_catname.HorizontalAlignment = HorizontalAlignment.Center;
-                ui_catname.Margin = new Thickness(0, 10, 0, 60);
-                ui_nbjouteurs.HorizontalAlignment = HorizontalAlignment.Center;
-                ui_nbjouteurs.Margin = new Thickness(0, 60, 0, 20);
+                if (ui_container.Orientation == Orientation.Horizontal)
+                {
+                    ui_scroll.Margin = new Thickness(0, 60, 0, 60);
+                    ui_container.Orientation = Orientation.Vertical;
+                    ui_container.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    ui_container.Padding = new Thickness(30, 5, 30, 5);
+                    ui_vs.Height = 25;
+                    ui_vs.CornerRadius = new CornerRadius(15);
+                    ui_vs.Padding = new Thickness(2);
+                    ui_leftcard.Height = 125;
+                    ui_leftcard.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    ui_leftcard.Width = double.NaN;
+                    ui_rightcard.Height = 125;
+                    ui_rightcard.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    ui_rightcard.Width = double.NaN;
+                    ui_leftname.TextAlignment = TextAlignment.Left;
+                    ui_rightname.TextAlignment = TextAlignment.Left;
+                    ui_catname.Margin = new Thickness(30, 10, 0, 60);
+                    ui_nbjouteurs.Margin = new Thickness(0, 0, 30, 85);
+                    ui_progressinfo.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    ui_progressbar.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    ui_progressbar.Width = double.NaN;
+                    ui_progressinfo.Margin = new Thickness(35, 30, 35, 0);
+                }
             }
-            else
+            else if (ui_container.Orientation == Orientation.Vertical)
             {
-                ui_scroll.Margin = new Thickness(0, 100, 0, 0);
+                ui_scroll.Margin = new Thickness(0, 80, 0, 60);
                 ui_container.Orientation = Orientation.Horizontal;
                 ui_container.HorizontalAlignment = HorizontalAlignment.Center;
                 ui_container.Padding = new Thickness(20);
@@ -133,16 +141,18 @@ namespace MatchiApp
                 ui_rightcard.Width = 300;
                 ui_leftname.TextAlignment = TextAlignment.Center;
                 ui_rightname.TextAlignment = TextAlignment.Center;
-                ui_catname.HorizontalAlignment = HorizontalAlignment.Left;
-                ui_catname.Margin = new Thickness(120, 30, 0, 60);
-                ui_nbjouteurs.HorizontalAlignment = HorizontalAlignment.Right;
-                ui_nbjouteurs.Margin = new Thickness(0, 30, 150, 120);
+                ui_catname.Margin = new Thickness(120, 30, 0, 0);
+                ui_nbjouteurs.Margin = new Thickness(0, 0, 150, 65);
+                ui_progressinfo.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_progressbar.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_progressbar.Width = 300;
+                ui_progressinfo.Margin = new Thickness(0, 30, 0, 60);
             }
         }
 
         private async void Start_click(object sender, RoutedEventArgs e)
         {
-            if(list_of_categories.SelectedItem is null || timer_selection.SelectedItem is null)
+            if (list_of_categories.SelectedItem is null || timer_selection.SelectedItem is null)
             {
                 ContentDialog someNullValuesDialog = new ContentDialog
                 {
@@ -157,8 +167,11 @@ namespace MatchiApp
                 ui_catname.Text = list_of_categories.SelectedItem.ToString();
                 page.Children.Remove(new_round);
                 source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
+                ui_matchlength.Text = $"{timer_selection.SelectedIndex + 1}:00";
                 sec = 0;
                 min = timer_selection.SelectedIndex+1;
+                maxtime = 60 * min;
+                curtime = 0;
                 timer.Start();
             }
         }
@@ -322,14 +335,20 @@ namespace MatchiApp
                 show();
                 return;
             }
+            else
+            {
+                curtime++;
+                comptime = (float)curtime / (float)maxtime;
+                ui_progressbar.Value = comptime * 100;
+            }
         
             if (sec == 0)
             {
                 min--;
                 sec = 60;
             }
-            sec--;
-            time_left.Text = min + "min et " + sec + "s";
+            sec--;            
+            time_left.Text = min + "min " + sec + "s";
         }
     }
 }

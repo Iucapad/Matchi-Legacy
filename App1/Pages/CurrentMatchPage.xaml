@@ -136,7 +136,7 @@
     </Page.Resources>
     <Grid x:Name="page" Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock x:Name="match_name" Text="Match"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
-        <ScrollViewer x:Name="ui_scroll" Visibility="Collapsed" VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,100,0,160">
+        <ScrollViewer x:Name="ui_scroll" Visibility="Visible" VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,100,0,190">
             <StackPanel>
                 <Grid>
                     <Grid.Resources>
@@ -186,11 +186,19 @@
                 </Grid>
                 <Grid x:Name="ui_roundinfos">
                     <TextBlock x:Name="ui_catname" Text="Catégorie" FontSize="24" FontWeight="SemiBold" FontFamily="Bahnschrift" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,60"></TextBlock>
-                    <StackPanel x:Name="ui_nbjouteurs" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,30,150,120">
+                    <StackPanel x:Name="ui_nbjouteurs" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 150, 65">
                         <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="32" Padding="0,0,10,0" Text="&#xE916;"></TextBlock>
-                        <TextBlock Text="" FontWeight="SemiBold" FontFamily="Bahnschrift" Padding="0,6" FontSize="24" Name="time_left"></TextBlock>
+                        <TextBlock x:Name="ui_matchlength" Text="2:00" FontWeight="SemiBold" FontFamily="Bahnschrift" Padding="0,6" FontSize="24"></TextBlock>
                     </StackPanel>
-                </Grid>
+                    <Grid HorizontalAlignment="Center" Margin="0,80,0,0">
+                        <Button x:Name="ui_pausetimer"  FontFamily="Segoe MDL2 Assets" FontSize="20" Content="&#xE769;" HorizontalAlignment="Left" Margin="0,0,60,0" Width="50" Height="50" CornerRadius="25"></Button>
+                        <Button x:Name="ui_stoptimer" FontFamily="Segoe MDL2 Assets" FontSize="18" Content="&#xE71A;" HorizontalAlignment="Right" Margin="60,0,0,0" Width="50" Height="50" CornerRadius="25"></Button>
+                    </Grid>
+                </Grid>                
+                <Grid x:Name="ui_progressinfo" HorizontalAlignment="Left" Margin="150,0,0,60">
+                    <TextBlock Text="" Padding="0,8,0,0" FontWeight="SemiBold" HorizontalAlignment="Center" FontFamily="Bahnschrift" FontSize="24" x:Name="time_left"></TextBlock>
+                    <ProgressBar x:Name="ui_progressbar" Foreground="#5C723B" Opacity="0.5" Height="20" Width="300" CornerRadius="10" Value="0" />
+                </Grid>                
             </StackPanel>
         </ScrollViewer>
         <Grid x:Name="ui_endround" BorderBrush="#303030" BorderThickness="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="10" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,60">
@@ -250,7 +258,7 @@
                         </Button>
                         <ComboBox x:Name="list_of_categories" HorizontalAlignment="Center" CornerRadius="4" Margin="0,20,0,0" Height="35" Width="300"/>
                     </Grid>
-                    <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Height="60" Header="Durée" Width="300" Name="timer_selection"/>
+                    <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Height="60" Header="Durée" Width="300" x:Name="timer_selection"/>
                 </StackPanel>
             </ScrollViewer>
             <Button x:Name="startbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start_click">
