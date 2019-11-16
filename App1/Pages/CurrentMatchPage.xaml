@@ -259,6 +259,7 @@
                         <ComboBox x:Name="list_of_categories" HorizontalAlignment="Center" CornerRadius="4" Margin="0,20,0,0" Height="35" Width="300"/>
                     </Grid>
                     <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Height="60" Header="Durée" Width="300" x:Name="timer_selection"/>
+                    <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Height="60" Header="Nombre de fois" Width="300" x:Name="times_selection"/>
                 </StackPanel>
             </ScrollViewer>
             <Button x:Name="startbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start_click">

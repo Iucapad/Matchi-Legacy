@@ -36,6 +36,7 @@ namespace MatchiApp
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
         private DispatcherTimer timer = new DispatcherTimer();
         private ObservableCollection<string> source_time_choice = new ObservableCollection<string>();
+        private List<string> source_nbre_times = new List<string>();
         private ContentDialog ErrorDialog = new ContentDialog //Squelette de base d'un message d'erreur, à compléter en cas d'erreur
         {
             Title = "Attention",
@@ -51,6 +52,7 @@ namespace MatchiApp
         int round_value = 1;
         int scoreleft = 0;
         int scoreright = 0;
+        int times;
 
         public CurrentMatchPage()
         {
@@ -71,8 +73,12 @@ namespace MatchiApp
                 });
             }
             for (int i = 1; i <= 10; i++)
-                source_time_choice.Add(i+" min");
+            {
+                source_time_choice.Add(i + " min");
+                source_nbre_times.Add(i + " fois");
+            }         
             timer_selection.ItemsSource = source_time_choice;
+            times_selection.ItemsSource = source_nbre_times;
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timerdown;
             ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
@@ -161,7 +167,7 @@ namespace MatchiApp
 
         private async void Start_click(object sender, RoutedEventArgs e)
         {
-            if (list_of_categories.SelectedItem is null || timer_selection.SelectedItem is null)
+            if (list_of_categories.SelectedItem is null || timer_selection.SelectedItem is null || times_selection.SelectedItem is null)
             {
                 ContentDialog someNullValuesDialog = new ContentDialog
                 {
@@ -176,12 +182,13 @@ namespace MatchiApp
                 ui_catname.Text = list_of_categories.SelectedItem.ToString();
                 page.Children.Remove(new_round);
                 source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
-                ui_matchlength.Text = $"{timer_selection.SelectedIndex + 1}:00";
+                ui_matchlength.Text = $"{times_selection.SelectedIndex + 1} x {timer_selection.SelectedIndex + 1}:00";
                 ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);                
                 sec = 0;
                 min = timer_selection.SelectedIndex+1;
                 maxtime = 60 * min;
                 curtime = 0;
+                times = times_selection.SelectedIndex + 1;
                 timer.Start();
                 ui_progressinfo.Visibility = Visibility.Visible;
                 ui_controlstimer.Visibility = Visibility.Visible;
@@ -339,16 +346,36 @@ namespace MatchiApp
             list_of_categories.SelectedIndex = rand_index.Next(0, source_list_of_categories.Count());    
         }
 
-        private void timerdown(object sender, object e)
+        private async void timerdown(object sender, object e)
         {
             if (min == 0 && sec == 0)
             {
+                times--;
                 ui_progressbar.Value = 0;
                 timer.Stop();
-                show();
-                ui_controlstimer.Visibility = Visibility.Collapsed;
-                ui_progressinfo.Visibility = Visibility.Collapsed;
-                return;
+                if(times == 0)
+                {
+                    show();
+                    ui_controlstimer.Visibility = Visibility.Collapsed;
+                    ui_progressinfo.Visibility = Visibility.Collapsed;
+                    return;
+                }
+                else
+                {
+                    ErrorDialog.Title = "Tenez-vous prêt !";
+                    ErrorDialog.Content = "La prochaine partie de " + (timer_selection.SelectedValue) + " va commencer. Il reste " + times + " passage(s) avant la fin de la manche. Cliquez sur Lancer lorsque vous êtes prêt.";
+                    ErrorDialog.CloseButtonText = "";
+                    ErrorDialog.PrimaryButtonText = "Lancer";
+                    ContentDialogResult result = await ErrorDialog.ShowAsync();
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        min = timer_selection.SelectedIndex + 1;
+                        sec = 0;
+                        curtime = 0;
+                        ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
+                        timer.Start();
+                    }
+                }
             }
             else
             {
