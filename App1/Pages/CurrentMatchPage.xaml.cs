@@ -75,7 +75,7 @@ namespace MatchiApp
             timer_selection.ItemsSource = source_time_choice;
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timerdown;
-            ui_progressbar.Foreground = new SolidColorBrush(Colors.White);
+            ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
         }
         private async void ListInitialization()
         {
@@ -381,7 +381,7 @@ namespace MatchiApp
             else
             {
                 timer.Start();
-                ui_progressbar.Foreground = new SolidColorBrush(Colors.White);
+                ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
                 in_pause = false;
             }
         }
@@ -402,7 +402,7 @@ namespace MatchiApp
             }
             else
             {
-                ui_progressbar.Foreground = new SolidColorBrush(Colors.White);
+                ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
                 timer.Start();
             }
         }
