@@ -75,10 +75,12 @@ namespace MatchiApp
             for (int i = 1; i <= 10; i++)
             {
                 source_time_choice.Add(i + " min");
-                source_nbre_times.Add(i + " fois");
+                source_nbre_times.Add(i.ToString());
             }         
             timer_selection.ItemsSource = source_time_choice;
             times_selection.ItemsSource = source_nbre_times;
+            timer_selection.SelectedIndex = 0;
+            times_selection.SelectedIndex = 0;
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timerdown;
             ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
@@ -182,7 +184,14 @@ namespace MatchiApp
                 ui_catname.Text = list_of_categories.SelectedItem.ToString();
                 page.Children.Remove(new_round);
                 source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
-                ui_matchlength.Text = $"{times_selection.SelectedIndex + 1} x {timer_selection.SelectedIndex + 1}:00";
+                if (times_selection.SelectedIndex>0)
+                {
+                    ui_matchlength.Text = $"{times_selection.SelectedIndex + 1} x {timer_selection.SelectedIndex + 1}:00";
+                }
+                else
+                {
+                    ui_matchlength.Text = $"{timer_selection.SelectedIndex + 1}:00";
+                }                
                 ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);                
                 sec = 0;
                 min = timer_selection.SelectedIndex+1;
