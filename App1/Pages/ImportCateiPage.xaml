@@ -38,7 +38,7 @@
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock Text="Aperçu du fichier"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <ListView x:Name="list_of_categories" CornerRadius="4" Margin="0,60,0,160" BorderBrush="#454545" BorderThickness="1" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}"  Visibility="Visible" Width="auto" MaxWidth="300" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-        <Button x:Name="add_save" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI">
+        <Button x:Name="add_save" CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI">
             <StackPanel>
                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE896;" FontSize="24" HorizontalAlignment="Center"/>
                 <TextBlock>Importer</TextBlock>

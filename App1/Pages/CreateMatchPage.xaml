@@ -341,7 +341,7 @@
                 <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Header="Nombre de manches" Height="60" Width="300" Name="numberofround"/>
             </StackPanel>
         </ScrollViewer>
-        <Button Style="{ThemeResource ButtonRevealStyle}" CornerRadius="4" Margin="60" Height="80" Width="150" Click="Create_match" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+        <Button Style="{ThemeResource ButtonRevealStyle}" CornerRadius="8" Margin="60" Height="80" Width="150" Click="Create_match" HorizontalAlignment="Center" VerticalAlignment="Bottom">
             <StackPanel>
                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" FontSize="24" HorizontalAlignment="Center"/>
                 <TextBlock>Créer le match</TextBlock>

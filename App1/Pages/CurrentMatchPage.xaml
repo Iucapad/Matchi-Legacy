@@ -248,9 +248,9 @@
             <TextBlock x:Name="round_nb" Text="Manche 1/x"  FontFamily="Segoe UI" HorizontalAlignment="Center" FontWeight="Black" Margin="0,25,0,0" FontSize="24"></TextBlock>
             <ScrollViewer VerticalAlignment="Center" VerticalScrollMode="Enabled"  Margin="0,100,0,200">
                 <StackPanel>
-                    <Grid Height="120" Width="320" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="4">
+                    <Grid Height="108" Width="320" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="8">
                         <TextBlock Margin="10,0,0,0" Text="Catégorie"></TextBlock>
-                        <Button CornerRadius="4" Margin="0,0,0,10" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="50" Width="300" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI" Click="random_category">
+                        <Button CornerRadius="4" Margin="0,0,0,5" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="40" Width="300" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI" Click="random_category">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xF133;" FontSize="24" Padding="0,0,15,0" HorizontalAlignment="Center"/>
                                 <TextBlock>Aléatoire</TextBlock>
@@ -262,7 +262,7 @@
                     <ComboBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" Height="60" Header="Nombre de fois" Width="300" x:Name="times_selection"/>
                 </StackPanel>
             </ScrollViewer>
-            <Button x:Name="startbtn" CornerRadius="4" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start_click">
+            <Button x:Name="startbtn" CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start_click">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE768;" FontSize="24" HorizontalAlignment="Center"/>
                     <TextBlock>Lancer</TextBlock>
