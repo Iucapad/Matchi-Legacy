@@ -97,7 +97,7 @@ namespace MatchiApp
             source_list_of_categories = new ObservableCollection<string>((await FileIO.ReadLinesAsync(cate_file)).Distinct());
             list_of_categories.ItemsSource = source_list_of_categories;
         }
-        private void show()
+        private void EndRound()
         {
             if (!page.Children.Contains(ui_endround))
             {
@@ -226,6 +226,7 @@ namespace MatchiApp
             ui_scoreright.Text = scoreright.ToString();
             source_list_of_categories.Clear();
             ListInitialization();
+            page.Children.Remove(ui_interlude);
             page.Children.Remove(ui_endround);
             page.Children.Remove(new_round);
             ui_scroll.Visibility = Visibility.Collapsed;
@@ -236,6 +237,8 @@ namespace MatchiApp
             }
             notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, $"Notes du match {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);
             round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";
+            timer_selection.SelectedIndex = 0;
+            times_selection.SelectedIndex = 0;
         }
 
         private void LeftCardClick(object sender, PointerRoutedEventArgs e)
@@ -272,7 +275,7 @@ namespace MatchiApp
         private void HideInfo(object sender, RoutedEventArgs e)
         {
             page.Children.Remove(ui_infocard);
-            if (!page.Children.Contains(ui_endround))
+            if (!page.Children.Contains(ui_endround) && !page.Children.Contains(ui_interlude))
             {
                 ui_trans1.Opacity = 1;
                 ui_trans2.Opacity = 1;
@@ -361,29 +364,21 @@ namespace MatchiApp
             {
                 times--;
                 ui_progressbar.Value = 0;
+                ui_controlstimer.Visibility = Visibility.Collapsed;
+                ui_progressinfo.Visibility = Visibility.Collapsed;
                 timer.Stop();
                 if(times == 0)
                 {
-                    show();
-                    ui_controlstimer.Visibility = Visibility.Collapsed;
-                    ui_progressinfo.Visibility = Visibility.Collapsed;
+                    EndRound();                    
                     return;
                 }
                 else
                 {
-                    ErrorDialog.Title = "Tenez-vous prêt !";
-                    ErrorDialog.Content = "La prochaine partie de " + (timer_selection.SelectedValue) + " va commencer. Il reste " + times + " passage(s) avant la fin de la manche.";
-                    ErrorDialog.CloseButtonText = "";
-                    ErrorDialog.PrimaryButtonText = "Démarrer";
-                    ContentDialogResult result = await ErrorDialog.ShowAsync();
-                    if (result == ContentDialogResult.Primary)
-                    {
-                        min = timer_selection.SelectedIndex + 1;
-                        sec = 0;
-                        curtime = 0;
-                        ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
-                        timer.Start();
-                    }
+                    page.Children.Remove(ui_infocard);
+                    page.Children.Add(ui_interlude);
+                    ui_trans1.Opacity = 0.4;
+                    ui_trans2.Opacity = 0.4;
+                    ui_intermessage.Text = "La prochaine partie de " + (timer_selection.SelectedValue) + " va commencer. Il reste " + times + " passage(s) avant la fin de la manche.";
                 }
             }
             else
@@ -437,13 +432,28 @@ namespace MatchiApp
                 ui_controlstimer.Visibility = Visibility.Collapsed;
                 ui_progressinfo.Visibility = Visibility.Collapsed;
                 ui_progressbar.Value = 100;
-                show();
+                EndRound();
             }
             else
             {
                 ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
                 timer.Start();
             }
+        }
+
+        private void ContinueRound(object sender, RoutedEventArgs e)
+        {           
+            min = timer_selection.SelectedIndex + 1;
+            sec = 0;
+            curtime = 0;
+            ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
+            timer.Start();
+            ui_trans1.Opacity = 1;
+            ui_trans2.Opacity = 1;
+            time_left.Text ="";
+            page.Children.Remove(ui_interlude);
+            ui_controlstimer.Visibility = Visibility.Visible;
+            ui_progressinfo.Visibility = Visibility.Visible;
         }
     }
 }
