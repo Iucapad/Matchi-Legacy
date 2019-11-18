@@ -30,7 +30,7 @@ namespace MatchiApp
     /// </summary>
     public sealed partial class CurrentMatchPage : Page
     {
-
+        ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
         private Matchimpro matchimpro;
         private ObservableCollection<string> source_list_of_categories = new ObservableCollection<string>();
         private MatchStorage store = new MatchStorage();//objet relatif au stockage
@@ -52,8 +52,7 @@ namespace MatchiApp
         int round_value = 1;
         int scoreleft = 0;
         int scoreright = 0;
-        int times;
-        private Color color1a;
+        int times;        
 
         public CurrentMatchPage()
         {
@@ -212,13 +211,13 @@ namespace MatchiApp
                 matchimpro = (Matchimpro)e.Parameter;
                 Update_Match();
             }
+            //Charge le paramètre de thème et le définit
+            String app_setting = localSettings.Values["theme_setting"] as string;
+            ApplyTheme(app_setting);
         }
 
         private void Update_Match()
         {
-            //Charge le paramètre utilisateur de thème et remplit les cartes des couleurs souhaitées
-            int app_setting = 2; //TODO charger le paramètre
-            ApplyTheme(app_setting);
             round_value = 1;
             scoreleft = 0;
             scoreright = 0;
@@ -345,7 +344,7 @@ namespace MatchiApp
                 //TODO Afficher un écran de fin de match avec score final
             }
         }
-        private void ApplyTheme(int app_setting)
+        private void ApplyTheme(string app_setting)
         {
             //Définit les couleurs à remplir dans les cartes des équipes selon le paramètre utilisateur
             Color color1a = Color.FromArgb(0, 0, 0, 0);
@@ -354,19 +353,19 @@ namespace MatchiApp
             Color color2b = Color.FromArgb(0, 0, 0, 0);
             switch (app_setting)
             {
-                case 1:
+                case "1":
                     color1a = Color.FromArgb(255, 221, 101, 40);
                     color1b = Color.FromArgb(255, 244, 107, 126);
                     color2a = Color.FromArgb(255, 42, 101, 212);
                     color2b = Color.FromArgb(255, 130, 80, 192);
                     break;
-                case 2:
+                case "2":
                     color1a = Color.FromArgb(255, 255, 204, 51);
                     color1b = Color.FromArgb(255, 245, 251, 27);
                     color2a = Color.FromArgb(255, 75, 175, 253);
                     color2b = Color.FromArgb(255, 6, 239, 255);
                     break;
-                case 3:
+                case "3":
                     color1a = Color.FromArgb(255, 3, 77, 141);
                     color1b = Color.FromArgb(255, 50, 100, 160);
                     color2a = Color.FromArgb(255, 175, 37, 37);

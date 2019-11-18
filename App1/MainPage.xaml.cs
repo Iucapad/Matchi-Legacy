@@ -103,6 +103,10 @@ namespace MatchiApp
                     contentFrame.Navigate(typeof(CurrentMatchPage));
                     web_header.Visibility = Visibility.Collapsed;
                     break;
+                case "settingsNav":
+                    contentFrame.Navigate(typeof(SettingsPage));
+                    web_header.Visibility = Visibility.Collapsed;
+                    break;
             }
         }
         private void Create_Match(object sender, RoutedEventArgs e)

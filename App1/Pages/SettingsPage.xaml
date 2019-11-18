@@ -1,0 +1,67 @@
+﻿<Page
+    x:Class="MatchiApp.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MatchiApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <AcrylicBrush x:Key="CustomAcrylicBrush"
+                          BackgroundSource="HostBackdrop"
+                          TintColor="Black"
+                          TintOpacity="0.9"
+                          FallbackColor="#151515"/>
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="CustomAcrylicBrush"
+                             Color="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Light">
+                    <AcrylicBrush x:Key="CustomAcrylicBrush"
+                          BackgroundSource="HostBackdrop"
+                          TintColor="#EEEEEE"
+                          TintOpacity="0.8"
+                          FallbackColor="#DDDDDD"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="{ThemeResource CustomAcrylicBrush}">
+        <TextBlock Text="Paramètres"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
+        <FlipView x:Name="selection_theme" VerticalAlignment="Top" Margin="0,100,0,0" CornerRadius="10" Width="300" Height="150" SelectionChanged="SelectionTheme">
+            <Rectangle x:Name="SET1">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1.5">
+                        <GradientStop Color="#EB695E" Offset="0.1" />
+                        <GradientStop Color="#6856C6" Offset="0.8" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="SET2">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1.5">
+                        <GradientStop Color="#F8EC23" Offset="0.1" />
+                        <GradientStop Color="#1CDAFE" Offset="0.8" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="SET3">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1.5">
+                        <GradientStop Color="#235D9A" Offset="0.1" />
+                        <GradientStop Color="#D02525" Offset="0.8" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+        </FlipView>
+    </Grid>
+</Page>
