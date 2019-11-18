@@ -297,7 +297,7 @@
                 </TransitionCollection>
             </Grid.Transitions>
             <Grid Width="250" Height="150" CornerRadius="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,175,275">
-                <Rectangle>
+                <Rectangle x:Name="ui_startleftcard">
                     <Rectangle.OpacityTransition>
                         <ScalarTransition />
                     </Rectangle.OpacityTransition>
@@ -311,7 +311,7 @@
                 <TextBlock x:Name="ui_startname1" Text="EQUIPE A" Foreground="Black" FontFamily="Bahnschrift" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" FontWeight="Bold" Margin="30" ></TextBlock>
             </Grid>
             <Grid Width="250" Height="150" CornerRadius="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="175,75,0,0">
-                <Rectangle>
+                <Rectangle x:Name="ui_startrightcard">
                     <Rectangle.OpacityTransition>
                         <ScalarTransition />
                     </Rectangle.OpacityTransition>

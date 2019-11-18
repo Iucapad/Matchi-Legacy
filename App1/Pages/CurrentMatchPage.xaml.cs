@@ -53,6 +53,7 @@ namespace MatchiApp
         int scoreleft = 0;
         int scoreright = 0;
         int times;
+        private Color color1a;
 
         public CurrentMatchPage()
         {
@@ -61,7 +62,7 @@ namespace MatchiApp
             ui_infocard.Visibility = Visibility.Visible;
             SharedShadow.Receivers.Add(Receiver);            
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
-            if (mainFrame.navigationView.MenuItems.Count < 4)
+            if (mainFrame.navigationView.MenuItems.Count < 6)
             {
                 mainFrame.navigationView.MenuItems.Insert(0, new NavigationViewItem
                 {
@@ -215,6 +216,9 @@ namespace MatchiApp
 
         private void Update_Match()
         {
+            //Charge le paramètre utilisateur de thème et remplit les cartes des couleurs souhaitées
+            int app_setting = 2; //TODO charger le paramètre
+            ApplyTheme(app_setting);
             round_value = 1;
             scoreleft = 0;
             scoreright = 0;
@@ -340,6 +344,56 @@ namespace MatchiApp
             {
                 //TODO Afficher un écran de fin de match avec score final
             }
+        }
+        private void ApplyTheme(int app_setting)
+        {
+            //Définit les couleurs à remplir dans les cartes des équipes selon le paramètre utilisateur
+            Color color1a = Color.FromArgb(0, 0, 0, 0);
+            Color color1b = Color.FromArgb(0, 0, 0, 0);
+            Color color2a = Color.FromArgb(0, 0, 0, 0);
+            Color color2b = Color.FromArgb(0, 0, 0, 0);
+            switch (app_setting)
+            {
+                case 1:
+                    color1a = Color.FromArgb(255, 221, 101, 40);
+                    color1b = Color.FromArgb(255, 244, 107, 126);
+                    color2a = Color.FromArgb(255, 42, 101, 212);
+                    color2b = Color.FromArgb(255, 130, 80, 192);
+                    break;
+                case 2:
+                    color1a = Color.FromArgb(255, 255, 204, 51);
+                    color1b = Color.FromArgb(255, 245, 251, 27);
+                    color2a = Color.FromArgb(255, 75, 175, 253);
+                    color2b = Color.FromArgb(255, 6, 239, 255);
+                    break;
+                case 3:
+                    color1a = Color.FromArgb(255, 3, 77, 141);
+                    color1b = Color.FromArgb(255, 50, 100, 160);
+                    color2a = Color.FromArgb(255, 175, 37, 37);
+                    color2b = Color.FromArgb(255, 225, 37, 37);
+                    break;
+                default:
+                    color1a = Color.FromArgb(255, 221, 101, 40);
+                    color1b = Color.FromArgb(255, 244, 107, 126);
+                    color2a = Color.FromArgb(255, 42, 101, 212);
+                    color2b = Color.FromArgb(255, 130, 80, 192);
+                    break;
+            }
+            LinearGradientBrush leftcardBrush = new LinearGradientBrush();
+            leftcardBrush.StartPoint = new Point(0.1, 0);
+            leftcardBrush.EndPoint = new Point(0.25, 1);
+            leftcardBrush.GradientStops.Add(new GradientStop { Color = color1a, Offset = 0.2 });
+            leftcardBrush.GradientStops.Add(new GradientStop { Color = color1b, Offset = 0.9 });
+            ui_trans1.Fill = leftcardBrush;
+            ui_startleftcard.Fill = leftcardBrush;
+
+            LinearGradientBrush rightcardBrush = new LinearGradientBrush();
+            rightcardBrush.StartPoint = new Point(0.1, 0);
+            rightcardBrush.EndPoint = new Point(0.25, 1);
+            rightcardBrush.GradientStops.Add(new GradientStop { Color = color2a, Offset = 0.2 });
+            rightcardBrush.GradientStops.Add(new GradientStop { Color = color2b, Offset = 0.9 });
+            ui_trans2.Fill = rightcardBrush;
+            ui_startrightcard.Fill = rightcardBrush;
         }
 
         private void Start(object sender, RoutedEventArgs e)

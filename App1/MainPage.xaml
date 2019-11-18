@@ -85,6 +85,8 @@
                 </NavigationViewItem>
                 <NavigationViewItem x:Name="CATEGORIES" Icon="Library" Content="Catégories" Tag="categoryNav" />
                 <NavigationViewItem Icon="Audio" Content="Musique" Tag="editNav" />
+                <NavigationViewItemSeparator></NavigationViewItemSeparator>
+                <NavigationViewItem Icon="Setting" Content="Paramètres" Tag="settingsNav" />
             </NavigationView.MenuItems>
             <NavigationView.PaneFooter>
                 <Image x:Name="saison_logo" Width="40" Source="/Assets/app_saison_logo.png"/>
