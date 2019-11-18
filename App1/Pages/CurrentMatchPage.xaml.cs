@@ -394,11 +394,14 @@ namespace MatchiApp
                 sec = 60;
             }
             sec--;            
-            time_left.Text = min + "min " + sec + "s";
+            
+            if (sec >= 10)
+                time_left.Text = min + ":" + sec;
+            else
+                time_left.Text = min + ":0" + sec;
+
             if (min == 0 && sec <= 10)
-            {
                 ui_progressbar.Foreground = new SolidColorBrush (Colors.Firebrick);
-            }
         }
 
         private void pause_timer(object sender, RoutedEventArgs e)
