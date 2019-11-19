@@ -37,31 +37,40 @@
     </Page.Resources>
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
         <TextBlock Text="Paramètres"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
-        <FlipView x:Name="selection_theme" VerticalAlignment="Top" Margin="0,100,0,0" CornerRadius="10" Width="300" Height="150" SelectionChanged="SelectionTheme">
-            <Rectangle x:Name="SET1">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1.5">
-                        <GradientStop Color="#EB695E" Offset="0.1" />
-                        <GradientStop Color="#6856C6" Offset="0.8" />
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle x:Name="SET2">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1.5">
-                        <GradientStop Color="#F8EC23" Offset="0.1" />
-                        <GradientStop Color="#1CDAFE" Offset="0.8" />
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle x:Name="SET3">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1.5">
-                        <GradientStop Color="#235D9A" Offset="0.1" />
-                        <GradientStop Color="#D02525" Offset="0.8" />
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-        </FlipView>
+        <Grid VerticalAlignment="Top" Margin="0,100,0,0">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="24" Margin="0,0,200,230" Text="Personnalisation"></TextBlock>
+            <FlipView x:Name="selection_theme" CornerRadius="10" Width="300" Height="150" SelectionChanged="SelectionTheme">
+                <Rectangle x:Name="SET1">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1.5">
+                            <GradientStop Color="#EB695E" Offset="0.1" />
+                            <GradientStop Color="#6856C6" Offset="0.8" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle x:Name="SET2">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1.5">
+                            <GradientStop Color="#F8EC23" Offset="0.1" />
+                            <GradientStop Color="#1CDAFE" Offset="0.8" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle x:Name="SET3">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1.5">
+                            <GradientStop Color="#235D9A" Offset="0.1" />
+                            <GradientStop Color="#D02525" Offset="0.8" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </FlipView>
+            <TextBlock FontFamily="Segoe MDL2 Assets" FontWeight="Bold" FontSize="48" Foreground="Black" Text="&#xE790;" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="16" Margin="0,0,0,30" Text="Couleurs des équipes"></TextBlock>
+        </Grid>
+        <Grid VerticalAlignment="Top" Height="100" Margin="0,400,0,0">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="24" Margin="0,0,275,0" Text="À propos"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="16" Margin="0,0,0,0" Text="Matchi BETA 0.1.0.0&#x0a;© 2019 Saison"></TextBlock>
+        </Grid>
     </Grid>
 </Page>
