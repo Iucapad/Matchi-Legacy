@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="9aa32fe6-7af4-430a-9e52-ce068565dc43"
-    Publisher="CN=vital"
+    Name="52133LFA-Interactive.Matchi"
+    Publisher="CN=539FF91F-07E5-499E-AFA4-0CF674AA6511"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="9aa32fe6-7af4-430a-9e52-ce068565dc43" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="9e06c314-e294-40aa-8cca-46c952e6c7ab" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>App1</DisplayName>
-    <PublisherDisplayName>vital</PublisherDisplayName>
+    <DisplayName>Matchi</DisplayName>
+    <PublisherDisplayName>Saison</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -53,7 +53,7 @@
               <uap:FileType ContentType="text/plain">.matchi</uap:FileType>
             </uap:SupportedFileTypes>
             <uap:DisplayName>Fichier Matchi</uap:DisplayName>
-            <uap:Logo>matchi_file.png</uap:Logo>
+            <uap:Logo>Assets/matchi_file.png</uap:Logo>
             <uap:EditFlags OpenIsSafe="true"/>
           </uap:FileTypeAssociation>
         </uap:Extension>
@@ -63,7 +63,7 @@
               <uap:FileType ContentType="text/plain">.catei</uap:FileType>
             </uap:SupportedFileTypes>
             <uap:DisplayName>Fichier Catei</uap:DisplayName>
-            <uap:Logo>catei_file.png</uap:Logo>
+            <uap:Logo>Assets/catei_file.png</uap:Logo>
           </uap:FileTypeAssociation>
         </uap:Extension>
       </Extensions>
