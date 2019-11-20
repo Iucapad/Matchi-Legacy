@@ -37,15 +37,15 @@
     </Page.Resources>
     <Grid x:Name="app_background" Background="{ThemeResource CustomAcrylicBrush}">
         <Rectangle Width="40" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="#99000000"></Rectangle>
-        <Grid x:Name="home_interface" Background="{ThemeResource CustomAcrylicBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40,33,0,0">            
-            <TextBlock Text="Accueil"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0"  FontSize="32"></TextBlock>
+        <Grid x:Name="home_interface" Background="{ThemeResource CustomAcrylicBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40,33,0,0">
+            <TextBlock x:Uid="Home"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0"  FontSize="32"></TextBlock>
             <Grid>
                 <Grid.Transitions>
                     <TransitionCollection>
                         <AddDeleteThemeTransition/>
                     </TransitionCollection>
                 </Grid.Transitions>            
-            <TextBlock x:Name="date_of_day" HorizontalAlignment="Center" Margin="0,110,0,0" Text="vendredi 3 janvier" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="SemiBold"/>
+            <TextBlock x:Name="date_of_day" HorizontalAlignment="Center" Margin="0,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="36" FontWeight="SemiBold"/>
             
             <Grid x:Name="recent_matches" Visibility="Collapsed">
             <Grid Width="175" HorizontalAlignment="Center" Margin="0,0,0,125" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="8" Padding="10">
@@ -56,7 +56,7 @@
                 <TextBlock x:Name="most_recent_match" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
                         <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" CornerRadius="20" Height="40" Padding="15,7,15,7" FontWeight="Bold" FontSize="14" Click="MostRecent_click" x:Name="resume_button">
                     <StackPanel Orientation="Horizontal">
-                                <TextBlock>Démarrer</TextBlock>
+                                <TextBlock x:Uid="Start"></TextBlock>
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE768;"  FontWeight="Normal" FontSize="16" Margin="5,1,0,0"/>
                             </StackPanel>
                 </Button>
@@ -67,13 +67,13 @@
                 <Button CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150"  VerticalAlignment="Center" Margin="0,0,153,0" FontFamily="Segoe UI" Click="Create_Match">
                     <StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="24" HorizontalAlignment="Center"/>
-                        <TextBlock>Nouveau match</TextBlock>
+                        <TextBlock x:Uid="NewMatch"></TextBlock>
                     </StackPanel>
                 </Button>
                 <Button CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" VerticalAlignment="Center" Margin="153,0,0,0" FontFamily="Segoe UI" Click="Category_button">
                     <StackPanel>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE74C;" FontSize="24" HorizontalAlignment="Center"/>
-                        <TextBlock>Catégories</TextBlock>
+                        <TextBlock x:Uid="Categories"></TextBlock>
                     </StackPanel>
                 </Button>
             </Grid>
@@ -81,12 +81,12 @@
         <Rectangle x:Name="web_header" Visibility="Collapsed" Height="auto"  Width="auto" Margin="40,0,0,0" Fill="#151515"></Rectangle>
         <NavigationView x:Name="navigationView" x:FieldModifier="public" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="500" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
             <NavigationView.MenuItems>
-                <NavigationViewItem x:Name="MATCH" Icon="OutlineStar" Content="Matchs récents" Tag="matchNav">
+                <NavigationViewItem x:Name="MATCH" Icon="OutlineStar" x:Uid="RecentMatches" Tag="matchNav">
                 </NavigationViewItem>
-                <NavigationViewItem x:Name="CATEGORIES" Icon="Library" Content="Catégories" Tag="categoryNav" />
-                <NavigationViewItem Icon="Audio" Content="Musique" Tag="editNav" />
+                <NavigationViewItem x:Name="CATEGORIES" Icon="Library" x:Uid="CategoriesNav" Tag="categoryNav" />
+                <NavigationViewItem Icon="Audio" x:Uid="MusicNav" Tag="editNav" />
                 <NavigationViewItemSeparator></NavigationViewItemSeparator>
-                <NavigationViewItem Icon="Setting" Content="Paramètres" Tag="settingsNav" />
+                <NavigationViewItem Icon="Setting" x:Uid="SettingsNav" Tag="settingsNav" />
             </NavigationView.MenuItems>
             <NavigationView.PaneFooter>
                 <Image x:Name="saison_logo" Width="40" Source="/Assets/app_saison_logo.png"/>

@@ -135,7 +135,7 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid x:Name="page" Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock x:Name="match_name" Text="Match"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
+        <TextBlock x:Name="match_name" x:Uid="CurrentMatchTitle" FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <ScrollViewer x:Name="ui_scroll" Visibility="Visible" VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0, 80, 0, 60">
             <StackPanel>
                 <Grid>
@@ -185,7 +185,7 @@
                     </StackPanel>
                 </Grid>
                 <Grid x:Name="ui_roundinfos">
-                    <TextBlock x:Name="ui_catname" Text="Catégorie" FontSize="24" FontWeight="SemiBold" FontFamily="Bahnschrift" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,60"></TextBlock>
+                    <TextBlock x:Name="ui_catname" x:Uid="Category" FontSize="24" FontWeight="SemiBold" FontFamily="Bahnschrift" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,30,0,60"></TextBlock>
                     <StackPanel x:Name="ui_nbjouteurs" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0, 0, 150, 65">
                         <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="32" Padding="0,0,10,0" Text="&#xE916;"></TextBlock>
                         <TextBlock x:Name="ui_matchlength" Text="2:00" FontWeight="SemiBold" FontFamily="Bahnschrift" Padding="0,6" FontSize="24"></TextBlock>
@@ -212,7 +212,7 @@
                 <TextBlock HorizontalAlignment="Left" Margin="30,15,0,0" VerticalAlignment="Top" FontWeight="Bold" Text="Tenez-vous prêt !" FontSize="18"></TextBlock>
                 <Button CornerRadius="4" Background="Transparent" HorizontalAlignment="Right" Margin="5"  VerticalAlignment="Bottom" FontSize="16" FontFamily="Segoe UI" Click="ContinueRound">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Continuer</TextBlock>
+                        <TextBlock x:Uid="Continue"></TextBlock>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="20" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Button>
@@ -224,12 +224,12 @@
                     <EdgeUIThemeTransition Edge="Bottom"/>
                 </TransitionCollection>
             </Grid.Transitions>
-            <TextBlock x:Name="ui_votemessage" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Choisissez une équipe pour donner un point" FontSize="18"></TextBlock>
+            <TextBlock x:Name="ui_votemessage" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="GivePoint" FontSize="18"></TextBlock>
             <Grid x:Name="ui_votebox" Visibility="Collapsed">
                 <TextBlock x:Name="ui_votecomment" HorizontalAlignment="Center" Margin="30,0,150,0" VerticalAlignment="Center" FontWeight="Bold" Text="Égalité" FontSize="18"></TextBlock>
                 <Button CornerRadius="4" Background="Transparent" HorizontalAlignment="Right" Margin="5"  VerticalAlignment="Stretch" FontSize="16" FontFamily="Segoe UI" Click="NextRound">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Continuer</TextBlock>
+                        <TextBlock x:Uid="Continue"></TextBlock>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="20" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Button>
@@ -266,17 +266,17 @@
             <ScrollViewer VerticalAlignment="Center" VerticalScrollMode="Enabled"  Margin="0,100,0,200">
                 <StackPanel>
                     <Grid Height="116" Width="320" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="8">
-                        <TextBlock Margin="10,3,0,0" Text="Catégorie"></TextBlock>
+                        <TextBlock Margin="10,3,0,0" x:Uid="Category"></TextBlock>
                         <Button CornerRadius="4" Margin="0,0,0,8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="40" Width="300" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI" Click="random_category">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xF133;" FontSize="24" Padding="0,0,15,0" HorizontalAlignment="Center"/>
-                                <TextBlock>Aléatoire</TextBlock>
+                                <TextBlock x:Uid="Random"></TextBlock>
                             </StackPanel>
                         </Button>
                         <ComboBox x:Name="list_of_categories" HorizontalContentAlignment="Center" HorizontalAlignment="Center" CornerRadius="4" Margin="0,23,0,0" Height="40" Width="300"/>
                     </Grid>
                     <Grid Height="100" Width="300">
-                        <TextBlock Margin="0,10,0,0" Text="Durée"></TextBlock>
+                        <TextBlock Margin="0,10,0,0" x:Uid="Length"></TextBlock>
                         <ComboBox HorizontalContentAlignment="Center" HorizontalAlignment="Right" CornerRadius="4" VerticalAlignment="Center" Height="40" Width="200" x:Name="timer_selection"/>
                         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="80,0,0,0" FontFamily="Bahnschrift" FontSize="20" Text="X" Height="20"></TextBlock>
                         <ComboBox HorizontalContentAlignment="Center" CornerRadius="4" Height="40" Width="70" x:Name="times_selection" VerticalAlignment="Center"/>
@@ -286,7 +286,7 @@
             <Button x:Name="startbtn" CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start_click">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE768;" FontSize="24" HorizontalAlignment="Center"/>
-                    <TextBlock>Lancer</TextBlock>
+                    <TextBlock x:Uid="Start"></TextBlock>
                 </StackPanel>
             </Button>
         </Grid>
@@ -327,7 +327,7 @@
             <Grid Width="50" Height="50" HorizontalAlignment="Center" Margin="0,0,0,100" VerticalAlignment="Center" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="25" Padding="12">
                 <TextBlock Text="VS" VerticalAlignment="Top" FontSize="18" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
             </Grid>
-            <Button CornerRadius="25" Content="Commencer" FontSize="18" FontWeight="SemiBold" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="50" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start">
+            <Button CornerRadius="25" x:Uid="StartMatch" FontSize="18" FontWeight="SemiBold" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="50" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start">
             </Button>
         </Grid>
     </Grid>

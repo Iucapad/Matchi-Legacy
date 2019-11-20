@@ -36,10 +36,10 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock x:Name="header_title" Text="Matchs récents"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
+        <TextBlock x:Name="header_title" x:Uid="RecentMatchesTitle"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <Grid x:Name="home_match">
             <Grid x:Name="info_messages" Visibility="Collapsed">
-                <TextBlock x:Name="choose_message" FontSize="18" Text="Choisissez un match dans la liste" HorizontalAlignment="Center" Margin="0,80,0,0"></TextBlock>
+                <TextBlock x:Name="choose_message" FontSize="18" x:Uid="ChooseMatch" HorizontalAlignment="Center" Margin="0,80,0,0"></TextBlock>
                 <TextBlock x:Name="image_message" Foreground="#454545" Visibility="Collapsed" FontFamily="Segoe MDL2 Assets" Text="&#xF78B;" FontWeight="Normal" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="48" Margin="370,0,0,110"/>
             </Grid>
             <TextBox x:Name="error_message" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,75" IsHitTestVisible="False" BorderThickness="0" Background="Transparent" MaxWidth="1000" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Text="Aucun match créé. Veuillez en créer un pour commencer."></TextBox>
@@ -61,7 +61,7 @@
                 <TextBlock x:Name="match_name" TextWrapping="Wrap" Margin="15" FontFamily="Bahnschrift" FontWeight="Bold" FontSize="20" Text="Nom du match"></TextBlock>
                 <Button CornerRadius="25"  Click="Open_match" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Right" Height="50" Width="150" Margin="0,0,15,15"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" FontFamily="Segoe UI">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock>Ouvrir</TextBlock>
+                        <TextBlock x:Uid="Open"></TextBlock>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="24" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Button>
@@ -72,7 +72,7 @@
                     <Button.Flyout>
                         <MenuFlyout Placement="BottomEdgeAlignedLeft" >
                             <MenuFlyoutItem Icon="AlignLeft" Text = "Notes" />
-                            <MenuFlyoutItem Icon="Save" Text = "Enregistrer" Click="SaveMatch" />
+                            <MenuFlyoutItem Icon="Save" x:Uid="Save" Click="SaveMatch" />
                         </MenuFlyout>
                     </Button.Flyout>
                 </Button>
@@ -80,13 +80,13 @@
             <Button x:Name="addbtn" CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Create_Match">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="24" HorizontalAlignment="Center"/>
-                    <TextBlock>Nouveau match</TextBlock>
+                    <TextBlock x:Uid="NewMatch"></TextBlock>
                 </StackPanel>
             </Button>
             <Button x:Name="deletebtn" CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Visibility="Collapsed" Height="80" Width="150" Margin="0,0,153,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Delete_click">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE74D;" FontSize="24" HorizontalAlignment="Center"/>
-                    <TextBlock>Supprimer</TextBlock>
+                    <TextBlock x:Uid="Delete"></TextBlock>
                 </StackPanel>
             </Button>
         </Grid>

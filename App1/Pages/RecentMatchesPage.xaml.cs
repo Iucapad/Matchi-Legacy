@@ -47,6 +47,7 @@ namespace MatchiApp
 
         private async void Read_storage()//lit le contenu du dossier de stockage
         {
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
             matchlist = new ObservableCollection<Matchimpro>(await Matchimpro.ReadFolder(store.Folder));
             list_of_matches.ItemsSource = matchlist;
             if (matchlist.Count > 0)
@@ -54,14 +55,14 @@ namespace MatchiApp
                 error_message.Visibility = Visibility.Collapsed;
                 info_messages.Visibility = Visibility.Visible;
                 list_of_matches.Visibility = Visibility.Visible;
-                header_title.Text = "Matchs récents";
+                header_title.Text = resourceLoader.GetString("RecentMatchesTitle");
             }
             else
             {
                 info_messages.Visibility = Visibility.Collapsed;//messages par défaut si pas de fichiers ou mauvais format
                 error_message.Visibility = Visibility.Visible;
                 list_of_matches.Visibility = Visibility.Collapsed;
-                header_title.Text = "Match";
+                header_title.Text = resourceLoader.GetString("RecentMatchesDefault"); ;
             }
         }
 
@@ -218,8 +219,9 @@ namespace MatchiApp
             ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
             Windows.Data.Xml.Dom.XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
             Windows.Data.Xml.Dom.XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
-            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode("Exportation du match"));
-            toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode("Le fichier de match a été créé avec succès"));
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(resourceLoader.GetString("ExportTitle")));
+            toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(resourceLoader.GetString("ExportMessage")));
             Windows.Data.Xml.Dom.IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
 
             ToastNotification toast = new ToastNotification(toastXml);

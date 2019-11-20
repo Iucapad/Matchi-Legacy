@@ -37,7 +37,7 @@
     </Page.Resources>
 
     <Grid x:Name="page" Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock Text="Catégories"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>        
+        <TextBlock x:Uid="Categories"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>        
         <Grid>
             <Grid.Transitions>
                 <TransitionCollection>
@@ -49,7 +49,7 @@
         <Button x:Name="addbtn" CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Show_addui">
             <StackPanel>
                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="24" HorizontalAlignment="Center"/>
-                <TextBlock>Ajouter une catégorie</TextBlock>
+                <TextBlock x:Uid="AddCategory"></TextBlock>
             </StackPanel>
         </Button>
         <Button x:Name="deletebtn" CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Visibility="Collapsed" Height="80" Width="150" Margin="0,0,153,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Delete_category">
@@ -66,18 +66,18 @@
                 </TransitionCollection>
             </Grid.Transitions>
             <Rectangle Fill="{ThemeResource SystemControlBackgroundChromeMediumBrush}"></Rectangle>
-            <TextBlock Text="Ajouter une catégorie"  FontFamily="Segoe UI" HorizontalAlignment="Center" FontWeight="Black" Margin="0,25,0,0" FontSize="24"></TextBlock>
-            <TextBox x:Name="category_name" HorizontalAlignment="Center" CornerRadius="4" Header="Nom" Height="60" Margin="0,0,0,70" TextWrapping="Wrap" VerticalAlignment="Center" Width="300"/>
+            <TextBlock x:Uid="AddCategoryText"  FontFamily="Segoe UI" HorizontalAlignment="Center" FontWeight="Black" Margin="0,25,0,0" FontSize="24"></TextBlock>
+            <TextBox x:Name="category_name" HorizontalAlignment="Center" CornerRadius="4" x:Uid="NameHeader" Height="60" Margin="0,0,0,70" TextWrapping="Wrap" VerticalAlignment="Center" Width="300"/>
             <Button x:Name="add_cancel" CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="0,0,153,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="add_cancel_Click">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE711;" FontSize="24" HorizontalAlignment="Center"/>
-                    <TextBlock>Annuler</TextBlock>
+                    <TextBlock x:Uid="Cancel"></TextBlock>
                 </StackPanel>
             </Button>
             <Button x:Name="add_save" CornerRadius="8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="80" Width="150" Margin="153,0,0,60" Padding="0"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Save_category">
                 <StackPanel>
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE73E;" FontSize="24" HorizontalAlignment="Center"/>
-                    <TextBlock>Valider</TextBlock>
+                    <TextBlock x:Uid="Validate"></TextBlock>
                 </StackPanel>
             </Button>
         </Grid>

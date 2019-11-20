@@ -21,6 +21,7 @@ using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Notifications;
 using Windows.Data.Xml.Dom;
+using System.Globalization;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -34,6 +35,7 @@ namespace MatchiApp
         public static Frame MainPageFrame;
         private MatchStorage store;//magasin de gestion des fichiers
         private Matchimpro mostRecentMatch;
+       
         public MainPage()
         {
             this.InitializeComponent();
@@ -60,10 +62,11 @@ namespace MatchiApp
         }
         private async void Read_storage()//lit le contenu du dossier de stockage
         {
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
             List<Matchimpro> matchlist = await Matchimpro.ReadFolder(store.Folder);
             if (matchlist.Count > 0) {
                 recent_matches.Visibility = Visibility.Visible;
-                nb_matches.Text = $"{matchlist.Count} {(matchlist.Count > 1 ? "matchs récents" : "match récent")}";
+                nb_matches.Text = $"{matchlist.Count} {(matchlist.Count > 1 ? resourceLoader.GetString("RecentMatchMultiple") : resourceLoader.GetString("RecentMatchSingle"))}";
                 mostRecentMatch = matchlist[0];
                 most_recent_match.Text = mostRecentMatch.Name;
             }
@@ -74,11 +77,12 @@ namespace MatchiApp
         }
         private void Date_display()
         {
-            var culture = new System.Globalization.CultureInfo("fr-FR");
+            var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
             string date = DateTime.Now.Day.ToString();
             string month = culture.DateTimeFormat.GetMonthName(DateTime.Today.Month);
             string day = culture.DateTimeFormat.GetDayName(DateTime.Today.DayOfWeek);
             date_of_day.Text = day + " " + date + " " + month;
+            date_of_day.Text=date_of_day.Text.ToLower();
         }
         private void SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
@@ -160,14 +164,15 @@ namespace MatchiApp
         {
             if (e.Parameter is Matchimpro)
             {
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                 Matchimpro match = (Matchimpro)e.Parameter;
                 match.Save(store.Folder);
                 contentFrame.Navigate(typeof(CurrentMatchPage), match);
                 ToastNotifier ToastNotifier = ToastNotificationManager.CreateToastNotifier();
                 XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
                 XmlNodeList toastNodeList = toastXml.GetElementsByTagName("text");
-                toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode("Importation du match"));
-                toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode("Le fichier a été copié dans l'application"));
+                toastNodeList.Item(0).AppendChild(toastXml.CreateTextNode(resourceLoader.GetString("ImportTitle")));
+                toastNodeList.Item(1).AppendChild(toastXml.CreateTextNode(resourceLoader.GetString("ImportMessage")));
 
                 ToastNotification toast = new ToastNotification(toastXml);
                 toast.ExpirationTime = DateTime.Now.AddSeconds(1);

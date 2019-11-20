@@ -63,11 +63,12 @@ namespace MatchiApp
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
             if (mainFrame.navigationView.MenuItems.Count < 6)
             {
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                 mainFrame.navigationView.MenuItems.Insert(0, new NavigationViewItem
                 {
                     Name = "CURRENT",
                     IsSelected = true,
-                    Content = "Match en cours",
+                    Content = resourceLoader.GetString("CurrentMatch"),
                     Icon = new SymbolIcon((Symbol)0xE945),
                     Tag = "currentNav"                    
                 });
@@ -238,8 +239,9 @@ namespace MatchiApp
             {
                 page.Children.Add(ui_start);
             }
-            notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, $"Notes du match {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);
-            round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, resourceLoader.GetString("NotesDefault") + $" {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);            
+            round_nb.Text = resourceLoader.GetString("RoundNb") + $" {round_value} / {matchimpro.Rounds}";
             timer_selection.SelectedIndex = 0;
             times_selection.SelectedIndex = 0;
         }
@@ -291,7 +293,8 @@ namespace MatchiApp
             {
                 ui_votemessage.Visibility = Visibility.Collapsed;
                 ui_votebox.Visibility = Visibility.Visible;
-                ui_votecomment.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? "Égalité" : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                ui_votecomment.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? resourceLoader.GetString("Equality") : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
             }
             else
             {
