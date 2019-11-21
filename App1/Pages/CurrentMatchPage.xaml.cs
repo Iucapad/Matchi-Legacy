@@ -514,5 +514,29 @@ namespace MatchiApp
             ui_controlstimer.Visibility = Visibility.Visible;
             ui_progressinfo.Visibility = Visibility.Visible;
         }
+
+        private async void OpenBigPicture(object sender, RoutedEventArgs e)
+        {
+            var NewWindow = CoreApplication.CreateNewView();
+            int Windowid = ApplicationView.GetForCurrentView().Id;
+            int NewWindowid = 0;
+
+            await NewWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Frame newframe = new Frame();
+                newframe.Navigate(typeof(BigPicturePage), null);
+
+                Window.Current.Content = newframe;
+                Window.Current.Activate();
+                ApplicationView.GetForCurrentView().Title = "Big Picture";
+
+                NewWindowid = ApplicationView.GetForCurrentView().Id;
+            });
+
+            //Call ProjectionManager class for moving new window to secodary display
+            bool available = ProjectionManager.ProjectionDisplayAvailable;
+
+            await ProjectionManager.StartProjectingAsync(NewWindowid, Windowid);
+        }
     }
 }

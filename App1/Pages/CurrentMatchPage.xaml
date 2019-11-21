@@ -290,6 +290,7 @@
                 </StackPanel>
             </Button>
         </Grid>
+        <Button Content="EXPERIMENTAL" VerticalAlignment="Top" Background="#005500" Click="OpenBigPicture"></Button>
         <Grid x:Name="ui_start" Background="{ThemeResource CustomAcrylicBrush}" Visibility="Visible" Margin="0,60,0,0">
             <Grid.Transitions>
                 <TransitionCollection>
