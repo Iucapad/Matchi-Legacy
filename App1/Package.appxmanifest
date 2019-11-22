@@ -11,7 +11,7 @@
     Publisher="CN=539FF91F-07E5-499E-AFA4-0CF674AA6511"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="9e06c314-e294-40aa-8cca-46c952e6c7ab" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="121a7f1e-7570-432b-8cc6-7e8faa1a96ec" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Matchi</DisplayName>
