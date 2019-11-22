@@ -35,7 +35,7 @@ namespace MatchiApp
         public static Frame MainPageFrame;
         private MatchStorage store;//magasin de gestion des fichiers
         private Matchimpro mostRecentMatch;
-       
+
         public MainPage()
         {
             this.InitializeComponent();

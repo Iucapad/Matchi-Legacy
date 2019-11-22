@@ -13,10 +13,12 @@ using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
+using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
@@ -49,6 +51,7 @@ namespace MatchiApp
         int curtime=0;
         float comptime=0;
         bool in_pause = false;
+        bool is_bigpicture = false;
         int round_value = 1;
         int scoreleft = 0;
         int scoreright = 0;
@@ -243,7 +246,7 @@ namespace MatchiApp
             notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, resourceLoader.GetString("NotesDefault") + $" {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);            
             round_nb.Text = resourceLoader.GetString("RoundNb") + $" {round_value} / {matchimpro.Rounds}";
             timer_selection.SelectedIndex = 0;
-            times_selection.SelectedIndex = 0;
+            times_selection.SelectedIndex = 0;          
         }
 
         private void LeftCardClick(object sender, PointerRoutedEventArgs e)
@@ -517,26 +520,38 @@ namespace MatchiApp
 
         private async void OpenBigPicture(object sender, RoutedEventArgs e)
         {
-            var NewWindow = CoreApplication.CreateNewView();
+            //Initialise le paramètre contenant les infos du match
+            var currentMatchInfo = new RoundInfo();
+            currentMatchInfo.Team1 = matchimpro.Team1;
+            currentMatchInfo.Team2 = matchimpro.Team2;
+            currentMatchInfo.Score1 = scoreleft.ToString();
+            currentMatchInfo.Score2 = scoreright.ToString();
+            currentMatchInfo.Category = ui_catname.Text;
+
+            //Crée une seconde vue et crée une deuxième fenêtre
+            CoreApplicationView newView = CoreApplication.CreateNewView();
+            int newViewId = 0;
             int Windowid = ApplicationView.GetForCurrentView().Id;
-            int NewWindowid = 0;
-            String app_setting = localSettings.Values["theme_setting"] as string;
-            await NewWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Frame newframe = new Frame();
-                newframe.Navigate(typeof(BigPicturePage), null);
-
-                Window.Current.Content = newframe;
+                Frame frame = new Frame();
+                frame.Navigate(typeof(BigPicturePage), currentMatchInfo);
+                Window.Current.Content = frame;
+                // You have to activate the window in order to show it later.
                 Window.Current.Activate();
-                ApplicationView.GetForCurrentView().Title = "Big Picture";
+                ApplicationView.GetForCurrentView().Title = matchimpro.Name;
 
-                NewWindowid = ApplicationView.GetForCurrentView().Id;
+                newViewId = ApplicationView.GetForCurrentView().Id;
             });
+            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+           
 
-            //Call ProjectionManager class for moving new window to secodary display
+            //Ouvre la nouvelle fenêtre en plein écran
             bool available = ProjectionManager.ProjectionDisplayAvailable;
-
-            await ProjectionManager.StartProjectingAsync(NewWindowid, Windowid);
+            if (available)
+            {
+                await ProjectionManager.StartProjectingAsync(newViewId, Windowid);
+            }
         }
     }
 }

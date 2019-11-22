@@ -102,5 +102,14 @@ namespace MatchiApp
             rightcardBrush.GradientStops.Add(new GradientStop { Color = color2b, Offset = 0.9 });
             card_team2.Fill = rightcardBrush;
         }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            var matchInfo = (RoundInfo)e.Parameter;
+            name_team1.Text = matchInfo.Team1;
+            name_team2.Text = matchInfo.Team2;
+            score_team1.Text = matchInfo.Score1;
+            score_team2.Text = matchInfo.Score2;
+        }       
     }
 }

@@ -129,6 +129,9 @@
   <data name="Cancel.Text" xml:space="preserve">
     <value>Annuler</value>
   </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
   <data name="Categories.Text" xml:space="preserve">
     <value>Catégories</value>
   </data>
@@ -147,6 +150,9 @@
   <data name="Continue.Text" xml:space="preserve">
     <value>Continuer</value>
   </data>
+  <data name="ContinueButton" xml:space="preserve">
+    <value>Continuer</value>
+  </data>
   <data name="CreateMatchButton.Text" xml:space="preserve">
     <value>Créer le match</value>
   </data>
@@ -157,6 +163,9 @@
     <value>Match</value>
   </data>
   <data name="Delete.Text" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
     <value>Supprimer</value>
   </data>
   <data name="Equality" xml:space="preserve">
@@ -182,6 +191,12 @@
   </data>
   <data name="Length.Text" xml:space="preserve">
     <value>Durée</value>
+  </data>
+  <data name="MatchCurrentlyMessage" xml:space="preserve">
+    <value>Vous avez un match en cours. Voulez vous en lancer un nouveau ?</value>
+  </data>
+  <data name="MatchDeleteMessage" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer ce match ?</value>
   </data>
   <data name="Music.Text" xml:space="preserve">
     <value>Musique</value>
@@ -257,5 +272,8 @@
   </data>
   <data name="Validate.Text" xml:space="preserve">
     <value>Valider</value>
+  </data>
+  <data name="WarningMessage" xml:space="preserve">
+    <value>Attention</value>
   </data>
 </root>

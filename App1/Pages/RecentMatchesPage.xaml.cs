@@ -71,12 +71,13 @@ namespace MatchiApp
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
             if (mainFrame.navigationView.MenuItems.Count == 6)
             {
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                 ContentDialog deleteFileDialog = new ContentDialog
                 {
-                    Title = "Attention",
-                    Content = "Vous avez un match en cours. Voulez vous en lancer un nouveau ?",
-                    PrimaryButtonText = "Continuer",
-                    CloseButtonText = "Annuler"
+                    Title = resourceLoader.GetString("WarningMessage"),
+                    Content = resourceLoader.GetString("MatchCurrentlyMessage"),
+                    PrimaryButtonText = resourceLoader.GetString("ContinueButton"),
+                    CloseButtonText = resourceLoader.GetString("CancelButton")
                 };
                 ContentDialogResult result = await deleteFileDialog.ShowAsync();
                 if (result == ContentDialogResult.Primary)
@@ -192,12 +193,13 @@ namespace MatchiApp
 
         private async void Delete_click(object sender, RoutedEventArgs e)
         {
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
             ContentDialog deleteFileDialog = new ContentDialog
             {
-                Title = "Attention",
-                Content = "Voulez-vous vraiment supprimer ce match ?",
-                PrimaryButtonText = "Supprimer",
-                CloseButtonText = "Annuler"
+                Title = resourceLoader.GetString("WarningMessage"),
+                Content = resourceLoader.GetString("MatchDeleteMessage"),
+                PrimaryButtonText = resourceLoader.GetString("DeleteButton"),
+                CloseButtonText = resourceLoader.GetString("CancelButton")
             };
             ContentDialogResult result = await deleteFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
