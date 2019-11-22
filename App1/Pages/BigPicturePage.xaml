@@ -6,9 +6,44 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="#005500">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="WindowSize">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <AcrylicBrush x:Key="CustomAcrylicBrush"
+                          BackgroundSource="HostBackdrop"
+                          TintColor="Black"
+                          TintOpacity="0.9"
+                          FallbackColor="#151515"/>
+                </ResourceDictionary>
 
-    <Grid>
+                <ResourceDictionary x:Key="HighContrast">
+                    <SolidColorBrush x:Key="CustomAcrylicBrush"
+                             Color="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                </ResourceDictionary>
 
+                <ResourceDictionary x:Key="Light">
+                    <AcrylicBrush x:Key="CustomAcrylicBrush"
+                          BackgroundSource="HostBackdrop"
+                          TintColor="#EEEEEE"
+                          TintOpacity="0.8"
+                          FallbackColor="#DDDDDD"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource CustomAcrylicBrush}">
+        <Grid x:Name="grid_team1" CornerRadius="10" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30" Background="Blue" Width="300" Height="250">
+            <Rectangle x:Name="card_team1"></Rectangle>
+            <TextBlock x:Name="name_team1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Text="Matchi" Margin="60" Foreground="Black" FontSize="66" FontWeight="Bold" FontFamily="Bahnschrift"></TextBlock>
+            <TextBlock x:Name="score_team1" Text="0" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="80" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
+        </Grid>
+        <Grid x:Name="grid_team2" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="30" Background="Red" Width="300" Height="250">
+            <Rectangle x:Name="card_team2"></Rectangle>
+            <TextBlock x:Name="name_team2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Text="Gooboi" Margin="60" Foreground="Black" FontSize="66" FontWeight="Bold" FontFamily="Bahnschrift"></TextBlock>
+            <TextBlock x:Name="score_team2" Text="0" Margin="25,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="80" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
+        </Grid>
     </Grid>
 </Page>

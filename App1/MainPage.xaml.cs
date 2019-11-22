@@ -183,5 +183,12 @@ namespace MatchiApp
                 contentFrame.Navigate(typeof(ImportCatei));
             }
         }
+
+        private void ThemeChanged(FrameworkElement sender, object args)
+        {
+            if (Application.Current.RequestedTheme == ApplicationTheme.Light)
+            { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo_light.png")); }
+            else { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo.png")); }
+        }
     }
 }

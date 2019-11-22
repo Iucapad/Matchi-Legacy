@@ -520,7 +520,7 @@ namespace MatchiApp
             var NewWindow = CoreApplication.CreateNewView();
             int Windowid = ApplicationView.GetForCurrentView().Id;
             int NewWindowid = 0;
-
+            String app_setting = localSettings.Values["theme_setting"] as string;
             await NewWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Frame newframe = new Frame();

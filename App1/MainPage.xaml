@@ -89,7 +89,7 @@
                 <NavigationViewItem Icon="Setting" x:Uid="SettingsNav" Tag="settingsNav" />
             </NavigationView.MenuItems>
             <NavigationView.PaneFooter>
-                <Image x:Name="saison_logo" Width="40" Source="/Assets/app_saison_logo.png"/>
+                <Image x:Name="saison_logo" Width="40" Source="/Assets/app_saison_logo.png" ActualThemeChanged="ThemeChanged"/>
 
             </NavigationView.PaneFooter>
             <Frame x:Name="contentFrame" Margin="0" MinHeight="200">

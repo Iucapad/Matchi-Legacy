@@ -253,7 +253,10 @@
 
 
 
-
+        <StackPanel Height="60" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button HorizontalAlignment="Right" FontFamily="Segoe MDL2 Assets" CornerRadius="4" Height="40" Width="40" Margin="0,8,4,0" FontSize="18" Content="&#xE8E0;"></Button>
+            <Button Click="OpenBigPicture" HorizontalAlignment="Right" FontFamily="Segoe MDL2 Assets" CornerRadius="4" Height="40" Width="40" Margin="4,8,8,0" FontSize="18" Padding="0,7,0,0" Content="&#xE7F9;"></Button>
+        </StackPanel>
 
         <Grid x:Name="new_round" Visibility="Collapsed" Padding="0,60,0,0">
             <Grid.Transitions>
@@ -290,7 +293,6 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <Button Content="EXPERIMENTAL" VerticalAlignment="Top" Background="#005500" Click="OpenBigPicture"></Button>
         <Grid x:Name="ui_start" Background="{ThemeResource CustomAcrylicBrush}" Visibility="Visible" Margin="0,60,0,0">
             <Grid.Transitions>
                 <TransitionCollection>
