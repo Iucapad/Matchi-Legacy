@@ -246,7 +246,13 @@ namespace MatchiApp
             notes_text.Document.SetText(Windows.UI.Text.TextSetOptions.None, resourceLoader.GetString("NotesDefault") + $" {matchimpro.Team1} - {matchimpro.Team2}" + Environment.NewLine);            
             round_nb.Text = resourceLoader.GetString("RoundNb") + $" {round_value} / {matchimpro.Rounds}";
             timer_selection.SelectedIndex = 0;
-            times_selection.SelectedIndex = 0;          
+            times_selection.SelectedIndex = 0;
+            //Masque le bouton de projection si pas de second écran connecté
+            bool available = ProjectionManager.ProjectionDisplayAvailable;            
+            if (true)//!available)
+            {
+                ui_bigpicture.Visibility = Visibility.Visible;
+            }
         }
 
         private void LeftCardClick(object sender, PointerRoutedEventArgs e)
@@ -520,6 +526,7 @@ namespace MatchiApp
 
         private async void OpenBigPicture(object sender, RoutedEventArgs e)
         {
+            var NewWindow = CoreApplication.CreateNewView();
             //Initialise le paramètre contenant les infos du match
             var currentMatchInfo = new RoundInfo();
             currentMatchInfo.Team1 = matchimpro.Team1;
@@ -529,28 +536,29 @@ namespace MatchiApp
             currentMatchInfo.Category = ui_catname.Text;
 
             //Crée une seconde vue et crée une deuxième fenêtre
-            CoreApplicationView newView = CoreApplication.CreateNewView();
-            int newViewId = 0;
+            int NewWindowid = 0;
             int Windowid = ApplicationView.GetForCurrentView().Id;
-            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            String app_setting = localSettings.Values["theme_setting"] as string;
+            await NewWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Frame frame = new Frame();
-                frame.Navigate(typeof(BigPicturePage), currentMatchInfo);
-                Window.Current.Content = frame;
+                Frame newframe = new Frame();
+                newframe.Navigate(typeof(BigPicturePage), currentMatchInfo);
+
+                Window.Current.Content = newframe;
                 // You have to activate the window in order to show it later.
                 Window.Current.Activate();
                 ApplicationView.GetForCurrentView().Title = matchimpro.Name;
 
-                newViewId = ApplicationView.GetForCurrentView().Id;
+                NewWindowid = ApplicationView.GetForCurrentView().Id;
             });
-            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(NewWindowid);
            
 
-            //Ouvre la nouvelle fenêtre en plein écran
+            //Ouvre la nouvelle fenêtre en plein écran si second écran connecté
             bool available = ProjectionManager.ProjectionDisplayAvailable;
-            if (available)
+            if (true)//!available)
             {
-                await ProjectionManager.StartProjectingAsync(newViewId, Windowid);
+                await ProjectionManager.StartProjectingAsync(NewWindowid, Windowid);
             }
         }
     }
