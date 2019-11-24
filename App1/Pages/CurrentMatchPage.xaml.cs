@@ -93,10 +93,8 @@ namespace MatchiApp
         {
             StorageFolder storageFolder = store.Folder;
             IReadOnlyList<StorageFile> files = await storageFolder.GetFilesAsync();
-
             if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))
-                return; //TODO : Erreur ?
-
+                return;
             StorageFile cate_file = await storageFolder.GetFileAsync("Categories.catei");
             source_list_of_categories = new ObservableCollection<string>((await FileIO.ReadLinesAsync(cate_file)).Distinct());
             list_of_categories.ItemsSource = source_list_of_categories;
@@ -189,6 +187,9 @@ namespace MatchiApp
                 page.Children.Remove(new_round);
                 ui_penalty.Visibility = Visibility.Visible;
                 source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
+                if(list_of_categories.SelectedValue.ToString() != "Libre")
+                    source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
+
                 if (times_selection.SelectedIndex>0)
                 {
                     ui_matchlength.Text = $"{times_selection.SelectedIndex + 1} x {timer_selection.SelectedIndex + 1}:00";

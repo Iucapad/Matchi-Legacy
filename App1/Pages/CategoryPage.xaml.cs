@@ -147,6 +147,12 @@ namespace MatchiApp
 
         private async void Delete_category(object sender, RoutedEventArgs e) 
         {
+            if (list_of_categories.SelectedValue.ToString() == "Libre")
+            {
+                ErrorDialog.Content = "Vous ne pouvez pas supprimer la catégorie Libre car il s'agit de la catégorie par défaut.";
+                await ErrorDialog.ShowAsync();
+                return;
+            }
             ContentDialog deleteFileDialog = new ContentDialog
             {
                 Title = "Attention",

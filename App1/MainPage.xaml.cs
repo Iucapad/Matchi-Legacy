@@ -63,7 +63,9 @@ namespace MatchiApp
         private async void Read_storage()//lit le contenu du dossier de stockage
         {
             var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
-            List<Matchimpro> matchlist = await Matchimpro.ReadFolder(store.Folder);
+            StorageFolder storageFolder = store.Folder;
+            List<Matchimpro> matchlist = await Matchimpro.ReadFolder(storageFolder);
+
             if (matchlist.Count > 0) {
                 recent_matches.Visibility = Visibility.Visible;
                 nb_matches.Text = $"{matchlist.Count} {(matchlist.Count > 1 ? resourceLoader.GetString("RecentMatchMultiple") : resourceLoader.GetString("RecentMatchSingle"))}";
@@ -71,8 +73,12 @@ namespace MatchiApp
                 most_recent_match.Text = mostRecentMatch.Name;
             }
             else
-            {
                 recent_matches.Visibility = Visibility.Collapsed;
+
+            if (!File.Exists(storageFolder.Path + Path.DirectorySeparatorChar + "Categories.catei"))//si le fichier de catégorie n'existe pas, on masque la listview
+            {
+                StorageFile file = await store.Folder.CreateFileAsync("Categories.catei", CreationCollisionOption.FailIfExists);
+                await FileIO.WriteTextAsync(file, string.Join("\n", "Libre"));
             }
         }
         private void Date_display()
