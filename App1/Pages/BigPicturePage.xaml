@@ -45,5 +45,7 @@
             <TextBlock x:Name="name_team2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Margin="60" Foreground="Black" FontSize="66" FontWeight="Bold" FontFamily="Bahnschrift"></TextBlock>
             <TextBlock x:Name="score_team2" Text="0" Margin="50,0" FontFamily="Bahnschrift" Foreground="Black" FontSize="128" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
         </Grid>
+        <TextBlock x:Name="length_match" Text="2:00" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontWeight="SemiBold" FontFamily="Bahnschrift" Padding="90,30" FontSize="48"></TextBlock>
+        <TextBlock x:Name="category_match" Text="Libre" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="SemiBold" FontFamily="Bahnschrift" Padding="90,30" FontSize="48"></TextBlock>
     </Grid>
 </Page>

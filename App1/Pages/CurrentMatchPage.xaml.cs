@@ -187,6 +187,7 @@ namespace MatchiApp
             {
                 ui_catname.Text = list_of_categories.SelectedItem.ToString();
                 page.Children.Remove(new_round);
+                ui_penalty.Visibility = Visibility.Visible;
                 source_list_of_categories.Remove(list_of_categories.SelectedValue.ToString());
                 if (times_selection.SelectedIndex>0)
                 {
@@ -331,6 +332,7 @@ namespace MatchiApp
                     page.Children.Remove(ui_endround);
                     round_value++;
                     page.Children.Add(new_round);
+                    ui_penalty.Visibility = Visibility.Collapsed;
                     round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";
                     if (ui_trans1.Opacity == 1)
                     {
@@ -410,7 +412,7 @@ namespace MatchiApp
         private void Start(object sender, RoutedEventArgs e)
         {
             ui_scroll.Visibility = Visibility.Visible;
-            ui_showinfo.Visibility = Visibility.Visible;
+            ui_showinfo.Visibility = Visibility.Visible;            
             page.Children.Remove(ui_start);
             page.Children.Add(new_round);
         }
@@ -494,6 +496,9 @@ namespace MatchiApp
             ErrorDialog.CloseButtonText = "Annuler";
             ui_progressbar.Foreground = new SolidColorBrush(Colors.DarkOliveGreen);
             timer.Stop();
+            in_pause = false;
+            ui_pausetimer.Content = "\uE769";
+
             ContentDialogResult result = await ErrorDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -514,6 +519,7 @@ namespace MatchiApp
             min = timer_selection.SelectedIndex + 1;
             sec = 0;
             curtime = 0;
+            ui_pausetimer.Content = "\uE769";
             ui_progressbar.Foreground = new SolidColorBrush(Colors.RoyalBlue);
             timer.Start();
             ui_trans1.Opacity = 1;
@@ -534,6 +540,7 @@ namespace MatchiApp
             currentMatchInfo.Score1 = scoreleft.ToString();
             currentMatchInfo.Score2 = scoreright.ToString();
             currentMatchInfo.Category = ui_catname.Text;
+            currentMatchInfo.Length = ui_matchlength.Text;
 
             //Crée une seconde vue et crée une deuxième fenêtre
             int NewWindowid = 0;

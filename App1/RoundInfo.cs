@@ -13,6 +13,7 @@ namespace MatchiApp
         public string Score1 { get; set; }
         public string Score2 { get; set; }
         public string Category { get; set; }
-            
+        public string Length { get; set; }
+
     }
 }

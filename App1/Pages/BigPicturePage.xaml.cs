@@ -110,6 +110,8 @@ namespace MatchiApp
             name_team2.Text = matchInfo.Team2;
             score_team1.Text = matchInfo.Score1;
             score_team2.Text = matchInfo.Score2;
+            length_match.Text = matchInfo.Length;
+            category_match.Text = matchInfo.Category;
         }       
     }
 }
