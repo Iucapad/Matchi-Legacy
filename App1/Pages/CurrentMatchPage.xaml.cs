@@ -238,6 +238,7 @@ namespace MatchiApp
             page.Children.Remove(ui_interlude);
             page.Children.Remove(ui_endround);
             page.Children.Remove(new_round);
+            page.Children.Remove(ui_victory);
             ui_scroll.Visibility = Visibility.Collapsed;
             ui_showinfo.Visibility = Visibility.Collapsed;
             if (!page.Children.Contains(ui_start))
@@ -325,28 +326,30 @@ namespace MatchiApp
 
         private void NextRound(object sender, RoutedEventArgs e)
         {
+            //Changements entre deux manches
+            ui_penalty.Visibility = Visibility.Collapsed;
+            if (ui_trans1.Opacity == 1)
+            {
+                scoreleft++;
+            }
+            if (ui_trans2.Opacity == 1)
+            {
+                scoreright++;
+            }
+            ui_scoreleft.Text = scoreleft.ToString();
+            ui_scoreright.Text = scoreright.ToString();
+            ui_trans1.Opacity = 1;
+            ui_trans2.Opacity = 1;
             if (round_value< matchimpro.Rounds) {
+                //Affiche l'interface de la nouvelle manche
                 if (!page.Children.Contains(new_round))
                 {
                     ui_votemessage.Visibility = Visibility.Visible;
                     ui_votebox.Visibility = Visibility.Collapsed;
                     page.Children.Remove(ui_endround);
                     round_value++;
-                    page.Children.Add(new_round);
-                    ui_penalty.Visibility = Visibility.Collapsed;
-                    round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";
-                    if (ui_trans1.Opacity == 1)
-                    {
-                        scoreleft++;
-                    }
-                    if (ui_trans2.Opacity == 1)
-                    {
-                        scoreright++;
-                    }
-                    ui_scoreleft.Text = scoreleft.ToString();
-                    ui_scoreright.Text = scoreright.ToString();
-                    ui_trans1.Opacity = 1;
-                    ui_trans2.Opacity = 1;
+                    page.Children.Add(new_round);                    
+                    round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";                    
                 }
                 if (source_list_of_categories.Count() == 0)
                 {
@@ -356,7 +359,29 @@ namespace MatchiApp
             }
             else
             {
-                //TODO Afficher un écran de fin de match avec score final
+                //Affiche un écran de fin de match avec score final
+                if (!page.Children.Contains(ui_victory))
+                {
+                    page.Children.Add(ui_victory);
+                    ui_endround.Visibility = Visibility.Collapsed; ;
+                    ui_scroll.Visibility = Visibility.Collapsed;
+                    var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                    if (scoreleft > scoreright)
+                    {
+                        //Victoire de équipe 1
+                        ui_victorymessage.Text = resourceLoader.GetString("VictoryMessage") + matchimpro.Team1;
+                    }
+                    else if (scoreleft < scoreright)
+                    {
+                        //Victoire de équipe 2
+                        ui_victorymessage.Text = resourceLoader.GetString("VictoryMessage") + matchimpro.Team2;
+                    }
+                    else
+                    {
+                        //Egalité
+                        ui_victorymessage.Text = resourceLoader.GetString("Equality");
+                    }
+                }
             }
         }
         private void ApplyTheme(string app_setting)

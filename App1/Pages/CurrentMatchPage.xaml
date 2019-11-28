@@ -338,5 +338,21 @@
             <Button CornerRadius="25" x:Uid="StartMatch" FontSize="18" FontWeight="SemiBold" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="50" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start">
             </Button>
         </Grid>
+        <Grid x:Name="ui_victory" Background="{ThemeResource CustomAcrylicBrush}" Visibility="Visible" Margin="0,60,0,60">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition/>
+                </TransitionCollection>
+            </Grid.Transitions>
+            <Grid Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" BorderBrush="#303030" BorderThickness="1,1,1,0" Height="65" Width="300" CornerRadius="10,10,0,0" Margin="0,0,0,120">
+                <TextBlock HorizontalAlignment="Center" FontFamily="Bahnschrift" FontSize="32" FontWeight="SemiBold" VerticalAlignment="Center" Padding="0,10,0,0" x:Uid="EndOfMatch"></TextBlock>
+            </Grid>
+            <Grid HorizontalAlignment="Center" BorderBrush="#303030" BorderThickness="1,0,1,1" VerticalAlignment="Center" Background="{ThemeResource SystemControlHighlightListLowRevealBackgroundBrush}" Height="60" Width="300" CornerRadius="0,0,8,8">
+                <TextBlock x:Name="ui_victorymessage" FontFamily="Bahnschrift" FontSize="28" Padding="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"></TextBlock>
+            </Grid>
+            <Grid VerticalAlignment="Bottom" BorderBrush="#303030" BorderThickness="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" Height="125" CornerRadius="10" Margin="30,0,30,0">
+                <TextBlock Text="Résumé du match" FontSize="18" Margin="30,15"></TextBlock>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

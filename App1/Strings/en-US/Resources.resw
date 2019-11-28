@@ -168,6 +168,9 @@
   <data name="DeleteButton" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="EndOfMatch.Text" xml:space="preserve">
+    <value>End of match</value>
+  </data>
   <data name="Equality" xml:space="preserve">
     <value>Equality</value>
   </data>
@@ -272,6 +275,9 @@
   </data>
   <data name="Validate.Text" xml:space="preserve">
     <value>Validate</value>
+  </data>
+  <data name="VictoryMessage" xml:space="preserve">
+    <value>Victory of </value>
   </data>
   <data name="WarningMessage" xml:space="preserve">
     <value>Warning</value>
