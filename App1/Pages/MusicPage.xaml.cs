@@ -35,6 +35,7 @@ namespace MatchiApp
 
         [DllImport("user32.dll")]
         public static extern void keybd_event(byte virtualKey, byte scanCode, uint flags, IntPtr extraInfo);
+        private MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content; //prend la mainpage actuelle comme mainpage
 
         public MusicPage()
         {
@@ -98,6 +99,14 @@ namespace MatchiApp
 
     private void Resize_page(object sender, SizeChangedEventArgs e)
         {
+            if (((mainFrame)).ActualWidth < 750)
+            {
+                page_title.Margin = new Thickness(50, 0, 0, 0);
+            }
+            else
+            {
+                page_title.Margin = new Thickness(20, 10, 0, 0);
+            }
             if (((Frame)Window.Current.Content).ActualHeight < 500)
             {
                 controls_box.Margin = new Thickness(0, 0, 0, 50);

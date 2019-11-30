@@ -35,6 +35,7 @@ namespace MatchiApp
     {
         private ObservableCollection<Matchimpro> matchlist = new ObservableCollection<Matchimpro>();//liste des impros
         private MatchStorage store = new MatchStorage();//magasin de gestion des fichiers
+        private MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content; //prend la mainpage actuelle comme mainpage
 
         public RecentMatchesPage()
         {
@@ -67,8 +68,7 @@ namespace MatchiApp
         }
 
         private async void Open_match(object sender, RoutedEventArgs e)
-        {
-            MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
+        {            
             if (mainFrame.navigationView.MenuItems.Count == 6)
             {
                 var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
@@ -123,7 +123,7 @@ namespace MatchiApp
                 deletebtn.Visibility = Visibility.Collapsed;
                 home_match.Children.Remove(details_card);
                 addbtn.Margin = new Thickness(0, 0, 0, 60);
-                if (((Frame)).ActualWidth < 750)
+                if (((mainFrame)).ActualWidth < 750)
                 {
                     list_of_matches.Margin = new Thickness(30, 130, 30, 160);
                 }
@@ -141,7 +141,7 @@ namespace MatchiApp
                 }
                 addbtn.Margin = new Thickness(153, 0, 0, 60);
                 match_name.Text = ((Matchimpro)list_of_matches.SelectedItem).Name.ToUpper();
-                if (((Frame)).ActualWidth < 750)
+                if (((mainFrame)).ActualWidth < 750)
                 {
                     list_of_matches.Margin = new Thickness(30, 200, 30, 160);
                 }
@@ -150,8 +150,9 @@ namespace MatchiApp
 
         private void Resize_page(object sender, SizeChangedEventArgs e)
         {            
-            if (((Frame)).ActualWidth < 750)
+            if (((mainFrame)).ActualWidth < 750)
             {
+                header_title.Margin = new Thickness(50, 0, 0, 0);
                 list_of_matches.Margin = new Thickness(30, 130, 30, 160);
                 list_of_matches.Width = double.NaN;
                 list_of_matches.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -172,6 +173,7 @@ namespace MatchiApp
             }
             else
             {
+                header_title.Margin = new Thickness(20, 10, 0, 0);
                 list_of_matches.Margin = new Thickness(0, 60, 370, 160);
                 list_of_matches.Width = 300;
                 list_of_matches.HorizontalAlignment = HorizontalAlignment.Center;

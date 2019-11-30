@@ -28,6 +28,7 @@ namespace MatchiApp
     {
         private MatchStorage store = new MatchStorage(); //lieu de stockage des fichier
         private ObservableCollection<string> source_category_list = new ObservableCollection<string>(); //liste des catégories bind à la listview
+        private MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content; //prend la mainpage actuelle comme mainpage
         private ContentDialog ErrorDialog = new ContentDialog //Squelette de base d'un message d'erreur, à compléter en cas d'erreur
         {
             Title = "Attention",
@@ -131,14 +132,16 @@ namespace MatchiApp
 
         private void Resize(object sender, SizeChangedEventArgs e)
         {
-            if (((Frame)).ActualWidth < 750)
+            if (((mainFrame)).ActualWidth < 750)
             {
+                header_title.Margin = new Thickness(50, 0, 0, 0);
                 list_of_categories.Margin = new Thickness(30, 130, 30, 160);
                 list_of_categories.Width = double.NaN;
                 list_of_categories.HorizontalAlignment = HorizontalAlignment.Stretch;
             }
             else
             {
+                header_title.Margin = new Thickness(20, 10, 0, 0);
                 list_of_categories.Margin = new Thickness(30, 130, 30, 160);
                 list_of_categories.Width = 300;
                 list_of_categories.HorizontalAlignment = HorizontalAlignment.Center;

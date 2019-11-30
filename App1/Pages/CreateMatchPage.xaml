@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}">
+    Background="{ThemeResource SystemControlChromeHighAcrylicWindowMediumBrush}" SizeChanged="ResizeWindow">
     <Page.Resources>
         <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
@@ -333,7 +333,7 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock x:Uid="NewMatch"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
+        <TextBlock x:Uid="NewMatch" x:Name="header_title"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <ScrollViewer VerticalAlignment="Stretch" VerticalScrollMode="Enabled"  Margin="0,60,0,160">
             <StackPanel x:Name="page" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBox HorizontalAlignment="Center" CornerRadius="4" Margin="20" x:Uid="Team1Header" Height="60" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Name="nomeq1" MaxLength="30"/>

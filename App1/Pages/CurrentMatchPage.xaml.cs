@@ -39,6 +39,7 @@ namespace MatchiApp
         private DispatcherTimer timer = new DispatcherTimer();
         private ObservableCollection<string> source_time_choice = new ObservableCollection<string>();
         private List<string> source_nbre_times = new List<string>();
+        private MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content; //prend la mainpage actuelle comme mainpage
         private ContentDialog ErrorDialog = new ContentDialog //Squelette de base d'un message d'erreur, à compléter en cas d'erreur
         {
             Title = "Attention",
@@ -62,8 +63,7 @@ namespace MatchiApp
             this.InitializeComponent();
             new_round.Visibility = Visibility.Visible;
             ui_infocard.Visibility = Visibility.Visible;
-            SharedShadow.Receivers.Add(Receiver);            
-            MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
+            SharedShadow.Receivers.Add(Receiver);
             if (mainFrame.navigationView.MenuItems.Count < 6)
             {
                 var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
@@ -116,10 +116,11 @@ namespace MatchiApp
 
         private void Resize(object sender, SizeChangedEventArgs e)
         {
-            if (((Frame)).ActualWidth < 750)
+            if (((mainFrame)).ActualWidth < 750)
             {
                 if (ui_container.Orientation == Orientation.Horizontal)
                 {
+                    match_name.Margin = new Thickness(50, 0, 0, 0);
                     ui_scroll.Margin = new Thickness(0, 60, 0, 60);
                     ui_container.Orientation = Orientation.Vertical;
                     ui_container.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -141,31 +142,40 @@ namespace MatchiApp
                     ui_progressbar.HorizontalAlignment = HorizontalAlignment.Stretch;
                     ui_progressbar.Width = double.NaN;
                     ui_progressinfo.Margin = new Thickness(35, 30, 35, 0);
+                    ui_showinfo.Margin = new Thickness(0);
+                    ui_showinfo.BorderThickness = new Thickness(0, 1, 0, 0);
+                    ui_infocard.Margin = new Thickness(0);
+                    ui_infocard.BorderThickness = new Thickness(0, 1, 0, 0);
                 }
             }
             else if (ui_container.Orientation == Orientation.Vertical)
-            {
-                ui_scroll.Margin = new Thickness(0, 80, 0, 60);
-                ui_container.Orientation = Orientation.Horizontal;
-                ui_container.HorizontalAlignment = HorizontalAlignment.Center;
-                ui_container.Padding = new Thickness(20);
-                ui_vs.Height = 50;
-                ui_vs.CornerRadius = new CornerRadius(25);
-                ui_vs.Padding = new Thickness(15);
-                ui_leftcard.Height = 250;
-                ui_leftcard.HorizontalAlignment = HorizontalAlignment.Center;
-                ui_leftcard.Width = 300;
-                ui_rightcard.Height = 250;
-                ui_rightcard.HorizontalAlignment = HorizontalAlignment.Center;
-                ui_rightcard.Width = 300;
-                ui_leftname.TextAlignment = TextAlignment.Center;
-                ui_rightname.TextAlignment = TextAlignment.Center;
-                ui_catname.Margin = new Thickness(120, 30, 0, 0);
-                ui_nbjouteurs.Margin = new Thickness(0, 0, 150, 65);
-                ui_progressinfo.HorizontalAlignment = HorizontalAlignment.Center;
-                ui_progressbar.HorizontalAlignment = HorizontalAlignment.Center;
-                ui_progressbar.Width = 300;
-                ui_progressinfo.Margin = new Thickness(0, 30, 0, 60);
+            { 
+                    match_name.Margin = new Thickness(20, 10, 0, 0);
+                    ui_scroll.Margin = new Thickness(0, 80, 0, 60);
+                    ui_container.Orientation = Orientation.Horizontal;
+                    ui_container.HorizontalAlignment = HorizontalAlignment.Center;
+                    ui_container.Padding = new Thickness(20);
+                    ui_vs.Height = 50;
+                    ui_vs.CornerRadius = new CornerRadius(25);
+                    ui_vs.Padding = new Thickness(15);
+                    ui_leftcard.Height = 250;
+                    ui_leftcard.HorizontalAlignment = HorizontalAlignment.Center;
+                    ui_leftcard.Width = 300;
+                    ui_rightcard.Height = 250;
+                    ui_rightcard.HorizontalAlignment = HorizontalAlignment.Center;
+                    ui_rightcard.Width = 300;
+                    ui_leftname.TextAlignment = TextAlignment.Center;
+                    ui_rightname.TextAlignment = TextAlignment.Center;
+                    ui_catname.Margin = new Thickness(120, 30, 0, 0);
+                    ui_nbjouteurs.Margin = new Thickness(0, 0, 150, 65);
+                    ui_progressinfo.HorizontalAlignment = HorizontalAlignment.Center;
+                    ui_progressbar.HorizontalAlignment = HorizontalAlignment.Center;
+                    ui_progressbar.Width = 300;
+                    ui_progressinfo.Margin = new Thickness(0, 30, 0, 60);
+                    ui_showinfo.Margin = new Thickness(30, 0, 30, 0);
+                    ui_showinfo.BorderThickness = new Thickness(1, 1, 1, 0);
+                    ui_infocard.Margin = new Thickness(30, 0, 30, 0);
+                    ui_infocard.BorderThickness = new Thickness(1, 1, 1, 0);                
             }
         }
 
@@ -241,6 +251,7 @@ namespace MatchiApp
             page.Children.Remove(ui_victory);
             ui_scroll.Visibility = Visibility.Collapsed;
             ui_showinfo.Visibility = Visibility.Collapsed;
+            ui_endround.Visibility = Visibility.Visible;
             if (!page.Children.Contains(ui_start))
             {
                 page.Children.Add(ui_start);
@@ -363,7 +374,8 @@ namespace MatchiApp
                 if (!page.Children.Contains(ui_victory))
                 {
                     page.Children.Add(ui_victory);
-                    ui_endround.Visibility = Visibility.Collapsed; ;
+                    ui_endround.Visibility = Visibility.Collapsed;
+                    page.Children.Remove(ui_endround);                    
                     ui_scroll.Visibility = Visibility.Collapsed;
                     var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                     if (scoreleft > scoreright)

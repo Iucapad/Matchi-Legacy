@@ -36,9 +36,9 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid x:Name="app_background" Background="{ThemeResource CustomAcrylicBrush}">
-        <Rectangle Width="40" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="#99000000"></Rectangle>
+        <Rectangle x:Name="navBackground" Width="40" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="#99000000"></Rectangle>
         <Grid x:Name="home_interface" Background="{ThemeResource CustomAcrylicBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="40,33,0,0">
-            <TextBlock x:Uid="Home"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0"  FontSize="32"></TextBlock>
+            <TextBlock x:Name="page_title" x:Uid="Home"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0"  FontSize="32"></TextBlock>
             <Grid>
                 <Grid.Transitions>
                     <TransitionCollection>
@@ -79,7 +79,7 @@
             </Grid>
         </Grid>
         <Rectangle x:Name="web_header" Visibility="Collapsed" Height="auto"  Width="auto" Margin="40,0,0,0" Fill="#151515"></Rectangle>
-        <NavigationView x:Name="navigationView" x:FieldModifier="public" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="500" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
+        <NavigationView x:Name="navigationView" x:FieldModifier="public" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="750" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" >
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Name="MATCH" Icon="OutlineStar" x:Uid="RecentMatches" Tag="matchNav">
                 </NavigationViewItem>

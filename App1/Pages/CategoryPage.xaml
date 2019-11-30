@@ -37,7 +37,7 @@
     </Page.Resources>
 
     <Grid x:Name="page" Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock x:Uid="Categories"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>        
+        <TextBlock x:Uid="Categories" x:Name="header_title"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>        
         <Grid>
             <Grid.Transitions>
                 <TransitionCollection>

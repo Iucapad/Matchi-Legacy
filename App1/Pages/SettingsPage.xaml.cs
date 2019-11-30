@@ -25,6 +25,7 @@ namespace MatchiApp
     public sealed partial class SettingsPage : Page
     {
         ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+        private MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content; //prend la mainpage actuelle comme mainpage
         public SettingsPage()
         {
             this.InitializeComponent();
@@ -62,6 +63,18 @@ namespace MatchiApp
                 default:
                     localSettings.Values["theme_setting"] = "1";
                     break;
+            }
+        }
+
+        private void ResizeWindow(object sender, SizeChangedEventArgs e)
+        {
+            if (((mainFrame)).ActualWidth < 750)
+            {
+                header_title.Margin = new Thickness(50, 0, 0, 0);
+            }
+            else
+            {
+                header_title.Margin = new Thickness(20, 10, 0, 0);
             }
         }
     }

@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" SizeChanged="ResizeWindow">
     <Page.Resources>
         <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
@@ -36,7 +36,7 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="{ThemeResource CustomAcrylicBrush}">
-        <TextBlock x:Uid="Settings"  FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
+        <TextBlock x:Uid="Settings" x:Name="header_title" FontFamily="Segoe UI" FontWeight="Bold" Margin="20,10,0,0" FontSize="32"></TextBlock>
         <ScrollViewer Margin="0,80,0,20">
             <Grid>
             <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Width="400">

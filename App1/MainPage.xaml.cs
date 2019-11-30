@@ -138,19 +138,30 @@ namespace MatchiApp
             else
             {
                 date_of_day.Margin = new Thickness(0, 110, 0, 0);
-                recent_matches.Margin = new Thickness(0, 0, 0, 0);
+                recent_matches.Margin = new Thickness(0);
             }
-                if (((Frame)Window.Current.Content).ActualWidth < 500)
+            if (((Frame)Window.Current.Content).ActualWidth < 750)
             {
-                web_header.Margin = new Thickness(0, 0, 0, 0);
-                navigationView.IsPaneToggleButtonVisible = false;
-                navigationView.IsPaneVisible = false;
+                page_title.Margin = new Thickness(50, 0, 0, 0);
+                home_interface.Margin = new Thickness(0, 33, 0, 0);
+                web_header.Margin = new Thickness(0);
+                navBackground.Visibility = Visibility.Collapsed;
+                if (((Frame)Window.Current.Content).ActualWidth < 500)
+                {
+                    web_header.Margin = new Thickness(0, 0, 0, 0);                    
+                    navigationView.IsPaneVisible = false;
+                }
+                else
+                {
+                    navigationView.IsPaneVisible = true;
+                }
             }
             else
             {
+                page_title.Margin = new Thickness(20, 10, 0, 0);
+                home_interface.Margin = new Thickness(40, 33, 0, 0);
                 web_header.Margin = new Thickness(40, 0, 0, 0);
-                navigationView.IsPaneToggleButtonVisible = true;
-                navigationView.IsPaneVisible = true;
+                navBackground.Visibility = Visibility.Visible;
             }
         }
 

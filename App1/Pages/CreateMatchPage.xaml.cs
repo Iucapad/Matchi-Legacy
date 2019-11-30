@@ -28,6 +28,7 @@ namespace MatchiApp
     {
         private List<int> number = new List<int>(Enumerable.Range(1, 30));//liste du nombre de jouteurs
         private MatchStorage store = new MatchStorage();
+        private MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content; //prend la mainpage actuelle comme mainpage
         public CreateMatchPage()
         {
             this.InitializeComponent();
@@ -70,25 +71,16 @@ namespace MatchiApp
             MainPage.MainPageFrame?.Navigate(typeof(CurrentMatchPage), match); //renvoie à la page de match
         }
 
-        /* CODE NON UTILISE
-        private async void Choisir_dossier(object sender, RoutedEventArgs e)//Choisi le dossier 
+        private void ResizeWindow(object sender, SizeChangedEventArgs e)
         {
-            var folderPicker = new Windows.Storage.Pickers.FolderPicker();
-            folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
-            folderPicker.FileTypeFilter.Add("*");
-            store.Folder = await folderPicker.PickSingleFolderAsync();
-
-            if (store.Folder != null)
-            {        
-                Windows.Storage.AccessCache.StorageApplicationPermissions.
-                FutureAccessList.AddOrReplace("PickedFolderToken", store.Folder);
-                this.filestate.Text = store.Folder.Path.ToString();             
+            if (((mainFrame)).ActualWidth < 750)
+            {
+                header_title.Margin = new Thickness(50, 0, 0, 0);
             }
             else
             {
-                this.filestate.Text = "Emplacment non-choisi.";
+                header_title.Margin = new Thickness(20, 10, 0, 0);
             }
-        }*/
-
+        }
     }
 }
