@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -142,6 +143,7 @@ namespace MatchiApp
             }
             if (((Frame)Window.Current.Content).ActualWidth < 750)
             {
+                navigationTrigger.Visibility = Visibility.Visible;
                 page_title.Margin = new Thickness(50, 0, 0, 0);
                 home_interface.Margin = new Thickness(0, 33, 0, 0);
                 web_header.Margin = new Thickness(0);
@@ -206,6 +208,21 @@ namespace MatchiApp
             if (Application.Current.RequestedTheme == ApplicationTheme.Light)
             { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo_light.png")); }
             else { saison_logo.Source = new BitmapImage(new Uri("ms-appx:///Assets/app_saison_logo.png")); }
+        }
+
+        private void NavigationPointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            navigationTrigger.Visibility = Visibility.Collapsed;
+            if (((Frame)Window.Current.Content).ActualWidth < 750)
+            {                
+                navigationView.IsPaneOpen = true;                
+            }
+        }
+
+        private async void PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            navigationTrigger.Visibility = Visibility.Visible;
         }
     }
 }
