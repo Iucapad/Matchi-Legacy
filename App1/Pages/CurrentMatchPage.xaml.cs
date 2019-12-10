@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -104,6 +105,7 @@ namespace MatchiApp
             if (!page.Children.Contains(ui_endround))
             {
                 page.Children.Remove(ui_infocard);
+                ui_scroll.Opacity = 1;
                 page.Children.Add(ui_endround);
                 ui_trans1.Opacity = 0.4;
                 ui_trans2.Opacity = 0.4;
@@ -118,6 +120,7 @@ namespace MatchiApp
         {
             if (((mainFrame)).ActualWidth < 750)
             {
+                //ui_nbjouteurs.Margin = new Thickness(0, 0, 30, 55);
                 if (ui_container.Orientation == Orientation.Horizontal)
                 {
                     match_name.Margin = new Thickness(50, 0, 0, 0);
@@ -137,7 +140,7 @@ namespace MatchiApp
                     ui_leftname.TextAlignment = TextAlignment.Left;
                     ui_rightname.TextAlignment = TextAlignment.Left;
                     ui_catname.Margin = new Thickness(30, 10, 0, 60);
-                    ui_nbjouteurs.Margin = new Thickness(0, 0, 30, 85);
+                    
                     ui_progressinfo.HorizontalAlignment = HorizontalAlignment.Stretch;
                     ui_progressbar.HorizontalAlignment = HorizontalAlignment.Stretch;
                     ui_progressbar.Width = double.NaN;
@@ -150,32 +153,32 @@ namespace MatchiApp
             }
             else if (ui_container.Orientation == Orientation.Vertical)
             { 
-                    match_name.Margin = new Thickness(20, 10, 0, 0);
-                    ui_scroll.Margin = new Thickness(0, 80, 0, 60);
-                    ui_container.Orientation = Orientation.Horizontal;
-                    ui_container.HorizontalAlignment = HorizontalAlignment.Center;
-                    ui_container.Padding = new Thickness(20);
-                    ui_vs.Height = 50;
-                    ui_vs.CornerRadius = new CornerRadius(25);
-                    ui_vs.Padding = new Thickness(15);
-                    ui_leftcard.Height = 250;
-                    ui_leftcard.HorizontalAlignment = HorizontalAlignment.Center;
-                    ui_leftcard.Width = 300;
-                    ui_rightcard.Height = 250;
-                    ui_rightcard.HorizontalAlignment = HorizontalAlignment.Center;
-                    ui_rightcard.Width = 300;
-                    ui_leftname.TextAlignment = TextAlignment.Center;
-                    ui_rightname.TextAlignment = TextAlignment.Center;
-                    ui_catname.Margin = new Thickness(120, 30, 0, 0);
-                    ui_nbjouteurs.Margin = new Thickness(0, 0, 150, 65);
-                    ui_progressinfo.HorizontalAlignment = HorizontalAlignment.Center;
-                    ui_progressbar.HorizontalAlignment = HorizontalAlignment.Center;
-                    ui_progressbar.Width = 300;
-                    ui_progressinfo.Margin = new Thickness(0, 30, 0, 60);
-                    ui_showinfo.Margin = new Thickness(30, 0, 30, 0);
-                    ui_showinfo.BorderThickness = new Thickness(1, 1, 1, 0);
-                    ui_infocard.Margin = new Thickness(30, 0, 30, 0);
-                    ui_infocard.BorderThickness = new Thickness(1, 1, 1, 0);                
+                match_name.Margin = new Thickness(20, 10, 0, 0);
+                ui_scroll.Margin = new Thickness(0, 80, 0, 60);
+                ui_container.Orientation = Orientation.Horizontal;
+                ui_container.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_container.Padding = new Thickness(20);
+                ui_vs.Height = 50;
+                ui_vs.CornerRadius = new CornerRadius(25);
+                ui_vs.Padding = new Thickness(15);
+                ui_leftcard.Height = 250;
+                ui_leftcard.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_leftcard.Width = 300;
+                ui_rightcard.Height = 250;
+                ui_rightcard.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_rightcard.Width = 300;
+                ui_leftname.TextAlignment = TextAlignment.Center;
+                ui_rightname.TextAlignment = TextAlignment.Center;
+                ui_catname.Margin = new Thickness(120, 30, 0, 0);
+                //ui_nbjouteurs.Margin = new Thickness(0, 0, 150, 0);
+                ui_progressinfo.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_progressbar.HorizontalAlignment = HorizontalAlignment.Center;
+                ui_progressbar.Width = 300;
+                ui_progressinfo.Margin = new Thickness(0, 30, 0, 60);
+                ui_showinfo.Margin = new Thickness(30, 0, 30, 0);
+                ui_showinfo.BorderThickness = new Thickness(1, 1, 1, 0);
+                ui_infocard.Margin = new Thickness(30, 0, 30, 0);
+                ui_infocard.BorderThickness = new Thickness(1, 1, 1, 0);                
             }
         }
 
@@ -249,6 +252,7 @@ namespace MatchiApp
             page.Children.Remove(ui_endround);
             page.Children.Remove(new_round);
             page.Children.Remove(ui_victory);
+            page.Children.Remove(anim_givepoint);
             ui_scroll.Visibility = Visibility.Collapsed;
             ui_showinfo.Visibility = Visibility.Collapsed;
             ui_endround.Visibility = Visibility.Visible;
@@ -292,6 +296,8 @@ namespace MatchiApp
             if (!page.Children.Contains(ui_infocard))
             {
                 page.Children.Add(ui_infocard);
+                ui_notesbackdrop.Visibility = Visibility.Visible;
+                ui_notesbackdrop.Opacity = 1;
             }
             if (!page.Children.Contains(ui_endround))
             {
@@ -303,6 +309,8 @@ namespace MatchiApp
         private void HideInfo(object sender, RoutedEventArgs e)
         {
             page.Children.Remove(ui_infocard);
+            ui_notesbackdrop.Visibility = Visibility.Collapsed;
+            ui_notesbackdrop.Opacity = 0;
             if (!page.Children.Contains(ui_endround) && !page.Children.Contains(ui_interlude))
             {
                 ui_trans1.Opacity = 1;
@@ -328,6 +336,8 @@ namespace MatchiApp
         private void PageLoaded(object sender, RoutedEventArgs e)
         {            
             page.Children.Remove(ui_infocard);
+            ui_notesbackdrop.Opacity = 0;
+            ui_notesbackdrop.Visibility = Visibility.Collapsed;
             if (!page.Children.Contains(ui_endround))
             {
                 ui_trans1.Opacity = 1;
@@ -335,22 +345,45 @@ namespace MatchiApp
             }
         }
 
-        private void NextRound(object sender, RoutedEventArgs e)
+        private async void NextRound(object sender, RoutedEventArgs e)
         {
-            //Changements entre deux manches
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            //animation de fin de manche et distribution des points
+            if (!page.Children.Contains(anim_givepoint))
+            {
+                page.Children.Add(anim_givepoint);                
+            }
+            ui_scroll.Opacity = 0.2;
             ui_penalty.Visibility = Visibility.Collapsed;
-            if (ui_trans1.Opacity == 1)
+            if ((ui_trans1.Opacity == 1)&& (ui_trans2.Opacity != 1))
             {
                 scoreleft++;
+                ui_leftcard.Rotation = -3;
+                anim_text.Text = resourceLoader.GetString("PointMessage") + matchimpro.Team1;
             }
-            if (ui_trans2.Opacity == 1)
+            else if ((ui_trans1.Opacity != 1) && (ui_trans2.Opacity == 1))
             {
                 scoreright++;
+                ui_rightcard.Rotation = 3;
+                anim_text.Text = resourceLoader.GetString("PointMessage") + matchimpro.Team2;
+            }
+            else if ((ui_trans1.Opacity == 1)&& (ui_trans2.Opacity == 1))
+            {
+                scoreleft++;
+                scoreright++;
+                ui_leftcard.Rotation = -3;
+                ui_rightcard.Rotation = 3;
+                anim_text.Text = resourceLoader.GetString("EqualityMessage");
             }
             ui_scoreleft.Text = scoreleft.ToString();
             ui_scoreright.Text = scoreright.ToString();
             ui_trans1.Opacity = 1;
             ui_trans2.Opacity = 1;
+            await Task.Delay(TimeSpan.FromSeconds(2));
+            ui_leftcard.Rotation = 0;
+            ui_rightcard.Rotation = 0;
+            page.Children.Remove(anim_givepoint);
+            ui_scroll.Opacity = 1;
             if (round_value< matchimpro.Rounds) {
                 //Affiche l'interface de la nouvelle manche
                 if (!page.Children.Contains(new_round))
@@ -377,7 +410,6 @@ namespace MatchiApp
                     ui_endround.Visibility = Visibility.Collapsed;
                     page.Children.Remove(ui_endround);                    
                     ui_scroll.Visibility = Visibility.Collapsed;
-                    var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                     if (scoreleft > scoreright)
                     {
                         //Victoire de équipe 1
@@ -480,6 +512,7 @@ namespace MatchiApp
                 else
                 {
                     page.Children.Remove(ui_infocard);
+                    ui_scroll.Opacity = 1;
                     page.Children.Add(ui_interlude);
                     ui_trans1.Opacity = 0.4;
                     ui_trans2.Opacity = 0.4;
