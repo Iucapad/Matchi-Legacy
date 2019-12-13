@@ -13,11 +13,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Default">
-                    <AcrylicBrush x:Key="CustomAcrylicBrush"
+                    <AcrylicBrush x:Key="CustomAcrylicBrush"                                  
                           BackgroundSource="HostBackdrop"
-                          TintColor="Black"
+                          TintColor="#000001"                          
                           TintOpacity="0.9"
-                          FallbackColor="#151515"/>
+                          FallbackColor="#020203"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="HighContrast">
@@ -100,7 +100,7 @@
                 </Frame.ContentTransitions>
             </Frame>
         </NavigationView>
-        <Rectangle x:Name="navigationTrigger" Width="20" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="Transparent" PointerEntered="NavigationPointerEntered"/>
+        <Rectangle x:Name="navigationTrigger" Width="20" Margin="0,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Fill="Transparent" PointerEntered="NavigationPointerEntered"/>
 
     </Grid>    
 </Page>

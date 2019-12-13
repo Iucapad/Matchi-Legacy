@@ -13,9 +13,9 @@
                 <ResourceDictionary x:Key="Default">
                     <AcrylicBrush x:Key="CustomAcrylicBrush"
                           BackgroundSource="HostBackdrop"
-                          TintColor="Black"
+                          TintColor="#000001"
                           TintOpacity="0.9"
-                          FallbackColor="#151515"/>
+                          FallbackColor="#020203"/>
                 </ResourceDictionary>
 
                 <ResourceDictionary x:Key="HighContrast">
