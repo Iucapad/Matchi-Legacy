@@ -310,7 +310,7 @@
                 <StackPanel>
                     <Grid Height="116" Width="320" BorderBrush="#454545" Background="{ThemeResource SystemControlChromeMediumAcrylicElementMediumBrush}" BorderThickness="1" CornerRadius="8">
                         <TextBlock Margin="10,3,0,0" x:Uid="Category"></TextBlock>
-                        <Button CornerRadius="4" Margin="0,0,0,8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="40" Width="300" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI" Click="random_category">
+                        <Button CornerRadius="4" Margin="0,0,0,8" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="40" Width="300" VerticalAlignment="Bottom" FontSize="18" FontWeight="Bold" FontFamily="Segoe UI" Click="PickRandom">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xF133;" FontSize="24" Padding="0,0,15,0" HorizontalAlignment="Center"/>
                                 <TextBlock x:Uid="Random"></TextBlock>

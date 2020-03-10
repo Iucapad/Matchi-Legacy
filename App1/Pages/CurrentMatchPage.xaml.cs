@@ -101,10 +101,14 @@ namespace MatchiApp
             source_list_of_categories = new ObservableCollection<string>((await FileIO.ReadLinesAsync(cate_file)).Distinct());
             list_of_categories.ItemsSource = source_list_of_categories;
         }
-        private void EndRound()
+        private void EndRound() //Fin de manche - Timer à 0
         {
             if (!page.Children.Contains(ui_endround))
             {
+                if (page.Children.Contains(ui_faultround))
+                {
+                    page.Children.Remove(ui_faultround);
+                }
                 page.Children.Remove(ui_infocard);
                 ui_scroll.Opacity = 1;
                 page.Children.Add(ui_endround);
@@ -274,8 +278,23 @@ namespace MatchiApp
                 ui_bigpicture.Visibility = Visibility.Visible;
             }
         }
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {            
+            page.Children.Remove(ui_infocard);
+            ui_notesbackdrop.Opacity = 0;
+            ui_notesbackdrop.Visibility = Visibility.Collapsed;
+            if (page.Children.Contains(ui_faultround))
+            {
+                page.Children.Remove(ui_faultround);
+            }
+            if (!page.Children.Contains(ui_endround))
+            {
+                ui_trans1.Opacity = 1;
+                ui_trans2.Opacity = 1;
+            }
+        }
 
-        private void LeftCardClick(object sender, PointerRoutedEventArgs e)
+        private void LeftCardClick(object sender, PointerRoutedEventArgs e) //Sélection de l'équipe 1
         {
             if (page.Children.Contains(ui_endround))
             {
@@ -289,7 +308,7 @@ namespace MatchiApp
             }
         }
 
-        private void RightCardClick(object sender, PointerRoutedEventArgs e)
+        private void RightCardClick(object sender, PointerRoutedEventArgs e)    //Sélection de l'équipe 2
         {
             if (page.Children.Contains(ui_endround))
             {
@@ -300,6 +319,29 @@ namespace MatchiApp
             {
                 ui_trans2.Opacity = (ui_trans2.Opacity == 1) ? 0.4 : 1;
                 TeamSelection("Fault");
+            }
+        }
+        private void TeamSelection(string type) //Gestion des sélections d'équipes
+        {
+            if (ui_trans1.Opacity == 1 || ui_trans2.Opacity == 1)
+            {
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                switch (type)
+                {
+                    case "Vote":
+                        ui_votemessage.Visibility = Visibility.Collapsed;
+                        ui_votebox.Visibility = Visibility.Visible;
+                        ui_votecomment.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? resourceLoader.GetString("Equality") : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
+                        break;
+                    case "Fault":
+                        ui_faultmessage.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? resourceLoader.GetString("FaultMessage") : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
+                        break;
+                }
+            }
+            else if (type == "Vote")
+            {
+                ui_votemessage.Visibility = Visibility.Visible;
+                ui_votebox.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -324,40 +366,6 @@ namespace MatchiApp
             ui_notesbackdrop.Visibility = Visibility.Collapsed;
             ui_notesbackdrop.Opacity = 0;
             if (!page.Children.Contains(ui_endround) && !page.Children.Contains(ui_interlude))
-            {
-                ui_trans1.Opacity = 1;
-                ui_trans2.Opacity = 1;
-            }
-        }
-
-        private void TeamSelection(string type)
-        {
-            if (ui_trans1.Opacity == 1 || ui_trans2.Opacity == 1)
-            {
-                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
-                switch (type) {
-                    case "Vote":
-                        ui_votemessage.Visibility = Visibility.Collapsed;
-                        ui_votebox.Visibility = Visibility.Visible;                        
-                        ui_votecomment.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? resourceLoader.GetString("Equality") : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
-                        break;
-                    case "Fault":
-                        ui_faultmessage.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? resourceLoader.GetString("FaultMessage") : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
-                        break;
-                }
-            }
-            else if (type=="Vote")
-            {
-                ui_votemessage.Visibility = Visibility.Visible;
-                ui_votebox.Visibility = Visibility.Collapsed;
-            }
-        }
-        private void PageLoaded(object sender, RoutedEventArgs e)
-        {            
-            page.Children.Remove(ui_infocard);
-            ui_notesbackdrop.Opacity = 0;
-            ui_notesbackdrop.Visibility = Visibility.Collapsed;
-            if (!page.Children.Contains(ui_endround))
             {
                 ui_trans1.Opacity = 1;
                 ui_trans2.Opacity = 1;
@@ -487,10 +495,10 @@ namespace MatchiApp
         private void ApplyTheme(string app_setting)
         {
             //Définit les couleurs à remplir dans les cartes des équipes selon le paramètre utilisateur
-            Color color1a = Color.FromArgb(0, 0, 0, 0);
-            Color color1b = Color.FromArgb(0, 0, 0, 0);
-            Color color2a = Color.FromArgb(0, 0, 0, 0);
-            Color color2b = Color.FromArgb(0, 0, 0, 0);
+            Color color1a;
+            Color color1b;
+            Color color2a;
+            Color color2b;
             switch (app_setting)
             {
                 case "1":
@@ -543,7 +551,7 @@ namespace MatchiApp
             page.Children.Add(new_round);
         }
 
-        private void random_category(object sender, RoutedEventArgs e)
+        private void PickRandom(object sender, RoutedEventArgs e)   //Choix aléatoire d'une catégorie
         {
             Random rand_index = new Random();
             if (source_list_of_categories.Count() == 0)
