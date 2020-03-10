@@ -183,6 +183,12 @@
   <data name="ExportTitle" xml:space="preserve">
     <value>Match export</value>
   </data>
+  <data name="FaultMessage" xml:space="preserve">
+    <value>Fault to both teams</value>
+  </data>
+  <data name="GiveFault.Text" xml:space="preserve">
+    <value>Choose the team</value>
+  </data>
   <data name="GivePoint.Text" xml:space="preserve">
     <value>Choose a team to give a point</value>
   </data>

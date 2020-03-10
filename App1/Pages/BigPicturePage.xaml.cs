@@ -36,21 +36,34 @@ namespace MatchiApp
             double width = bounds.Width;
             if (((Frame)).ActualWidth < 750)
             {
-                grid_team1.Height = (height / 2) - 45;
-                grid_team2.Height = (height / 2) - 45;
-                grid_team2.Margin = new Thickness(30);
+                grid_team1.Height = (height / 2) - 75;
+                grid_team2.Height = (height / 2) - 75;
+                grid_team2.Margin = new Thickness(30,30,30,90);
+                length_match.Padding = new Thickness(0, 30, 45, 0);
+                category_match.Padding = new Thickness(45, 30, 0, 0);
                 grid_team1.Width = width-60;
                 grid_team2.Width = width-60;
+                name_team1.FontSize = 66;
+                name_team2.FontSize = 66;
             }
             else
             {
                 grid_team1.Height = height-260;
                 grid_team2.Height = height-260;
                 grid_team2.Margin = new Thickness(15,0,30,230);
+                length_match.Padding = new Thickness(0, 30,90, 0);
+                category_match.Padding = new Thickness(90, 30, 0, 0);
                 grid_team1.Width = (width / 2) - 45;
                 grid_team2.Width = (width / 2) - 45;
+                name_team1.FontSize = ((Frame)).ActualWidth / 11;
+                name_team2.FontSize = ((Frame)).ActualWidth / 11;
             }
-            ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (((Frame)).ActualHeight < 750)
+            {
+                name_team1.FontSize /= 1.25;
+                name_team2.FontSize /= 1.25;
+            }
+                ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
             String app_setting = localSettings.Values["theme_setting"] as string;
             ApplyTheme(app_setting);
         }

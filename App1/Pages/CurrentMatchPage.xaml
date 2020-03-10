@@ -247,7 +247,7 @@
             <TextBlock x:Name="ui_votemessage" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="GivePoint" FontSize="18"></TextBlock>
             <Grid x:Name="ui_votebox" Visibility="Collapsed">
                 <TextBlock x:Name="ui_votecomment" HorizontalAlignment="Center" Margin="30,0,150,0" VerticalAlignment="Center" FontWeight="Bold" Text="Égalité" FontSize="18"></TextBlock>
-                <Button CornerRadius="4" Background="Transparent" HorizontalAlignment="Right" Margin="5"  VerticalAlignment="Stretch" FontSize="16" FontFamily="Segoe UI" Click="NextRound">
+                <Button x:Name="btn_nextround" CornerRadius="4" Background="Transparent" HorizontalAlignment="Right" Margin="5"  VerticalAlignment="Stretch" FontSize="16" FontFamily="Segoe UI" Click="ActionButton">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Uid="Continue"></TextBlock>
                         <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="20" Margin="15,0,0,0"/>
@@ -255,6 +255,21 @@
                 </Button>
             </Grid>
         </Grid>
+
+        <Grid x:Name="ui_faultround" Background="#100000" BorderBrush="#301000" BorderThickness="1" CornerRadius="10" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,60">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Bottom"/>
+                </TransitionCollection>
+            </Grid.Transitions>
+            <TextBlock x:Name="ui_faultmessage" Visibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Center" x:Uid="GiveFault" FontSize="18"></TextBlock>
+            <Button x:Name="btn_fault" CornerRadius="4" Background="Transparent" HorizontalAlignment="Right" Margin="5"  VerticalAlignment="Stretch" FontSize="16" FontFamily="Segoe UI" Click="ActionButton">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontWeight="Normal" FontSize="20" Margin="0,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
         <Grid x:Name="ui_showinfo" Visibility="Collapsed" BorderBrush="#303030" BorderThickness="1,1,1,0" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="12,12,0,0" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,0" PointerPressed="ShowInfo">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Text="&#xEE56;"></TextBlock>
@@ -274,7 +289,7 @@
 
 
         <StackPanel Height="60" VerticalAlignment="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="ui_penalty" Visibility="Collapsed" HorizontalAlignment="Right" FontFamily="Segoe MDL2 Assets" CornerRadius="4" Height="40" Width="40" Margin="0,8,8,0" FontSize="16">
+            <Button x:Name="ui_penalty" Visibility="Collapsed" HorizontalAlignment="Right" FontFamily="Segoe MDL2 Assets" CornerRadius="4" Height="40" Width="40" Margin="0,8,8,0" FontSize="16" Click="ShowPenaltyInterface">
                 <StackPanel Spacing="-20">
                     <TextBlock Text="&#xE7C1;"  Padding="0,5,0,0"></TextBlock>
                     <TextBlock FontSize="12" HorizontalAlignment="Right" Padding="10,14,0,0" Text="&#xEC24;"></TextBlock>
@@ -358,7 +373,7 @@
             <Button CornerRadius="25" x:Uid="StartMatch" FontSize="18" FontWeight="SemiBold" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="50" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start">
             </Button>
         </Grid>
-        <Grid x:Name="anim_givepoint" Background="Green" Visibility="Visible" Width="300" Height="300">
+        <Grid x:Name="anim_givepoint" Background="#151515" Visibility="Visible" Width="300" Height="300">
             <Grid.Transitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition/>

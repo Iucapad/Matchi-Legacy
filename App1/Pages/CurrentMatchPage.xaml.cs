@@ -53,10 +53,11 @@ namespace MatchiApp
         int curtime=0;
         float comptime=0;
         bool in_pause = false;
-        bool is_bigpicture = false;
         int round_value = 1;
         int scoreleft = 0;
         int scoreright = 0;
+        int faultleft = 0;
+        int faultright = 0;
         int times;        
 
         public CurrentMatchPage()
@@ -250,6 +251,7 @@ namespace MatchiApp
             ListInitialization();
             page.Children.Remove(ui_interlude);
             page.Children.Remove(ui_endround);
+            page.Children.Remove(ui_faultround);
             page.Children.Remove(new_round);
             page.Children.Remove(ui_victory);
             page.Children.Remove(anim_givepoint);
@@ -278,7 +280,12 @@ namespace MatchiApp
             if (page.Children.Contains(ui_endround))
             {
                 ui_trans1.Opacity = (ui_trans1.Opacity == 1) ? 0.4 : 1;
-                VoteSelection();
+                TeamSelection("Vote");
+            }
+            else if (page.Children.Contains(ui_faultround))
+            {
+                ui_trans1.Opacity = (ui_trans1.Opacity == 1) ? 0.4 : 1;
+                TeamSelection("Fault");
             }
         }
 
@@ -287,7 +294,12 @@ namespace MatchiApp
             if (page.Children.Contains(ui_endround))
             {
                 ui_trans2.Opacity = (ui_trans2.Opacity == 1) ? 0.4 : 1;
-                VoteSelection();
+                TeamSelection("Vote");
+            }
+            else if (page.Children.Contains(ui_faultround))
+            {
+                ui_trans2.Opacity = (ui_trans2.Opacity == 1) ? 0.4 : 1;
+                TeamSelection("Fault");
             }
         }
 
@@ -318,16 +330,23 @@ namespace MatchiApp
             }
         }
 
-        private void VoteSelection()
+        private void TeamSelection(string type)
         {
             if (ui_trans1.Opacity == 1 || ui_trans2.Opacity == 1)
             {
-                ui_votemessage.Visibility = Visibility.Collapsed;
-                ui_votebox.Visibility = Visibility.Visible;
                 var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
-                ui_votecomment.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? resourceLoader.GetString("Equality") : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
+                switch (type) {
+                    case "Vote":
+                        ui_votemessage.Visibility = Visibility.Collapsed;
+                        ui_votebox.Visibility = Visibility.Visible;                        
+                        ui_votecomment.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? resourceLoader.GetString("Equality") : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
+                        break;
+                    case "Fault":
+                        ui_faultmessage.Text = (ui_trans1.Opacity == ui_trans2.Opacity) ? resourceLoader.GetString("FaultMessage") : (ui_trans1.Opacity == 1) ? matchimpro.Team1 : matchimpro.Team2;
+                        break;
+                }
             }
-            else
+            else if (type=="Vote")
             {
                 ui_votemessage.Visibility = Visibility.Visible;
                 ui_votebox.Visibility = Visibility.Collapsed;
@@ -345,85 +364,122 @@ namespace MatchiApp
             }
         }
 
-        private async void NextRound(object sender, RoutedEventArgs e)
+        private async void ActionButton(object sender, RoutedEventArgs e)
         {
             var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
-            //animation de fin de manche et distribution des points
-            if (!page.Children.Contains(anim_givepoint))
+            //From Fault Interface
+            if (sender == btn_fault)
             {
-                page.Children.Add(anim_givepoint);                
-            }
-            ui_scroll.Opacity = 0.2;
-            ui_penalty.Visibility = Visibility.Collapsed;
-            if ((ui_trans1.Opacity == 1)&& (ui_trans2.Opacity != 1))
-            {
-                scoreleft++;
-                ui_leftcard.Rotation = -3;
-                anim_text.Text = resourceLoader.GetString("PointMessage") + matchimpro.Team1;
-            }
-            else if ((ui_trans1.Opacity != 1) && (ui_trans2.Opacity == 1))
-            {
-                scoreright++;
-                ui_rightcard.Rotation = 3;
-                anim_text.Text = resourceLoader.GetString("PointMessage") + matchimpro.Team2;
-            }
-            else if ((ui_trans1.Opacity == 1)&& (ui_trans2.Opacity == 1))
-            {
-                scoreleft++;
-                scoreright++;
-                ui_leftcard.Rotation = -3;
-                ui_rightcard.Rotation = 3;
-                anim_text.Text = resourceLoader.GetString("EqualityMessage");
-            }
-            ui_scoreleft.Text = scoreleft.ToString();
-            ui_scoreright.Text = scoreright.ToString();
-            ui_trans1.Opacity = 1;
-            ui_trans2.Opacity = 1;
-            await Task.Delay(TimeSpan.FromSeconds(2));
-            ui_leftcard.Rotation = 0;
-            ui_rightcard.Rotation = 0;
-            page.Children.Remove(anim_givepoint);
-            ui_scroll.Opacity = 1;
-            if (round_value< matchimpro.Rounds) {
-                //Affiche l'interface de la nouvelle manche
-                if (!page.Children.Contains(new_round))
+                btn_fault.IsEnabled = false;
+                ui_faultround.Visibility = Visibility.Collapsed;
+                if (ui_trans1.Opacity == 1)
                 {
-                    ui_votemessage.Visibility = Visibility.Visible;
-                    ui_votebox.Visibility = Visibility.Collapsed;
-                    page.Children.Remove(ui_endround);
-                    round_value++;
-                    page.Children.Add(new_round);                    
-                    round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";                    
+                    faultleft++;
                 }
-                if (source_list_of_categories.Count() == 0)
+                if (ui_trans2.Opacity == 1)
                 {
-                    source_list_of_categories.Add("Libre");
-                    list_of_categories.SelectedIndex = 0;
+                    faultright++;
                 }
+                ui_trans1.Opacity = 1;
+                ui_trans2.Opacity = 1;
+                page.Children.Remove(ui_faultround);
             }
-            else
+            //From Vote Interface
+            else if (sender == btn_nextround)
             {
-                //Affiche un écran de fin de match avec score final
-                if (!page.Children.Contains(ui_victory))
+                btn_nextround.IsEnabled = false;
+                if (!page.Children.Contains(anim_givepoint))
                 {
-                    page.Children.Add(ui_victory);
-                    ui_endround.Visibility = Visibility.Collapsed;
-                    page.Children.Remove(ui_endround);                    
-                    ui_scroll.Visibility = Visibility.Collapsed;
-                    if (scoreleft > scoreright)
+                    page.Children.Add(anim_givepoint);
+                }
+                ui_scroll.Opacity = 0.2;
+                ui_penalty.Visibility = Visibility.Collapsed;
+                if ((ui_trans1.Opacity == 1) && (ui_trans2.Opacity != 1))
+                {
+                    scoreleft++;
+                    ui_leftcard.Rotation = -3;
+                    anim_text.Text = resourceLoader.GetString("PointMessage") + matchimpro.Team1;
+                }
+                else if ((ui_trans1.Opacity != 1) && (ui_trans2.Opacity == 1))
+                {
+                    scoreright++;
+                    ui_rightcard.Rotation = 3;
+                    anim_text.Text = resourceLoader.GetString("PointMessage") + matchimpro.Team2;
+                }
+                else if ((ui_trans1.Opacity == 1) && (ui_trans2.Opacity == 1))
+                {
+                    scoreleft++;
+                    scoreright++;
+                    ui_leftcard.Rotation = -3;
+                    ui_rightcard.Rotation = 3;
+                    anim_text.Text = resourceLoader.GetString("EqualityMessage");
+                }
+                ui_scoreleft.Text = scoreleft.ToString();
+                ui_scoreright.Text = scoreright.ToString();
+                ui_trans1.Opacity = 1;
+                ui_trans2.Opacity = 1;
+                await Task.Delay(TimeSpan.FromSeconds(2));
+                ui_leftcard.Rotation = 0;
+                ui_rightcard.Rotation = 0;
+                page.Children.Remove(anim_givepoint);
+                ui_scroll.Opacity = 1;
+                if (round_value < matchimpro.Rounds)
+                {
+                    //Affiche l'interface de la nouvelle manche
+                    if (!page.Children.Contains(new_round))
                     {
-                        //Victoire de équipe 1
-                        ui_victorymessage.Text = resourceLoader.GetString("VictoryMessage") + matchimpro.Team1;
+                        ui_votemessage.Visibility = Visibility.Visible;
+                        ui_votebox.Visibility = Visibility.Collapsed;
+                        btn_nextround.IsEnabled = true;
+                        page.Children.Remove(ui_endround);
+                        round_value++;
+                        page.Children.Add(new_round);
+                        round_nb.Text = $"Manche {round_value} / {matchimpro.Rounds}";
                     }
-                    else if (scoreleft < scoreright)
+                    if (source_list_of_categories.Count() == 0)
                     {
-                        //Victoire de équipe 2
-                        ui_victorymessage.Text = resourceLoader.GetString("VictoryMessage") + matchimpro.Team2;
+                        source_list_of_categories.Add("Libre");
+                        list_of_categories.SelectedIndex = 0;
                     }
-                    else
+                }
+                //End of match
+                else
+                {
+                    //Perte d'un point toutes les 3 fautes
+                    if (scoreleft > 0)
                     {
-                        //Egalité
-                        ui_victorymessage.Text = resourceLoader.GetString("Equality");
+                        int nb = (faultleft / 3);
+                        scoreleft -= nb;
+                    }
+                    if (scoreright > 0)
+                    {
+                        int nb = (faultright / 3);
+                        scoreright -= nb;
+                    }
+
+                    //Affiche l'écran de résumé
+                    if (!page.Children.Contains(ui_victory))
+                    {
+                        page.Children.Add(ui_victory);
+                        ui_endround.Visibility = Visibility.Collapsed;
+                        btn_nextround.IsEnabled = true;
+                        page.Children.Remove(ui_endround);
+                        ui_scroll.Visibility = Visibility.Collapsed;
+                        if (scoreleft > scoreright)
+                        {
+                            //Victoire de équipe 1
+                            ui_victorymessage.Text = resourceLoader.GetString("VictoryMessage") + matchimpro.Team1;
+                        }
+                        else if (scoreleft < scoreright)
+                        {
+                            //Victoire de équipe 2
+                            ui_victorymessage.Text = resourceLoader.GetString("VictoryMessage") + matchimpro.Team2;
+                        }
+                        else
+                        {
+                            //Egalité
+                            ui_victorymessage.Text = resourceLoader.GetString("Equality");
+                        }
                     }
                 }
             }
@@ -637,6 +693,20 @@ namespace MatchiApp
             if (true)//!available)
             {
                 await ProjectionManager.StartProjectingAsync(NewWindowid, Windowid);
+            }
+        }
+
+        private void ShowPenaltyInterface(object sender, RoutedEventArgs e)
+        {
+            if (!page.Children.Contains(ui_faultround))
+            {
+                page.Children.Remove(ui_infocard);
+                ui_scroll.Opacity = 1;
+                page.Children.Add(ui_faultround);
+                btn_fault.IsEnabled = true;
+                ui_faultround.Visibility = Visibility.Visible;
+                ui_trans1.Opacity = 0.4;
+                ui_trans2.Opacity = 0.4;
             }
         }
     }
