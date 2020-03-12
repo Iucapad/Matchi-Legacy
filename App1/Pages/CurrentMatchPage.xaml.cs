@@ -105,10 +105,7 @@ namespace MatchiApp
         {
             if (!page.Children.Contains(ui_endround))
             {
-                if (page.Children.Contains(ui_faultround))
-                {
-                    page.Children.Remove(ui_faultround);
-                }
+                HidePenaltyInterface();
                 page.Children.Remove(ui_infocard);
                 ui_scroll.Opacity = 1;
                 page.Children.Add(ui_endround);
@@ -283,10 +280,7 @@ namespace MatchiApp
             page.Children.Remove(ui_infocard);
             ui_notesbackdrop.Opacity = 0;
             ui_notesbackdrop.Visibility = Visibility.Collapsed;
-            if (page.Children.Contains(ui_faultround))
-            {
-                page.Children.Remove(ui_faultround);
-            }
+            HidePenaltyInterface();
             if (!page.Children.Contains(ui_endround))
             {
                 ui_trans1.Opacity = 1;
@@ -323,9 +317,9 @@ namespace MatchiApp
         }
         private void TeamSelection(string type) //Gestion des sélections d'équipes
         {
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
             if (ui_trans1.Opacity == 1 || ui_trans2.Opacity == 1)
             {
-                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                 switch (type)
                 {
                     case "Vote":
@@ -338,10 +332,18 @@ namespace MatchiApp
                         break;
                 }
             }
-            else if (type == "Vote")
+            else
             {
-                ui_votemessage.Visibility = Visibility.Visible;
-                ui_votebox.Visibility = Visibility.Collapsed;
+                switch (type)
+                {
+                    case "Vote":
+                        ui_votemessage.Visibility = Visibility.Visible;
+                        ui_votebox.Visibility = Visibility.Collapsed;
+                        break;
+                    case "Fault":
+                        ui_faultmessage.Text = resourceLoader.GetString("GiveFault");
+                        break;
+                }
             }
         }
 
@@ -708,13 +710,31 @@ namespace MatchiApp
         {
             if (!page.Children.Contains(ui_faultround))
             {
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                 page.Children.Remove(ui_infocard);
                 ui_scroll.Opacity = 1;
                 page.Children.Add(ui_faultround);
                 btn_fault.IsEnabled = true;
+                ui_faultmessage.Text = resourceLoader.GetString("GiveFault");
                 ui_faultround.Visibility = Visibility.Visible;
                 ui_trans1.Opacity = 0.4;
                 ui_trans2.Opacity = 0.4;
+            }
+            else
+            {
+                HidePenaltyInterface();
+            }
+        }
+
+        private void HidePenaltyInterface()
+        {
+            if (page.Children.Contains(ui_faultround))
+            {
+                btn_fault.IsEnabled = false;
+                ui_faultround.Visibility = Visibility.Collapsed;
+                ui_trans1.Opacity = 1;
+                ui_trans2.Opacity = 1;
+                page.Children.Remove(ui_faultround);
             }
         }
     }

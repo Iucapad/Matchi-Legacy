@@ -186,7 +186,7 @@
   <data name="FaultMessage" xml:space="preserve">
     <value>Fault to both teams</value>
   </data>
-  <data name="GiveFault.Text" xml:space="preserve">
+  <data name="GiveFault" xml:space="preserve">
     <value>Choose the team</value>
   </data>
   <data name="GivePoint.Text" xml:space="preserve">
