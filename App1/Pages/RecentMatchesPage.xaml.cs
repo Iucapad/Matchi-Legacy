@@ -69,7 +69,7 @@ namespace MatchiApp
 
         private async void Open_match(object sender, RoutedEventArgs e)
         {            
-            if (mainFrame.navigationView.MenuItems.Count == 6)
+            if (mainFrame.navigationView.MenuItems.Count ==5)
             {
                 var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                 ContentDialog deleteFileDialog = new ContentDialog

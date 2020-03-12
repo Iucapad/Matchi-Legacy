@@ -57,7 +57,7 @@ namespace MatchiApp
             match.Save(store.Folder);
 
             MainPage mainFrame = (MainPage)((Frame)Window.Current.Content).Content;
-            if (mainFrame.navigationView.MenuItems.Count == 6)
+            if (mainFrame.navigationView.MenuItems.Count == 5)
             {
                 mainFrame.navigationView.MenuItems[0] = new NavigationViewItem
                 {

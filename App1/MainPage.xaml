@@ -84,7 +84,6 @@
                 <NavigationViewItem x:Name="MATCH" Icon="OutlineStar" x:Uid="RecentMatches" Tag="matchNav">
                 </NavigationViewItem>
                 <NavigationViewItem x:Name="CATEGORIES" Icon="Library" x:Uid="CategoriesNav" Tag="categoryNav" />
-                <NavigationViewItem Icon="Audio" x:Uid="MusicNav" Tag="editNav" />
                 <NavigationViewItemSeparator></NavigationViewItemSeparator>
                 <NavigationViewItem Icon="Setting" x:Uid="SettingsNav" Tag="settingsNav" />
             </NavigationView.MenuItems>

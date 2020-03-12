@@ -104,12 +104,12 @@ namespace MatchiApp
                 case "categoryNav":
                     contentFrame.Navigate(typeof(CategoryPage));
                     web_header.Visibility = Visibility.Collapsed;
-                    break;
+                    break;/*
                 case "editNav":
                     contentFrame.Navigate(typeof(MusicPage));
                     web_header.Fill = new SolidColorBrush(Color.FromArgb(255,30, 215, 96));
                     web_header.Visibility = Visibility.Visible;
-                    break;
+                    break;*/
                 case "currentNav":
                     contentFrame.Navigate(typeof(CurrentMatchPage));
                     web_header.Visibility = Visibility.Collapsed;

@@ -380,8 +380,6 @@ namespace MatchiApp
             //From Fault Interface
             if (sender == btn_fault)
             {
-                btn_fault.IsEnabled = false;
-                ui_faultround.Visibility = Visibility.Collapsed;
                 if (ui_trans1.Opacity == 1)
                 {
                     faultleft++;
@@ -390,9 +388,7 @@ namespace MatchiApp
                 {
                     faultright++;
                 }
-                ui_trans1.Opacity = 1;
-                ui_trans2.Opacity = 1;
-                page.Children.Remove(ui_faultround);
+                HidePenaltyInterface();
             }
             //From Vote Interface
             else if (sender == btn_nextround)
@@ -734,6 +730,12 @@ namespace MatchiApp
                 ui_faultround.Visibility = Visibility.Collapsed;
                 ui_trans1.Opacity = 1;
                 ui_trans2.Opacity = 1;
+                if (page.Children.Contains(ui_endround))
+                {
+                    ui_trans1.Opacity = 0.4;
+                    ui_trans2.Opacity = 0.4;
+                    TeamSelection("Vote");
+                }
                 page.Children.Remove(ui_faultround);
             }
         }

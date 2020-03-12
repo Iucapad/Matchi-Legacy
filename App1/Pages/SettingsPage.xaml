@@ -72,7 +72,7 @@
             </Grid>
             <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Height="100" Margin="0,300,0,0" Width="400">
                     <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="24" Margin="0,0,0,0" x:Uid="About"></TextBlock>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="16" Margin="0,0,0,0" Text="Matchi BETA 1.0.0.0&#x0a;© 2019 Saison"></TextBlock>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="16" Margin="0,0,0,0" Text="Matchi BETA 1.1.6.0&#x0a;© 2020 Saison"></TextBlock>
                 </Grid>
             </Grid>
         </ScrollViewer>

@@ -311,7 +311,7 @@
                 </Button>
             </Grid>
         </Grid>
-        <Grid x:Name="ui_endround" BorderBrush="#303030" BorderThickness="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="10" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,60">
+        <Grid x:Name="ui_endround" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" CornerRadius="10" VerticalAlignment="Bottom" Height="55" Margin="30,0,30,60">
             <Grid.Transitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Bottom"/>
@@ -468,7 +468,7 @@
             <Button CornerRadius="25" x:Uid="StartMatch" FontSize="18" FontWeight="SemiBold" Style="{ThemeResource ButtonRevealStyle}" HorizontalAlignment="Center" Height="50" Width="150" Margin="0,0,0,60"  VerticalAlignment="Bottom" FontFamily="Segoe UI" Click="Start">
             </Button>
         </Grid>
-        <Grid x:Name="anim_givepoint" Visibility="Visible" Width="auto" Height="300">
+        <Grid x:Name="anim_givepoint" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" Visibility="Visible" Width="auto" Height="300">
             <Grid.Transitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition/>
