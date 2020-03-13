@@ -78,7 +78,7 @@
                 </Button>
             </Grid>
         </Grid>
-        <Rectangle x:Name="web_header" Visibility="Collapsed" Height="auto"  Width="auto" Margin="40,0,0,0" Fill="#151515"></Rectangle>
+        <Rectangle x:Name="web_header" Visibility="Visible" Height="30"  Width="40" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Fill="{ThemeResource NavigationViewTopPaneBackground}"></Rectangle>
         <NavigationView x:Name="navigationView" Margin="0,30,0,0" x:FieldModifier="public" IsPaneOpen="False" IsBackButtonVisible="Collapsed" IsSettingsVisible="False" CompactModeThresholdWidth="750" ExpandedModeThresholdWidth="10000" SelectionChanged="SelectionChanged" PaneClosing="PaneClosing" >
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Name="MATCH" Icon="OutlineStar" x:Uid="RecentMatches" Tag="matchNav">

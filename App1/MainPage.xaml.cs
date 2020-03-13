@@ -99,11 +99,9 @@ namespace MatchiApp
             {
                 case "matchNav":
                     contentFrame.Navigate(typeof(RecentMatchesPage));
-                    web_header.Visibility = Visibility.Collapsed;
                     break;
                 case "categoryNav":
                     contentFrame.Navigate(typeof(CategoryPage));
-                    web_header.Visibility = Visibility.Collapsed;
                     break;/*
                 case "editNav":
                     contentFrame.Navigate(typeof(MusicPage));
@@ -112,11 +110,9 @@ namespace MatchiApp
                     break;*/
                 case "currentNav":
                     contentFrame.Navigate(typeof(CurrentMatchPage));
-                    web_header.Visibility = Visibility.Collapsed;
                     break;
                 case "settingsNav":
                     contentFrame.Navigate(typeof(SettingsPage));
-                    web_header.Visibility = Visibility.Collapsed;
                     break;
             }
         }
@@ -146,7 +142,7 @@ namespace MatchiApp
                 navigationTrigger.Visibility = Visibility.Visible;
                 page_title.Margin = new Thickness(50, 0, 0, 0);
                 home_interface.Margin = new Thickness(0, 33, 0, 0);
-                web_header.Margin = new Thickness(0);
+                web_header.Visibility = Visibility.Collapsed;
                 navBackground.Visibility = Visibility.Collapsed;
                 if (((Frame)Window.Current.Content).ActualWidth < 500)
                 {
@@ -162,7 +158,7 @@ namespace MatchiApp
             {
                 page_title.Margin = new Thickness(20, 10, 0, 0);
                 home_interface.Margin = new Thickness(40, 33, 0, 0);
-                web_header.Margin = new Thickness(40, 0, 0, 0);
+                web_header.Visibility = Visibility.Visible;
                 navBackground.Visibility = Visibility.Visible;
             }
         }
